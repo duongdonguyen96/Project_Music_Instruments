@@ -1,0 +1,926 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Table Basic - srtdash</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/metisMenu.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.min.css">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all"/>
+    <!-- others css -->
+    <link rel="stylesheet" href="assets/css/typography.css">
+    <link rel="stylesheet" href="assets/css/default-css.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- modernizr css -->
+
+    <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+
+</head>
+
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+<!-- preloader area start -->
+<div id="preloader">
+    <div class="loader"></div>
+</div>
+<!-- preloader area end -->
+<!-- page container area start -->
+<div class="page-container">
+    <!-- sidebar menu area start -->
+    <div class="sidebar-menu">
+        <div class="sidebar-header">
+            <div class="logo">
+                <a href="index.html"><img src="assets/images/icon/logo.png" alt="logo"></a>
+            </div>
+        </div>
+        <div class="main-menu">
+            <div class="menu-inner">
+                <nav>
+                    <ul class="metismenu" id="menu">
+                        <li>
+                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
+                                <span>Products</span></a>
+                            <ul class="collapse">
+                                <li><a href="/products">Products list</a></li>
+                                <li><a href="ProductIsDelete.html">Products Deleted</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
+                                <span>Vendors</span></a>
+                            <ul class="collapse">
+                                <li><a href="/vendors">Vendors list</a></li>
+                                <li><a href="VendorIsDelete.html">Vendors Deleted</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
+                                <span>ProductLines</span></a>
+                            <ul class="collapse">
+                                <li><a href="/typeProducts">ProductLines list</a></li>
+                                <li><a href="ProductLineIsDelete.html">ProductLines Deleted</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
+                                <span>Blogs</span></a>
+                            <ul class="collapse">
+                                <li><a href="/blogs">Blogs list</a></li>
+                                <li><a href="BlogIsDelete.html">Blogs Deleted</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
+                                <span>Banders</span></a>
+                            <ul class="collapse">
+                                <li><a href="/banners">Banders list</a></li>
+                                <li><a href="BannerIsDelete.html">Banders Deleted</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
+                                <span>Orders</span></a>
+                            <ul class="collapse">
+                                <li><a href="/orders">Orders list</a></li>
+                                <li><a href="OderIsDelete.html">Orders Deleted</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
+                                <span>Rates</span></a>
+                            <ul class="collapse">
+                                <li class="active"><a href="/rates">Rates list</a></li>
+                                <li><a href="RateIsDelete.html">Rates Deleted</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
+                                <span>Employees</span></a>
+                            <ul class="collapse">
+                                <li><a href="/employees">Employees list</a></li>
+                                <li><a href="EmployeeIsDelete.html">Employees Deleted</a></li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
+                                <span>employees</span></a>
+                            <ul class="collapse">
+                                <li class="active"><a href="/employees">employees list</a></li>
+                                <li><a href="UserIsBanner.html">employees Deleted</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- sidebar menu area end -->
+    <!-- main content area start -->
+    <div class="main-content">
+        <!-- header area start -->
+        <div class="header-area">
+            <div class="row align-items-center">
+                <!-- nav and search button -->
+                <div class="col-md-6 col-sm-8 clearfix">
+                    <div class="nav-btn pull-left">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="search-box pull-left">
+                        <form action="#">
+                            <input type="text" name="search" placeholder="Search..." required>
+                            <i class="ti-search"></i>
+                        </form>
+                    </div>
+                </div>
+                <!-- profile info & task notification -->
+                <div class="col-md-6 col-sm-4 clearfix">
+                    <ul class="notification-area pull-right">
+                        <li id="full-view"><i class="ti-fullscreen"></i></li>
+                        <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                        <li class="dropdown">
+                            <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>3</span></i>
+                            <div class="dropdown-menu notify-box nt-enveloper-box">
+                                <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
+                                <div class="nofity-list">
+                                    <a href="#" class="notify-item">
+                                        <div class="notify-thumb">
+                                            <img src="assets/images/author/author-img1.jpg" alt="image">
+                                        </div>
+                                        <div class="notify-text">
+                                            <p>Aglae Mayer</p>
+                                            <span class="msg">Hey I am waiting for you...</span>
+                                            <span>3:15 PM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- header area end -->
+        <!-- page title area start -->
+        <div class="page-title-area">
+            <div class="row align-items-center">
+                <div class="col-sm-6">
+                    <div class="breadcrumbs-area clearfix">
+                        <h4 class="page-title pull-left">Dashboard</h4>
+                        <ul class="breadcrumbs pull-left">
+                            <li><a href="#">employees</a></li>
+                            <li><span>employees list</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 clearfix">
+                    <div class="employee-profile pull-right">
+                        <img class="avatar employee-thumb" src="assets/images/author/avatar.png" alt="avatar">
+                        <h4 class="employee-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i
+                                class="fa fa-angle-down"></i></h4>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Message</a>
+                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="#">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- page title area end -->
+        <div class="main-content-inner">
+            <div class="row">
+                <!-- table success start -->
+                <div class="col-lg-12 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#modalCreate">Create
+                            </button>
+                            <h4 class="header-title">EMPLOYEES</h4>
+                            <div class="single-table">
+                                <div class="table-responsive">
+                                    <table class="table text-center">
+                                        <thead class="text-uppercase bg-success">
+                                        <tr class="text-white">
+                                            <th scope="col">ID</th>
+                                            <th scope="col">FULL NAME</th>
+                                            <th scope="col">PHONE</th>
+                                            <th scope="col">DOB</th>
+                                            <th scope="col">IMAGE</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="table">
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- Modal Create -->
+                                <div class="modal" id="modalCreate">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Create Employee</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;
+                                                </button>
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                <form id="createForm">
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>employee Name</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="userName" name="userName"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Password</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="password" name="password"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Full Name</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="fullName" name="fullName"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Address</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="address" name="address"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Phone</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="phone" name="phone"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>ID Card</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="idcard" name="idcard"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Gender</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <select class="form-control" id="gender" name="gender">
+                                                                <option value="male">MALE</option>
+                                                                <option value="female">FEMALE</option>
+                                                                <option value="other gender">OTHER GENDER</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Email</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="email" name="email"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Date Of Birth</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="date" id="dateOfBirth" name="dateOfBirth"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Image</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="image" name="image"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row form-group">
+                                                        <div class="col-9">
+                                                            <input type="hidden" id="id" class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer">
+                                                        <input type="submit" class="btn btn-warning"
+                                                               onclick="return  employees.create()"
+                                                               value="Create">
+                                                        <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Model Update-->
+                                <div class="modal" id="modalUpdate">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Update Employee</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;
+                                                </button>
+                                            </div>
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                <form id="updateForm">
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>employee Name</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="userNameUpdate" name="userNameUpdate"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Password</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="passwordUpdate" name="passwordUpdate"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Full Name</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="fullNameUpdate" name="fullNameUpdate"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Address</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="addressUpdate" name="addressUpdate"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Phone</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="phoneUpdate" name="phoneUpdate"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>ID Card</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="idcardUpdate" name="idcardUpdate"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Gender</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <select class="form-control" id="genderUpdate"
+                                                                    name="genderUpdate">
+                                                                <option value="male">MALE</option>
+                                                                <option value="female">FEMALE</option>
+                                                                <option value="other gender">OTHER GENDER</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Email</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="emailUpdate" name="emailUpdate"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Date Of Birth</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="date" id="dateOfBirthUpdate"
+                                                                   name="dateOfBirthUpdate"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-3">
+                                                            <label>Image</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input type="text" id="imageUpdate" name="imageUpdate"
+                                                                   class="form-control" required th:maxlength="45">
+                                                            <p style="color: red;display: none"
+                                                               class="ui-state-error-text"></p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row form-group">
+                                                        <div class="col-9">
+                                                            <input type="hidden" id="idUpdate" class="form-control"
+                                                                   required>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer">
+                                                        <input type="submit" class="btn btn-warning"
+                                                               onclick="return  employees.update()"
+                                                               value="Update">
+                                                        <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- table success end -->
+                <!-- Contextual Classes end -->
+            </div>
+        </div>
+    </div>
+    <!-- main content area end -->
+    <!-- footer area start-->
+    <footer>
+        <div class="footer-area">
+            <p>© Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.
+            </p>
+        </div>
+    </footer>
+    <!-- footer area end-->
+</div>
+<!-- page container area end -->
+<!-- offset area start -->
+<div class="offset-area">
+    <div class="offset-close"><i class="ti-close"></i></div>
+    <ul class="nav offset-menu-tab">
+        <li><a class="active" data-toggle="tab" href="#activity">Activity</a></li>
+        <li><a data-toggle="tab" href="#settings">Settings</a></li>
+    </ul>
+    <div class="offset-content tab-content">
+        <div id="activity" class="tab-pane fade in show active">
+            <div class="recent-activity">
+                <div class="timeline-task">
+                    <div class="icon bg1">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <div class="tm-title">
+                        <h4>Rashed sent you an email</h4>
+                        <span class="time"><i class="ti-time"></i>09:35</span>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                    </p>
+                </div>
+                <div class="timeline-task">
+                    <div class="icon bg2">
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <div class="tm-title">
+                        <h4>Added</h4>
+                        <span class="time"><i class="ti-time"></i>7 Minutes Ago</span>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur.
+                    </p>
+                </div>
+                <div class="timeline-task">
+                    <div class="icon bg2">
+                        <i class="fa fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="tm-title">
+                        <h4>You missed you Password!</h4>
+                        <span class="time"><i class="ti-time"></i>09:20 Am</span>
+                    </div>
+                </div>
+                <div class="timeline-task">
+                    <div class="icon bg3">
+                        <i class="fa fa-bomb"></i>
+                    </div>
+                    <div class="tm-title">
+                        <h4>Member waiting for you Attention</h4>
+                        <span class="time"><i class="ti-time"></i>09:35</span>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                    </p>
+                </div>
+                <div class="timeline-task">
+                    <div class="icon bg3">
+                        <i class="ti-signal"></i>
+                    </div>
+                    <div class="tm-title">
+                        <h4>You Added Kaji Patha few minutes ago</h4>
+                        <span class="time"><i class="ti-time"></i>01 minutes ago</span>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                    </p>
+                </div>
+                <div class="timeline-task">
+                    <div class="icon bg1">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <div class="tm-title">
+                        <h4>Ratul Hamba sent you an email</h4>
+                        <span class="time"><i class="ti-time"></i>09:35</span>
+                    </div>
+                    <p>Hello sir , where are you, i am egerly waiting for you.
+                    </p>
+                </div>
+                <div class="timeline-task">
+                    <div class="icon bg2">
+                        <i class="fa fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="tm-title">
+                        <h4>Rashed sent you an email</h4>
+                        <span class="time"><i class="ti-time"></i>09:35</span>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                    </p>
+                </div>
+                <div class="timeline-task">
+                    <div class="icon bg2">
+                        <i class="fa fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="tm-title">
+                        <h4>Rashed sent you an email</h4>
+                        <span class="time"><i class="ti-time"></i>09:35</span>
+                    </div>
+                </div>
+                <div class="timeline-task">
+                    <div class="icon bg3">
+                        <i class="fa fa-bomb"></i>
+                    </div>
+                    <div class="tm-title">
+                        <h4>Rashed sent you an email</h4>
+                        <span class="time"><i class="ti-time"></i>09:35</span>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                    </p>
+                </div>
+                <div class="timeline-task">
+                    <div class="icon bg3">
+                        <i class="ti-signal"></i>
+                    </div>
+                    <div class="tm-title">
+                        <h4>Rashed sent you an email</h4>
+                        <span class="time"><i class="ti-time"></i>09:35</span>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="settings" class="tab-pane fade">
+            <div class="offset-settings">
+                <h4>General Settings</h4>
+                <div class="settings-list">
+                    <div class="s-settings">
+                        <div class="s-sw-title">
+                            <h5>Notifications</h5>
+                            <div class="s-swtich">
+                                <input type="checkbox" id="switch1"/>
+                                <label for="switch1">Toggle</label>
+                            </div>
+                        </div>
+                        <p>Keep it 'On' When you want to get all the notification.</p>
+                    </div>
+                    <div class="s-settings">
+                        <div class="s-sw-title">
+                            <h5>Show recent activity</h5>
+                            <div class="s-swtich">
+                                <input type="checkbox" id="switch2"/>
+                                <label for="switch2">Toggle</label>
+                            </div>
+                        </div>
+                        <p>The for attribute is necessary to bind our custom checkbox with the input.</p>
+                    </div>
+                    <div class="s-settings">
+                        <div class="s-sw-title">
+                            <h5>Show your emails</h5>
+                            <div class="s-swtich">
+                                <input type="checkbox" id="switch3"/>
+                                <label for="switch3">Toggle</label>
+                            </div>
+                        </div>
+                        <p>Show email so that easily find you.</p>
+                    </div>
+                    <div class="s-settings">
+                        <div class="s-sw-title">
+                            <h5>Show Task statistics</h5>
+                            <div class="s-swtich">
+                                <input type="checkbox" id="switch4"/>
+                                <label for="switch4">Toggle</label>
+                            </div>
+                        </div>
+                        <p>The for attribute is necessary to bind our custom checkbox with the input.</p>
+                    </div>
+                    <div class="s-settings">
+                        <div class="s-sw-title">
+                            <h5>Notifications</h5>
+                            <div class="s-swtich">
+                                <input type="checkbox" id="switch5"/>
+                                <label for="switch5">Toggle</label>
+                            </div>
+                        </div>
+                        <p>Use checkboxes when looking for yes or no answers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- offset area end -->
+<!-- jquery latest version -->
+<script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
+        integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+<!-- bootstrap 4 js -->
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/metisMenu.min.js"></script>
+<script src="assets/js/jquery.slimscroll.min.js"></script>
+<script src="assets/js/jquery.slicknav.min.js"></script>
+
+<!-- others plugins -->
+<script src="assets/js/plugins.js"></script>
+<script src="assets/js/scripts.js"></script>
+
+<script type="text/javascript">
+
+    var employees = {} || employees;
+    var categoryData = [];
+    employees.drawTable = function () {
+        $.ajax({
+            url: "http://localhost:8080/api/employees/",
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                $('#table').empty();
+                $.each(data, function (i, v) {
+                    $('#table').append(
+                        "<tr>" +
+                        "<td>" + v.id + "</td>" +
+                        "<td>" + v.fullName + "</td>" +
+                        "<td>" + v.phone + "</td>" +
+                        "<td>" + v.dateOfBirth + "</td>" +
+                        "<td>" + v.image + "</td>" +
+                        "<td>" +
+                        "<a class='ml-3 btn btn-warning' href='#' onclick='employees.get(" + v.id + ")' data-toggle=\"modal\" data-target=\"#modalUpdate\">Edit</a>" +
+                        "<a class='ml-3 btn btn-danger' href='#' onclick='employees.remove(" + v.id + ")'>Delete</a>" +
+                        "</td>" +
+                        "</tr>"
+                    );
+                });
+                $('#dataTable').DataTable();
+            }
+        });
+
+    };
+
+    employees.remove = function (id) {
+        bootbox.confirm({
+            message: "Do you want to delete this employees",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        url: "http://localhost:8080/api/employees/" + id,
+                        method: "DELETE", //"POST"
+                        dataType: 'json',
+                        success: function (data) {
+                            employees.drawTable();
+                            toastr.info('employees has been deleted successfully', 'INFORMATION:')
+                        },
+                        error: function (jqXHR, exception) {
+                            toastr.error('Programming have One Error', 'INFORMATION:')
+
+                        },
+                    });
+                }
+            }
+        });
+
+    }
+
+    employees.create = function () {
+        // if ($('#createForm').valid()) {
+        var employee = {};
+        employee.userName = $('#userName').val();
+        employee.password = $('#password').val();
+        employee.fullName = $('#fullName').val();
+        employee.address = $('#address').val();
+        employee.phone = $('#phone').val();
+        employee.email = $('#email').val();
+        employee.gender = $('#gender').val();
+        employee.image = $('#image').val();
+        employee.dateOfBirth = $('#dateOfBirth').val();
+        employee.idCard = $('#idcard').val();
+        $.ajax({
+            url: "http://localhost:8080/api/employees/",
+            method: "POST", //"POST"
+            dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify(employee),
+            success: function (data) {
+                employees.drawTable();
+                toastr.success('employees has been Created successfully', 'INFORMATION:');
+            }
+        })
+        // }
+        // employees.reset();
+        // return false;
+    }
+
+    employees.get = function (id) {
+        $.ajax({
+            url: "http://localhost:8080/api/employees/" + id,
+            method: "GET",
+            dateType: "json",
+            success: function (data) {
+                $('#userNameUpdate').val(data.userName);
+                $('#passwordUpdate').val(data.password);
+                $('#fullNameUpdate').val(data.fullName);
+                $('#addressUpdate').val(data.address);
+                $('#phoneUpdate').val(data.phone);
+                $('#emailUpdate').val(data.email);
+                $('#genderUpdate').val(data.gender);
+                $('#imageUpdate').val(data.image);
+                $('#dateOfBirthUpdate').val(data.dateOfBirth);
+                $('#idcardUpdate').val(data.dateOfBirth);
+                $('#idUpdate').val(data.id);
+            }
+        })
+    }
+
+    employees.update = function (id) {
+
+        // if ($('#updateForm').valid()) {
+        var employee = {};
+
+        employee.userName = $('#userNameUpdate').val();
+        employee.password = $('#passwordUpdate').val();
+        employee.fullName = $('#fullNameUpdate').val();
+        employee.address = $('#addressUpdate').val();
+        employee.phone = $('#phoneUpdate').val();
+        employee.email = $('#emailUpdate').val();
+        employee.gender = $('#genderUpdate').val();
+        employee.image = $('#imageUpdate').val();
+        employee.dateOfBirth = $('#dateOfBirthUpdate').val();
+        employee.idCard = $('#idcardUpdate').val();
+        employee.id = $('#idUpdate').val();
+
+        $.ajax({
+            url: "http://localhost:8080/api/employees/",
+            method: "PUT", //"POST"
+            dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify(employee),
+            success: function (data) {
+                console.log(data);
+                employees.drawTable();
+                toastr.success('employees has been updated successfully', 'INFORMATION:')
+
+            }
+        });
+        // return false;
+        // }
+    }
+
+
+
+    // employees.reset = function () {
+    //     $('#username').val('');
+    //     $('#password').val('');
+    //     $('#fullName').val('');
+    //     $('#address').val('');
+    //     $('#phone').val('');
+    //     $('#email').val('');
+    //     $('#gender').val('');
+    //     $('#image').val('');
+    //     $('#dateOfBirth').val('');
+    //
+    // }
+    $(document).ready(function () {
+        employees.drawTable();
+        employees.reset();
+    });
+
+</script>
+</body>
+</html>
