@@ -6,6 +6,7 @@ import com.codegym.project.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
         if (product==null){
             return false;
         }
-        product.setDateDelete(new Date());
+        product.setDateDelete(ZonedDateTime.now());
         product.setDelete(true);
         productRepository.save(product);
         return true;

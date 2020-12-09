@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -40,13 +41,13 @@ public class TypeProductServiceImpl implements TypeProductService {
             return false;
         }
         typeProduct.setDelete(true);
-        typeProduct.setDateDelete(new Date());
+        typeProduct.setDateDelete(ZonedDateTime.now());
         typeProductRepository.save(typeProduct);
         List<Product> productList=productRepository.findAll();
         for (Product product:productList) {
             if (product.getTypeProduct().isDelete()){
                 product.setDelete(true);
-                product.setDateDelete(new Date());
+                product.setDateDelete(ZonedDateTime.now());
                 productRepository.save(product);
             }
         }
@@ -81,7 +82,7 @@ public class TypeProductServiceImpl implements TypeProductService {
         TypeProduct typeProduct=this.findTypeProductDeleted(id);
         if (typeProduct!=null){
             typeProduct.setDelete(false);
-            typeProduct.setDateUpdate(new Date());
+            typeProduct.setDateUpdate(ZonedDateTime.now());
             typeProductRepository.save(typeProduct);
             return true;
         }

@@ -1,5 +1,6 @@
 package com.codegym.project.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Set;
 
@@ -32,11 +34,14 @@ public class TypeProduct {
     private String description;
 
     @NotNull
-    private Date dateAdd = new Date();
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    private ZonedDateTime dateAdd = ZonedDateTime.now();
 
-    private Date dateUpdate=new Date();
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    private ZonedDateTime dateUpdate = ZonedDateTime.now();
 
-    private Date dateDelete;
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    private ZonedDateTime dateDelete;
 
     private boolean delete = false;
 
@@ -44,7 +49,7 @@ public class TypeProduct {
     @JsonIgnore
     private Set<Product> products;
 
-    public void setDateDelete(Date dateDelete) {
+    public void setDateDelete(ZonedDateTime dateDelete) {
         this.dateDelete = dateDelete;
     }
 
@@ -56,7 +61,7 @@ public class TypeProduct {
         return delete;
     }
 
-    public void setDateUpdate(Date dateUpdate) {
+    public void setDateUpdate(ZonedDateTime dateUpdate) {
         this.dateUpdate = dateUpdate;
     }
 }

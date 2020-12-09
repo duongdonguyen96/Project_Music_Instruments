@@ -1,5 +1,6 @@
 package com.codegym.project.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Entity
@@ -34,13 +36,15 @@ public class Rate {
     private String status="Chưa đọc";
 
     @NotNull
-    private Date dateAdd = new Date();
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    private ZonedDateTime dateAdd = ZonedDateTime.now();
 
-    private Date dateDelete;
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    private ZonedDateTime dateDelete;
 
     private boolean delete = false;
 
-    public void setDateDelete(Date dateDelete) {
+    public void setDateDelete(ZonedDateTime dateDelete) {
         this.dateDelete = dateDelete;
     }
 
