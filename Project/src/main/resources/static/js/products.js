@@ -107,6 +107,7 @@ products.save = function () {
             productObj.typeProduct = types.findById(parseInt($('#type').val()));
             productObj.vendor = vendors.findById(parseInt($('#vendor').val()));
             productObj.id = $('#id').val();
+            productObj.dateAdd = $('#dateAdd').val();
             //
             $.ajax({
                 url: "http://localhost:8080/api/product/",
@@ -181,6 +182,7 @@ products.get = function (id) {
             $('#image').val(data.image);
             $('#type').val(data.typeProduct.id);
             $('#vendor').val(data.vendor.id);
+            $('#dateAdd').val(data.dateAdd);
             $('#modalAddEdit').modal('show');
         }
     });

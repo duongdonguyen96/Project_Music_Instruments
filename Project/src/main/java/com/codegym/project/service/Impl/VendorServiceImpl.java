@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
@@ -41,13 +43,13 @@ public class VendorServiceImpl implements VendorService {
             return false;
         }
         vendor.setDelete(true);
-        vendor.setDateDelete(ZonedDateTime.now());
+        vendor.setDateDelete(LocalDateTime.now());
         vendorRepository.save(vendor);
         List<Product> productList=productRepository.findAll();
         for (Product product:productList) {
             if (product.getVendor().isDelete()){
                 product.setDelete(true);
-                product.setDateDelete(ZonedDateTime.now());
+                product.setDateDelete(LocalDateTime.now());
                 productRepository.save(product);
             }
         }
