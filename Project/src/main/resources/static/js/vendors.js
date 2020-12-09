@@ -98,7 +98,6 @@ vendors.save = function () {
             vendorObj.surrogate = $('#surrogate').val();
             vendorObj.image = $('#image').val();
             vendorObj.id = $('#id').val();
-            vendorObj.dateUpdate = new Date();
             //
             $.ajax({
                 url: "http://localhost:8080/api/vendor/",

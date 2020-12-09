@@ -78,7 +78,6 @@ productLines.save = function () {
             typeObj.name = $('#name').val();
             typeObj.id = $('#id').val();
             typeObj.description = $('#description').val();
-            typeObj.dateUpdate = new Date();
             //
             $.ajax({
                 url: "http://localhost:8080/api/typeProduct/",

@@ -107,7 +107,6 @@ products.save = function () {
             productObj.typeProduct = types.findById(parseInt($('#type').val()));
             productObj.vendor = vendors.findById(parseInt($('#vendor').val()));
             productObj.id = $('#id').val();
-            productObj.dateUpdate = new Date();
             //
             $.ajax({
                 url: "http://localhost:8080/api/product/",

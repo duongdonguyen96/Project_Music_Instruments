@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.SQLException;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,6 +66,7 @@ public class ApiVendorController {
 
     @RequestMapping(value = "/vendor/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.PUT)
     public ResponseEntity<Object> edit(@Valid @RequestBody Vendor vendor, BindingResult bindingResult) {
+        vendor.setDateDelete(ZonedDateTime.now());
         return validate(vendor,bindingResult);
     }
 

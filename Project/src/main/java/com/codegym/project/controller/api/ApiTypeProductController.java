@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.SQLException;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +67,7 @@ public class ApiTypeProductController {
 
     @RequestMapping(value = "/typeProduct/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.PUT)
     public ResponseEntity<Object> edit(@Valid @RequestBody TypeProduct typeProduct, BindingResult bindingResult) {
+        typeProduct.setDateUpdate(ZonedDateTime.now());
         return validate(typeProduct,bindingResult);
     }
 
