@@ -98,6 +98,7 @@ vendors.save = function () {
             vendorObj.surrogate = $('#surrogate').val();
             vendorObj.image = $('#image').val();
             vendorObj.id = $('#id').val();
+            vendorObj.dateAdd = $('#dateAdd').val();
             //
             $.ajax({
                 url: "http://localhost:8080/api/vendor/",
@@ -168,6 +169,7 @@ vendors.get = function (id) {
             $('#surrogate').val(data.surrogate);
             $('#phone').val( data.phone );
             $('#image').val(data.image);
+            $('#dateAdd').val(data.dateAdd);
             $('#modalAddEdit').modal('show');
         }
     });

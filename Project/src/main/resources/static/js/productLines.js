@@ -77,6 +77,7 @@ productLines.save = function () {
             var typeObj = {};
             typeObj.name = $('#name').val();
             typeObj.id = $('#id').val();
+            typeObj.dateAdd = $('#dateAdd').val();
             typeObj.description = $('#description').val();
             //
             $.ajax({
@@ -142,6 +143,7 @@ productLines.get = function (id) {
             $('#modalTitle').html("Edit type");
             $('#id').val(data.id);
             $('#name').val(data.name);
+            $('#dateAdd').val(data.dateAdd);
             $('#description').val( data.description );
             $('#modalAddEdit').modal('show');
         }
