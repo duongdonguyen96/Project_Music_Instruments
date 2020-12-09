@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class BannerController {
     @GetMapping(value = "")
     public ModelAndView listBanners(){
-        ModelAndView modelAndView=new ModelAndView("admin/Banner");
+        ModelAndView modelAndView=new ModelAndView("admin/banner/Banner");
         return modelAndView;
     }
 

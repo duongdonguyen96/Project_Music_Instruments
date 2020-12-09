@@ -1,5 +1,6 @@
 package com.codegym.project.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Entity
@@ -26,10 +28,13 @@ public class Banner {
     private String image;
 
     @NotNull
-    private Date dateAdd = new Date();
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    private ZonedDateTime dateAdd = ZonedDateTime.now();
 
-    private Date dateUpdate;
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    private ZonedDateTime dateUpdate;
 
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
     private Date dateDelete;
     @Where(clause = "delete=false")
     private boolean delete = false;
