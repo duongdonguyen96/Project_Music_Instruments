@@ -46,7 +46,7 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>ProductLines</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/typeProducts/">ProductLines list</a></li>
+                                    <li><a href="/typeProducts">ProductLines list</a></li>
                                     <li><a href="/typeProductsDeleted">ProductLines Deleted</a></li>
                                 </ul>
                             </li>
@@ -54,7 +54,7 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Blogs</span></a>
                                 <ul class="collapse">
-                                    <li class="active"><a href="/blogs/">Blogs list</a></li>
+                                    <li class="active"><a href="/blogs">Blogs list</a></li>
                                     <li><a href="BlogIsDelete.html">Blogs Deleted</a></li>
                                 </ul>
                             </li>
@@ -62,7 +62,7 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Banders</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/banners/">Banders list</a></li>
+                                    <li><a href="/banners">Banders list</a></li>
                                     <li><a href="BannerIsDelete.html">Banders Deleted</a></li>
                                 </ul>
                             </li>
@@ -70,7 +70,7 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Orders</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/orders/">Orders list</a></li>
+                                    <li><a href="/orders">Orders list</a></li>
                                     <li><a href="OderIsDelete.html">Orders Deleted</a></li>
                                 </ul>
                             </li>
@@ -78,7 +78,7 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Rates</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/rates/">Rates list</a></li>
+                                    <li><a href="/rates">Rates list</a></li>
                                     <li><a href="RateIsDelete.html">Rates Deleted</a></li>
                                 </ul>
                             </li>
@@ -86,7 +86,7 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Employees</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/employees/">Employees list</a></li>
+                                    <li><a href="/employees">Employees list</a></li>
                                     <li><a href="EmployeeIsDelete.html">Employees Deleted</a></li>
                                 </ul>
                             </li>
@@ -94,7 +94,7 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Users</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/users/">Users list</a></li>
+                                    <li><a href="/users">Users list</a></li>
                                     <li><a href="UserIsBanner.html">Users Deleted</a></li>
                                 </ul>
                             </li>
@@ -386,30 +386,7 @@
             </div>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
-            integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-    <!-- offset area end -->
-    <!-- jquery latest version -->
-<!--    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>-->
-    <!-- bootstrap 4 js -->
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/metisMenu.min.js"></script>
-    <script src="assets/js/jquery.slimscroll.min.js"></script>
-    <script src="assets/js/jquery.slicknav.min.js"></script>
-
-    <!-- others plugins -->
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/scripts.js"></script>
+    <div th:replace="layout/layout::script"></div>
 </body>
 <script src="js/vendorsDeleted.js"></script>
 </html>
