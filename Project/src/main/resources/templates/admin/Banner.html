@@ -57,7 +57,10 @@
 <div class="page-container">
     <!-- sidebar menu area start -->
     <div class="sidebar-menu">
-        <div class="sidebar-header" th:replace="layout/layout::logo">
+        <div class="sidebar-header">
+            <div class="logo">
+                <a href="index.html"><img src="../assets/images/icon/logo.png" alt="logo"></a>
+            </div>
         </div>
         <div class="main-menu">
             <div class="menu-inner">
@@ -68,7 +71,7 @@
                                 <span>Products</span></a>
                             <ul class="collapse">
                                 <li class="active"><a href="/products">Products list</a></li>
-                                <li><a href="/productDeleted">Products Deleted</a></li>
+                                <li><a href="../ProductIsDelete.html">Products Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -76,7 +79,7 @@
                                 <span>Vendors</span></a>
                             <ul class="collapse">
                                 <li><a href="/vendors">Vendors list</a></li>
-                                <li><a href="/vendorsDeleted">Vendors Deleted</a></li>
+                                <li><a href="../VendorIsDelete.html">Vendors Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -84,7 +87,7 @@
                                 <span>ProductLines</span></a>
                             <ul class="collapse">
                                 <li><a href="/typeProducts">ProductLines list</a></li>
-                                <li><a href="/typeProductsDeleted">ProductLines Deleted</a></li>
+                                <li><a href="../ProductLineIsDelete.html">ProductLines Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -92,7 +95,7 @@
                                 <span>Blogs</span></a>
                             <ul class="collapse">
                                 <li class="active"><a href="/blogs">Blogs list</a></li>
-                                <li><a href="BlogIsDelete.html">Blogs Deleted</a></li>
+                                <li><a href="../blog/BlogIsDelete.html">Blogs Deleted</a></li>
                             </ul>
                         </li>
                         <li class="active">
@@ -100,7 +103,7 @@
                                 <span>Banners</span></a>
                             <ul class="collapse">
                                 <li class="active"><a href="/banners">Banners list</a></li>
-                                <li><a href="/bannerDeleted">Banners Deleted</a></li>
+                                <li><a href="/bannersDeleted">Banners Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -108,7 +111,7 @@
                                 <span>Orders</span></a>
                             <ul class="collapse">
                                 <li><a href="/orders">Orders list</a></li>
-                                <li><a href="OderIsDelete.html">Orders Deleted</a></li>
+                                <li><a href="../OderIsDelete.html">Orders Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -124,7 +127,7 @@
                                 <span>Employees</span></a>
                             <ul class="collapse">
                                 <li><a href="/employees">Employees list</a></li>
-                                <li><a href="EmployeeIsDelete.html">Employees Deleted</a></li>
+                                <li><a href="../EmployeeIsDelete.html">Employees Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -132,7 +135,7 @@
                                 <span>Users</span></a>
                             <ul class="collapse">
                                 <li><a href="/users">Users list</a></li>
-                                <li><a href="UserIsBanner.html">Users Deleted</a></li>
+                                <li><a href="../UserIsBanner.html">Users Deleted</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -147,10 +150,43 @@
         <div class="header-area">
             <div class="row align-items-center">
                 <!-- nav and search button -->
-                <div class="col-md-6 col-sm-8 clearfix" th:replace="layout/layout::search">
+                <div class="col-md-6 col-sm-8 clearfix">
+                    <div class="nav-btn pull-left">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="search-box pull-left">
+                        <form action="#">
+                            <input type="text" name="search" placeholder="Search..." required>
+                            <i class="ti-search"></i>
+                        </form>
+                    </div>
                 </div>
                 <!-- profile info & task notification -->
-                <div class="col-md-6 col-sm-4 clearfix" th:replace="layout/layout::notification">
+                <div class="col-md-6 col-sm-4 clearfix">
+                    <ul class="notification-area pull-right">
+                        <li id="full-view"><i class="ti-fullscreen"></i></li>
+                        <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                        <li class="dropdown">
+                            <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>3</span></i>
+                            <div class="dropdown-menu notify-box nt-enveloper-box">
+                                <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
+                                <div class="nofity-list">
+                                    <a href="#" class="notify-item">
+                                        <div class="notify-thumb">
+                                            <img src="../assets/images/author/author-img1.jpg" alt="image">
+                                        </div>
+                                        <div class="notify-text">
+                                            <p>Aglae Mayer</p>
+                                            <span class="msg">Hey I am waiting for you...</span>
+                                            <span>3:15 PM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -167,7 +203,17 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-6 clearfix" th:replace="layout/layout::setting">
+                <div class="col-sm-6 clearfix">
+                    <div class="user-profile pull-right">
+                        <img class="avatar user-thumb" src="../assets/images/author/avatar.png" alt="avatar">
+                        <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i
+                                class="fa fa-angle-down"></i></h4>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Message</a>
+                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="#">Log Out</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -198,7 +244,10 @@
     </div>
     <!-- main content area end -->
     <!-- footer area start-->
-    <footer th:replace="layout/layout::footer">
+    <footer>
+        <div class="footer-area">
+            <p>© Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
+        </div>
     </footer>
     <!-- footer area end-->
 </div>
@@ -381,8 +430,38 @@
     </div>
 </div>
 <!-- offset area end -->
-<div th:replace="layout/layout::script">
-</div>
-</body>
+
+
+<!-- jquery latest version -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
+        integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+<!-- offset area end -->
+<!-- jquery latest version -->
+<!--    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>-->
+<!-- bootstrap 4 js -->
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/metisMenu.min.js"></script>
+<script src="assets/js/jquery.slimscroll.min.js"></script>
+<script src="assets/js/jquery.slicknav.min.js"></script>
+
+<!-- others plugins -->
+<script src="assets/js/plugins.js"></script>
+<script src="assets/js/scripts.js"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous"></script>
+
 <script src="js/bannerScript.js"></script>
+</body>
+
+
 </html>

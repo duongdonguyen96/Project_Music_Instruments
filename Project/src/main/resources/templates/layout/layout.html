@@ -25,75 +25,6 @@
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-<!--LOGO-->
-<div class="sidebar-header" th:fragment="logo">
-    <div class="logo">
-        <a href="/products"><img src="assets/images/icon/logo.png" alt="logo"></a>
-    </div>
-</div>
-<!--SEARCH-->
-<div class="col-md-6 col-sm-8 clearfix" th:fragment="search">
-    <div class="nav-btn pull-left">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <div class="search-box pull-left">
-        <form action="#">
-            <input type="text" name="search" placeholder="Search..." required>
-            <i class="ti-search"></i>
-        </form>
-    </div>
-</div>
-
-<!--notification-->
-<div class="col-md-6 col-sm-4 clearfix" th:fragment="notification">
-    <ul class="notification-area pull-right">
-        <li id="full-view"><i class="ti-fullscreen"></i></li>
-        <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
-        <li class="dropdown">
-            <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>3</span></i>
-            <div class="dropdown-menu notify-box nt-enveloper-box">
-                <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
-                <div class="nofity-list">
-                    <a href="#" class="notify-item">
-                        <div class="notify-thumb">
-                            <img src="../assets/images/author/author-img1.jpg" alt="image">
-                        </div>
-                        <div class="notify-text">
-                            <p>Aglae Mayer</p>
-                            <span class="msg">Hey I am waiting for you...</span>
-                            <span>3:15 PM</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
-
-<!--setting information admin/employees-->
-<div class="col-sm-6 clearfix" th:fragment="setting">
-    <div class="user-profile pull-right">
-        <img class="avatar user-thumb" src="../assets/images/author/avatar.png" alt="avatar">
-        <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i
-                class="fa fa-angle-down"></i></h4>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Message</a>
-            <a class="dropdown-item" href="#">Settings</a>
-            <a class="dropdown-item" href="#">Log Out</a>
-        </div>
-    </div>
-</div>
-
-<!--footer-->
-<footer th:fragment="footer">
-    <div class="footer-area">
-        <p>© Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
-    </div>
-</footer>
-
-<!--SCRIPT-->
 <div th:fragment="script">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
@@ -105,9 +36,6 @@
             integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-            crossorigin="anonymous"></script>
     <!-- offset area end -->
     <!-- bootstrap 4 js -->
     <script src="assets/js/popper.min.js"></script>

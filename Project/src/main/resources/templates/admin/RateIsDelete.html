@@ -5,58 +5,6 @@
 </head>
 
 <body>
-<!-- The Modal -->
-<div class="modal" id="modalAddEdit" name="modalAddEdit">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title" id="modalTitle"></h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <input style="border: none;text-align: center;font-style: italic" id="dateAdd">
-            <!-- Modal body -->
-            <div class="modal-body">
-                <form id="formAddEdit" th:name="formAddEdit">
-                    <div class="row form-group">
-                        <div class="col-3">
-                            <label>Name</label>
-                        </div>
-                        <div class="col-9">
-                            <input class="form-control" type="text"
-                                   name="name" id="name"
-                                   disabled>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-3">
-                            <label>Email</label>
-                        </div>
-                        <div class="col-9">
-                            <input class="form-control" type="email"
-                                   name="email" id="email"
-                                   disabled>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-3">
-                            <label>Content</label>
-                        </div>
-                        <div class="col-9">
-                            <textarea class="form-control" name="content" id="content" disabled></textarea>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- The Modal End-->
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -69,7 +17,10 @@
     <div class="page-container">
         <!-- sidebar menu area start -->
         <div class="sidebar-menu">
-            <div class="sidebar-header" th:replace="layout/layout::logo">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <a href="index.html"><img src="assets/images/icon/logo.png" alt="logo"></a>
+                </div>
             </div>
             <div class="main-menu">
                 <div class="menu-inner">
@@ -79,31 +30,31 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Products</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/products">Products list</a></li>
-                                    <li><a href="/productDeleted">Products Deleted</a></li>
+                                    <li><a href="Product.html">Products list</a></li>
+                                    <li><a href="ProductIsDeleted.html">Products Deleted</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Vendors</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/vendors">Vendors list</a></li>
-                                    <li><a href="/vendorsDeleted">Vendors Deleted</a></li>
+                                    <li><a href="Vendor.html">Vendors list</a></li>
+                                    <li><a href="VendorIsDelete.html">Vendors Deleted</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>ProductLines</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/typeProducts">ProductLines list</a></li>
-                                    <li><a href="/typeProductsDeleted">ProductLines Deleted</a></li>
+                                    <li><a href="ProductLine.html">ProductLines list</a></li>
+                                    <li><a href="ProductLineIsDelete.html">ProductLines Deleted</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Blogs</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/blogs">Blogs list</a></li>
+                                    <li><a href="Blog.html">Blogs list</a></li>
                                     <li><a href="BlogIsDelete.html">Blogs Deleted</a></li>
                                 </ul>
                             </li>
@@ -111,7 +62,7 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Banders</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/banners">Banders list</a></li>
+                                    <li><a href="Banner.html">Banders list</a></li>
                                     <li><a href="BannerIsDelete.html">Banders Deleted</a></li>
                                 </ul>
                             </li>
@@ -119,7 +70,7 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Orders</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/orders">Orders list</a></li>
+                                    <li><a href="Order.html">Orders list</a></li>
                                     <li><a href="OderIsDelete.html">Orders Deleted</a></li>
                                 </ul>
                             </li>
@@ -127,15 +78,15 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Rates</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/rates">Rates list</a></li>
-                                    <li class="active"><a href="/ratesDeleted">Rates Deleted</a></li>
+                                    <li><a href="Rate.html">Rates list</a></li>
+                                    <li class="active"><a href="RateIsDelete.html">Rates Deleted</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Employees</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/employees">Employees list</a></li>
+                                    <li><a href="Employee.html">Employees list</a></li>
                                     <li><a href="EmployeeIsDelete.html">Employees Deleted</a></li>
                                 </ul>
                             </li>
@@ -143,7 +94,7 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Users</span></a>
                                 <ul class="collapse">
-                                    <li><a href="/users">Users list</a></li>
+                                    <li><a href="User.html">Users list</a></li>
                                     <li><a href="UserIsBanner.html">Users Deleted</a></li>
                                 </ul>
                             </li>
@@ -159,10 +110,43 @@
             <div class="header-area">
                 <div class="row align-items-center">
                     <!-- nav and search button -->
-                    <div class="col-md-6 col-sm-8 clearfix" th:replace="layout/layout::search">
+                    <div class="col-md-6 col-sm-8 clearfix">
+                        <div class="nav-btn pull-left">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="search-box pull-left">
+                            <form action="#">
+                                <input type="text" name="search" placeholder="Search..." required>
+                                <i class="ti-search"></i>
+                            </form>
+                        </div>
                     </div>
                     <!-- profile info & task notification -->
-                    <div class="col-md-6 col-sm-4 clearfix" th:replace="layout/layout::notification">
+                    <div class="col-md-6 col-sm-4 clearfix">
+                        <ul class="notification-area pull-right">
+                            <li id="full-view"><i class="ti-fullscreen"></i></li>
+                            <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                            <li class="dropdown">
+                                <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>3</span></i>
+                                <div class="dropdown-menu notify-box nt-enveloper-box">
+                                    <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
+                                    <div class="nofity-list">
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb">
+                                                <img src="assets/images/author/author-img1.jpg" alt="image">
+                                            </div>
+                                            <div class="notify-text">
+                                                <p>Aglae Mayer</p>
+                                                <span class="msg">Hey I am waiting for you...</span>
+                                                <span>3:15 PM</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -179,7 +163,16 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-6 clearfix" th:replace="layout/layout::setting">
+                    <div class="col-sm-6 clearfix">
+                        <div class="user-profile pull-right">
+                            <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i class="fa fa-angle-down"></i></h4>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Message</a>
+                                <a class="dropdown-item" href="#">Settings</a>
+                                <a class="dropdown-item" href="#">Log Out</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -191,10 +184,27 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="header-title">RATES DELETED</h4>
-                                <div class="data-tables datatable-dark">
+                                <div class="single-table">
                                     <div class="table-responsive">
-                                        <table class="table text-center" id="rates-datatables" name="rates-datatables">
-
+                                        <table class="table text-center">
+                                            <thead class="text-uppercase bg-warning">
+                                                <tr class="text-white">
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">date</th>
+                                                    <th scope="col">price</th>
+                                                    <th scope="col">action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Mark</td>
+                                                    <td>09 / 07 / 2018</td>
+                                                    <td>$120</td>
+                                                    <td><i class="ti-trash"></i></td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -208,7 +218,10 @@
         </div>
         <!-- main content area end -->
         <!-- footer area start-->
-        <footer th:replace="layout/layout::footer">
+        <footer>
+            <div class="footer-area">
+                <p>© Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
+            </div>
         </footer>
         <!-- footer area end-->
     </div>
@@ -391,8 +404,19 @@
         </div>
     </div>
     <!-- offset area end -->
-    <div th:replace="layout/layout::script"></div>
     <!-- jquery latest version -->
+    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- others plugins -->
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/scripts.js"></script>
 </body>
-<script src="js/ratesDeleted.js"></script>
+
 </html>

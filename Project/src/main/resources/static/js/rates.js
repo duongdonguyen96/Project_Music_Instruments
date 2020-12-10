@@ -37,6 +37,80 @@ rates.intTable = function () {
         ]
     });
 };
+
+
+// rates.addNew = function () {
+//     $('#modalTitle').html("Add new rates");
+//     validator.resetForm();
+//     rates.resetForm();
+//     $('#modalAddEdit').modal('show');
+// };
+
+
+// rates.save = function () {
+//     if ($("#formAddEdit").valid()) {
+//         if ($('#id').val() == 0) {
+//             var vendorObj = {};
+//             vendorObj.name = $('#name').val();
+//             vendorObj.address = $('#address').val();
+//             vendorObj.email = $('#email').val();
+//             vendorObj.phone = $('#phone').val();
+//             vendorObj.surrogate = $('#surrogate').val();
+//             vendorObj.image = $('#image').val();
+//             //
+//             $.ajax({
+//                 url: "http://localhost:8080/api/rate/",
+//                 method: "POST",
+//                 dataType: "json",
+//                 contentType: "application/json",
+//                 data: JSON.stringify(vendorObj),
+//                 done: function () {
+//                     $('#modalAddEdit').modal('hide');
+//                     $("#rates-datatables").DataTable().ajax.reload();
+//                 },
+//                 success: function (data) {
+//                     if(data.code === 2){
+//                         $('#modalAddEdit').modal('hide');
+//                         $("#rates-datatables").DataTable().ajax.reload();
+//                         toastr.info('Vendor has been created successfully', 'INFORMATION:')
+//                     }else {
+//                         data.stringListMessage.map(e =>toastr.error(e));
+//                     }
+//                 }
+//             });
+//         } else {
+//             var vendorObj = {};
+//             vendorObj.name = $('#name').val();
+//             vendorObj.address = $('#address').val();
+//             vendorObj.email = $('#email').val();
+//             vendorObj.phone = $('#phone').val();
+//             vendorObj.surrogate = $('#surrogate').val();
+//             vendorObj.image = $('#image').val();
+//             vendorObj.id = $('#id').val();
+//             vendorObj.dateUpdate = new Date();
+//             //
+//             $.ajax({
+//                 url: "http://localhost:8080/api/rate/",
+//                 method: "PUT",
+//                 dataType: "json",
+//                 contentType: "application/json",
+//                 data: JSON.stringify(vendorObj),
+//                 success: function (data) {
+//                     if(data.code === 2){
+//                         $('#modalAddEdit').modal('hide');
+//                         $("#rates-datatables").DataTable().ajax.reload();
+//                         toastr.info('Vendor has been updated successfully', 'INFORMATION:')
+//                     }else {
+//                         data.stringListMessage.map(e =>toastr.error(e));
+//                     }
+//
+//                 }
+//             });
+//         }
+//         validator.resetForm();
+//     }
+// };
+
 rates.delete = function (id) {
     bootbox.confirm({
         message: "Do you want to delete this Rates",
@@ -80,11 +154,23 @@ rates.get = function (id) {
             $('#name').val(data.name);
             $('#email').val(data.email);
             $('#content').val(data.content);
-            $('#dateAdd').val(data.dateAdd);
             $('#modalAddEdit').modal('show');
         }
     });
 };
+
+// rates.resetForm = function () {
+//     $('#formAddEdit')[0].reset();
+//     $('#id').val(0);
+//     $('#name').val("");
+//     $('#address').val("");
+//     $('#phone').val("");
+//     $('#email').val("");
+//     $('#surrogate').val("");
+//     $('#image').val("");
+// }
+
+// var validator = $( "#formAddEdit" ).validate();
 
 $(document).ready(function () {
     rates.intTable();
