@@ -26,7 +26,7 @@ public class ApiRateController {
     RateService rateService;
 
     @GetMapping(value = "/rates/")
-    public ResponseEntity<List<Rate>> listProducts() {
+    public ResponseEntity<List<Rate>> listRates() {
         List<Rate> rateList = rateService.findAll();
         return new ResponseEntity<List<Rate>>(rateList, HttpStatus.OK);
     }
@@ -58,7 +58,7 @@ public class ApiRateController {
     //    validateBackEnd
     @PutMapping(value = "/rate/")
     @ResponseBody
-    public ResponseEntity<Object> getBlogById(@Validated Rate rate, BindingResult bindingResult) {
+    public ResponseEntity<Object> getRateById(@Validated Rate rate, BindingResult bindingResult) {
         return validate(rate,bindingResult);
     }
 
@@ -119,6 +119,12 @@ public class ApiRateController {
             e.printStackTrace();
             return new ResponseEntity<Rate>(HttpStatus.NO_CONTENT);
         }
+    }
+
+    @GetMapping(value = "/ratesStatus/")
+    public ResponseEntity<List<Rate>> listStatus() {
+        List<Rate> rateList = rateService.findByStatus();
+        return new ResponseEntity<List<Rate>>(rateList, HttpStatus.OK);
     }
 
 }

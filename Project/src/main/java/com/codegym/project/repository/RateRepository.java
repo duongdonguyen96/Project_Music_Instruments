@@ -16,4 +16,9 @@ public interface RateRepository extends JpaRepository<Rate, Long> {
             value = "select * from rates where id =?1",
             nativeQuery = true)
     Rate findRateDeleted(long id);
+
+    @Query(
+            value = "select * from rates where status ='Chưa đọc'",
+            nativeQuery = true)
+    List<Rate> findByStatus();
 }

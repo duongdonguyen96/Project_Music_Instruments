@@ -1,4 +1,5 @@
 var productLines = {} || productLines;
+var rates = {} || rates;
 productLines.intTable = function () {
     $("#productLines-datatables").DataTable({
         ajax: {
@@ -160,4 +161,5 @@ productLines.resetForm = function () {
 var validator = $( "#formAddEdit" ).validate();
 $(document).ready(function () {
     productLines.intTable();
+    rates.findStatus();
 });

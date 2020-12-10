@@ -1,4 +1,5 @@
 var productLines = {} || productLines;
+var rates = {} || rates;
 productLines.intTable = function () {
     $("#productLines-datatables").DataTable({
         ajax: {
@@ -109,4 +110,5 @@ productLines.undo= function (id) {
 
 $(document).ready(function () {
     productLines.intTable();
+    rates.findStatus();
 });

@@ -1,4 +1,5 @@
 var vendors = {} || vendors;
+var rates = {} || rates;
 vendors.intTable = function () {
     $("#vendors-datatables").DataTable({
         ajax: {
@@ -189,5 +190,5 @@ vendors.resetForm = function () {
 var validator = $( "#formAddEdit" ).validate();
 $(document).ready(function () {
     vendors.intTable();
-
+    rates.findStatus();
 });

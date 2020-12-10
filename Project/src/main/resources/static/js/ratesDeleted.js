@@ -90,6 +90,8 @@ rates.get = function (id) {
         }
     });
 };
+
 $(document).ready(function () {
     rates.intTable();
+    rates.findStatus();
 });

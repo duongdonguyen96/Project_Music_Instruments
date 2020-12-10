@@ -64,4 +64,9 @@ public class RateServiceImpl implements RateService {
         }
         return false;
     }
+
+    @Override
+    public List<Rate> findByStatus() {
+        return rateRepository.findByStatus();
+    }
 }

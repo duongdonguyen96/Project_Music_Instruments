@@ -81,6 +81,8 @@ rates.get = function (id) {
             $('#email').val(data.email);
             $('#content').val(data.content);
             $('#dateAdd').val(data.dateAdd);
+            rates.findStatus();
+            $("#rates-datatables").DataTable().ajax.reload();
             $('#modalAddEdit').modal('show');
         }
     });
@@ -88,4 +90,5 @@ rates.get = function (id) {
 
 $(document).ready(function () {
     rates.intTable();
+    rates.findStatus();
 });
