@@ -44,38 +44,39 @@ public class BannerServiceImpl implements BannerService {
         return true;
     }
 
-//
-//    @Override
-//    public List<Banner> findAllBannerDeleted() {
-//        return bannerRepository.findAllBannerDeleted();
-//    }
-//
-//    @Override
-//    public Banner findBannerDeleted(Long id) {
-//        Banner banner = null;
-//        banner = bannerRepository.findBannerDeleted(id);
-//        return banner;
-//    }
-//
-//    @Override
-//    public boolean deleteBanner(Long id) {
-//        Banner banner = this.findBannerDeleted(id);
-//        if (banner != null){
-//            bannerRepository.delete(banner);
-//            return true;
-//        }
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean undoBanner(Long id) {
-//        Banner banner = this.findBannerDeleted(id);
-//        if (banner != null){
-//            banner.setDelete(false);
-//            banner.setDateDelete(new Date());
-//            bannerRepository.save(banner);
-//            return true;
-//        }
-//        return false;
-//    }
+
+    @Override
+    public List<Banner> findAllBannerDeleted() {
+        return bannerRepository.findAllBannerDeleted();
+    }
+
+    @Override
+    public Banner findBannerDeleted(long id) {
+        Banner banner = null;
+        banner = bannerRepository.findBannerDeleted(id);
+        return banner;
+    }
+
+    @Override
+    public boolean deleteBanner(long id) {
+        Banner banner = this.findBannerDeleted(id);
+        if (banner != null){
+            bannerRepository.delete(banner);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean undoBanner(long id) {
+        Banner banner = this.findBannerDeleted(id);
+        if (banner != null){
+            banner.setDelete(false);
+            banner.setDateDelete(LocalDateTime.now());
+            bannerRepository.save(banner);
+            return true;
+        }
+        return false;
+    }
+
 }
