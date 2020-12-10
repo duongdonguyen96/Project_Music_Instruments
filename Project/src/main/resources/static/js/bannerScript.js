@@ -74,6 +74,7 @@ banners.save = function (){
             var bannerObj = {};
             bannerObj.id = $('#id').val();
             bannerObj.image = $('#image').val();
+            bannerObj.dateAdd = $("#dateAdd").val();
 
             $.ajax({
                 url: "http://localhost:8080/api/banner/",
@@ -139,6 +140,7 @@ banners.get = function (id) {
             $('#modalTitle').html("Edit banner");
             $('#id').val(data.id);
             $('#image').val(data.image);
+            $('#dateAdd').val(data.dateAdd);
             $('#modalAddEdit').modal('show');
         }
     });

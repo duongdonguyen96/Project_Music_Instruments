@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +67,7 @@ public class ApiBannerController {
 
     @RequestMapping(value = "/banner/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.PUT)
     public ResponseEntity<Object> edit(@Valid @RequestBody Banner banner, BindingResult bindingResult) {
-        banner.setDateUpdate(ZonedDateTime.now());
+        banner.setDateUpdate(LocalDateTime.now());
         return validate(banner,bindingResult);
     }
 
