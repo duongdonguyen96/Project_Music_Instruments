@@ -1,4 +1,5 @@
 var products = {} || products;
+var rates = {} || rates;
 products.intTable = function () {
     $("#products-datatables").DataTable({
         ajax: {
@@ -258,4 +259,5 @@ $(document).ready(function () {
     products.intTable();
     vendors.initVendors();
     types.initTypes();
+    rates.findStatus();
 });

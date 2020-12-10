@@ -41,4 +41,32 @@ public class RateServiceImpl implements RateService {
         rateRepository.save(rate);
         return true;
     }
+
+//Rate deleted
+    @Override
+    public List<Rate> findAllRatesDeleted() {
+        return rateRepository.findAllRateDeleted();
+    }
+
+    @Override
+    public Rate findRateDeleted(long id) {
+        Rate rate=null;
+        rate=rateRepository.findRateDeleted(id);
+        return rate;
+    }
+
+    @Override
+    public boolean deleteRate(long id) {
+        Rate rate=this.findRateDeleted(id);
+        if (rate!=null){
+            rateRepository.delete(rate);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public List<Rate> findByStatus() {
+        return rateRepository.findByStatus();
+    }
 }

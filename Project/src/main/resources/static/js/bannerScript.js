@@ -1,4 +1,5 @@
 var banners = {} || banners;
+var rates = {} || rates;
 banners.intTable = function () {
     $("#banners-datatables").DataTable({
         ajax: {
@@ -13,7 +14,7 @@ banners.intTable = function () {
             },
             {
                 data: "image", name: "Image", title: "Image", orderable: true, "render": function (data){
-                    var str = "<img style='width: 106px; height: 130px; border: 1px solid red' src="+data+">";
+                    var str = "<img style='width: 106px; height 130px; border: 1px solid red' src="+data+">";
                     return str;
                 }
             },
@@ -156,4 +157,5 @@ var validator = $('#formAddEdit').validate();
 
 $(document).ready(function () {
     banners.intTable();
+    rates.findStatus();
 });

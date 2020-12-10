@@ -1,5 +1,6 @@
 var vendors = {} || vendors;
 var vendorsData=[];
+var rates = {} || rates;
 vendors.intTable = function () {
     $("#vendors-datatables").DataTable({
         ajax: {
@@ -122,4 +123,5 @@ vendors.undo= function (id) {
 
 $(document).ready(function () {
     vendors.intTable();
+    rates.findStatus();
 });

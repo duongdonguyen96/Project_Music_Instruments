@@ -6,11 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-
+import java.time.ZonedDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "banners")
@@ -38,4 +40,20 @@ public class Banner {
     private LocalDateTime dateDelete;
 
     private boolean delete = false;
+
+    public void setDateAdd(LocalDateTime dateAdd) {
+        this.dateAdd = dateAdd;
+    }
+
+    public void setDateUpdate(LocalDateTime dateUpdate) {
+        this.dateUpdate = dateUpdate;
+    }
+
+    public void setDateDelete(LocalDateTime dateDelete) {
+        this.dateDelete = dateDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
+    }
 }

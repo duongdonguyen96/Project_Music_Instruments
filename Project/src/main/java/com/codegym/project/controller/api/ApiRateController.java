@@ -2,6 +2,7 @@ package com.codegym.project.controller.api;
 
 import com.codegym.project.model.Rate;
 import com.codegym.project.model.TypeProduct;
+import com.codegym.project.model.Vendor;
 import com.codegym.project.model.message.MessageNotification;
 import com.codegym.project.service.RateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class ApiRateController {
     RateService rateService;
 
     @GetMapping(value = "/rates/")
-    public ResponseEntity<List<Rate>> listProducts() {
+    public ResponseEntity<List<Rate>> listRates() {
         List<Rate> rateList = rateService.findAll();
         return new ResponseEntity<List<Rate>>(rateList, HttpStatus.OK);
     }
@@ -57,17 +58,12 @@ public class ApiRateController {
     //    validateBackEnd
     @PutMapping(value = "/rate/")
     @ResponseBody
-    public ResponseEntity<Object> getBlogById(@Validated Rate rate, BindingResult bindingResult) {
+    public ResponseEntity<Object> getRateById(@Validated Rate rate, BindingResult bindingResult) {
         return validate(rate,bindingResult);
     }
 
     @RequestMapping(value = "/rate/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.POST)
     public ResponseEntity<Object> create(@Valid @RequestBody Rate rate, BindingResult bindingResult) {
-        return validate(rate,bindingResult);
-    }
-
-    @RequestMapping(value = "/rate/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.PUT)
-    public ResponseEntity<Object> edit(@Valid @RequestBody Rate rate, BindingResult bindingResult) {
         return validate(rate,bindingResult);
     }
 
@@ -94,4 +90,41 @@ public class ApiRateController {
             return new ResponseEntity<Object>(messageNotification, HttpStatus.OK);
         }
     }
+
+//    Rate deleted
+
+    @GetMapping(value = "/ratesDeleted/")
+    public ResponseEntity<List<Rate>> listRatesDeleted() {
+        List<Rate> rateList = rateService.findAllRatesDeleted();
+        return new ResponseEntity<List<Rate>>(rateList, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/rateDeleted/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public boolean deleteRate(@PathVariable("id") Long id) {
+        boolean isRates=false;
+        try {
+            isRates= rateService.deleteRate(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return isRates;
+    }
+
+    @RequestMapping(value = "/findRateDeleted/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Rate> findRateDeleted(@PathVariable("id") Long id) {
+        try{
+            Rate rate = rateService.findRateDeleted(id);
+            return new ResponseEntity<Rate>(rate, HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<Rate>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    @GetMapping(value = "/ratesStatus/")
+    public ResponseEntity<List<Rate>> listStatus() {
+        List<Rate> rateList = rateService.findByStatus();
+        return new ResponseEntity<List<Rate>>(rateList, HttpStatus.OK);
+    }
+
 }

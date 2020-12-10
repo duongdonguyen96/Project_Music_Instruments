@@ -41,10 +41,7 @@
 <div class="page-container">
     <!-- sidebar menu area start -->
     <div class="sidebar-menu">
-        <div class="sidebar-header">
-            <div class="logo">
-                <a href="index.html"><img src="assets/images/icon/logo.png" alt="logo"></a>
-            </div>
+        <div class="sidebar-header" th:replace="layout/layout::logo">
         </div>
         <div class="main-menu">
             <div class="menu-inner">
@@ -55,7 +52,7 @@
                                 <span>Products</span></a>
                             <ul class="collapse">
                                 <li><a href="/products">Products list</a></li>
-                                <li><a href="ProductIsDelete.html">Products Deleted</a></li>
+                                <li><a href="/productDeleted">Products Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -63,7 +60,7 @@
                                 <span>Vendors</span></a>
                             <ul class="collapse">
                                 <li><a href="/vendors">Vendors list</a></li>
-                                <li><a href="VendorIsDelete.html">Vendors Deleted</a></li>
+                                <li><a href="/vendorsDeleted">Vendors Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -71,7 +68,7 @@
                                 <span>ProductLines</span></a>
                             <ul class="collapse">
                                 <li><a href="/typeProducts">ProductLines list</a></li>
-                                <li><a href="ProductLineIsDelete.html">ProductLines Deleted</a></li>
+                                <li><a href="/typeProductsDeleted">ProductLines Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -103,7 +100,7 @@
                                 <span>Rates</span></a>
                             <ul class="collapse">
                                 <li class="active"><a href="/rates">Rates list</a></li>
-                                <li><a href="RateIsDelete.html">Rates Deleted</a></li>
+                                <li><a href="/ratesDeleted">Rates Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -118,7 +115,7 @@
                             <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                 <span>employees</span></a>
                             <ul class="collapse">
-                                <li class="active"><a href="/employees">employees list</a></li>
+                                <li class="active"><a href="/users">employees list</a></li>
                                 <li><a href="UserIsBanner.html">employees Deleted</a></li>
                             </ul>
                         </li>
@@ -134,43 +131,10 @@
         <div class="header-area">
             <div class="row align-items-center">
                 <!-- nav and search button -->
-                <div class="col-md-6 col-sm-8 clearfix">
-                    <div class="nav-btn pull-left">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div class="search-box pull-left">
-                        <form action="#">
-                            <input type="text" name="search" placeholder="Search..." required>
-                            <i class="ti-search"></i>
-                        </form>
-                    </div>
+                <div class="col-md-6 col-sm-8 clearfix" th:replace="layout/layout::search">
                 </div>
                 <!-- profile info & task notification -->
-                <div class="col-md-6 col-sm-4 clearfix">
-                    <ul class="notification-area pull-right">
-                        <li id="full-view"><i class="ti-fullscreen"></i></li>
-                        <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
-                        <li class="dropdown">
-                            <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>3</span></i>
-                            <div class="dropdown-menu notify-box nt-enveloper-box">
-                                <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
-                                <div class="nofity-list">
-                                    <a href="#" class="notify-item">
-                                        <div class="notify-thumb">
-                                            <img src="assets/images/author/author-img1.jpg" alt="image">
-                                        </div>
-                                        <div class="notify-text">
-                                            <p>Aglae Mayer</p>
-                                            <span class="msg">Hey I am waiting for you...</span>
-                                            <span>3:15 PM</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                <div class="col-md-6 col-sm-4 clearfix" th:replace="layout/layout::notification">
                 </div>
             </div>
         </div>
@@ -187,17 +151,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-6 clearfix">
-                    <div class="employee-profile pull-right">
-                        <img class="avatar employee-thumb" src="assets/images/author/avatar.png" alt="avatar">
-                        <h4 class="employee-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i
-                                class="fa fa-angle-down"></i></h4>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Message</a>
-                            <a class="dropdown-item" href="#">Settings</a>
-                            <a class="dropdown-item" href="#">Log Out</a>
-                        </div>
-                    </div>
+                <div class="col-sm-6 clearfix" th:replace="layout/layout::setting">
                 </div>
             </div>
         </div>
@@ -538,11 +492,7 @@
     </div>
     <!-- main content area end -->
     <!-- footer area start-->
-    <footer>
-        <div class="footer-area">
-            <p>© Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.
-            </p>
-        </div>
+    <footer th:replace="layout/layout::footer">
     </footer>
     <!-- footer area end-->
 </div>
@@ -923,4 +873,5 @@
 
 </script>
 </body>
+<script src="js/notification.js"></script>
 </html>
