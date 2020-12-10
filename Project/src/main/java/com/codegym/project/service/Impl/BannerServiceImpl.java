@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -27,6 +27,7 @@ public class BannerServiceImpl implements BannerService {
 
     @Override
     public Banner save(Banner element) throws SQLException {
+
         return bannerRepository.save(element);
     }
 
@@ -36,8 +37,9 @@ public class BannerServiceImpl implements BannerService {
         if(banner == null){
             return false;
         }
+
+        banner.setDateDelete(LocalDateTime.now());
         banner.setDelete(true);
-        banner.setDateDelete(new Date());
         bannerRepository.save(banner);
         return true;
     }

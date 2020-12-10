@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
@@ -30,12 +31,13 @@ public class Banner {
 
     @NotNull
     @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
-    private ZonedDateTime dateAdd = ZonedDateTime.now();
+    private LocalDateTime dateAdd = LocalDateTime.now();
 
     @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
-    private ZonedDateTime dateUpdate = ZonedDateTime.now();
+    private LocalDateTime dateUpdate;
 
-    private Date dateDelete;
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dateDelete;
 
     private boolean delete = false;
 }
