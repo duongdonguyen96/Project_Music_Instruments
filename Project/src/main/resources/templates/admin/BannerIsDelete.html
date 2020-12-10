@@ -62,8 +62,8 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Banders</span></a>
                                 <ul class="collapse">
-                                    <li><a href="Banner.html">Banders list</a></li>
-                                    <li class="active"><a href="BannerIsDelete.html">Banders Deleted</a></li>
+                                    <li  class="active"><a href="/banners">Banners list</a></li>
+                                    <li><a href="/bannersDeleted">Banners Deleted</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -183,28 +183,13 @@
                     <div class="col-lg-12 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title">BANDERS DELETED</h4>
-                                <div class="single-table">
+                                <h4 class="header-title">BANNERS DELETED</h4>
+                                <div class="data-tables datatable-primary" >
                                     <div class="table-responsive">
                                         <table class="table text-center">
-                                            <thead class="text-uppercase bg-warning">
-                                                <tr class="text-white">
-                                                    <th scope="col">ID</th>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">date</th>
-                                                    <th scope="col">price</th>
-                                                    <th scope="col">action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>09 / 07 / 2018</td>
-                                                    <td>$120</td>
-                                                    <td><i class="ti-trash"></i></td>
-                                                </tr>
-                                            </tbody>
+                                            <table class="table text-center" id="banners-datatables" name="banners-datatables">
+
+                                            </table>
                                         </table>
                                     </div>
                                 </div>
@@ -405,7 +390,16 @@
     </div>
     <!-- offset area end -->
     <!-- jquery latest version -->
-    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
+            integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <!-- offset area end -->
+    <!-- jquery latest version -->
+    <!--    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>-->
     <!-- bootstrap 4 js -->
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
@@ -417,6 +411,13 @@
     <!-- others plugins -->
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/scripts.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+            crossorigin="anonymous"></script>
+
+    <script src="js/bannerDeleted.js"></script>
 </body>
 
 </html>

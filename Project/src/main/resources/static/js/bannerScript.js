@@ -13,7 +13,7 @@ banners.intTable = function () {
             },
             {
                 data: "image", name: "Image", title: "Image", orderable: true, "render": function (data){
-                    var str = "<img style='width: 106px; height 130px; border: 1px solid red' src="+data+">";
+                    var str = "<img style='width: 106px; height: 130px; border: 1px solid red' src="+data+">";
                     return str;
                 }
             },

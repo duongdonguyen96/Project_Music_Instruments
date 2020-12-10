@@ -11,6 +11,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Set;
@@ -35,13 +36,13 @@ public class TypeProduct {
 
     @NotNull
     @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
-    private ZonedDateTime dateAdd = ZonedDateTime.now();
+    private LocalDateTime dateAdd =LocalDateTime.now() ;
 
     @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
-    private ZonedDateTime dateUpdate = ZonedDateTime.now();
+    private LocalDateTime dateUpdate = LocalDateTime.now();
 
     @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
-    private ZonedDateTime dateDelete;
+    private LocalDateTime dateDelete ;
 
     private boolean delete = false;
 
@@ -49,7 +50,7 @@ public class TypeProduct {
     @JsonIgnore
     private Set<Product> products;
 
-    public void setDateDelete(ZonedDateTime dateDelete) {
+    public void setDateDelete(LocalDateTime dateDelete) {
         this.dateDelete = dateDelete;
     }
 
@@ -61,7 +62,7 @@ public class TypeProduct {
         return delete;
     }
 
-    public void setDateUpdate(ZonedDateTime dateUpdate) {
+    public void setDateUpdate(LocalDateTime dateUpdate) {
         this.dateUpdate = dateUpdate;
     }
 }

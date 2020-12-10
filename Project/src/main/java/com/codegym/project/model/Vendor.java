@@ -11,8 +11,7 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import java.time.ZonedDateTime;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -48,13 +47,13 @@ public class Vendor {
 
     @NotNull
     @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
-    private ZonedDateTime dateAdd = ZonedDateTime.now();
+    private LocalDateTime dateAdd =LocalDateTime.now() ;
 
     @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
-    private ZonedDateTime dateUpdate = ZonedDateTime.now();
+    private LocalDateTime dateUpdate = LocalDateTime.now();
 
     @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
-    private ZonedDateTime dateDelete ;
+    private LocalDateTime dateDelete ;
 
     private boolean delete=false;
 
@@ -62,7 +61,7 @@ public class Vendor {
     @JsonIgnore
     private Set<Product> products;
 
-    public void setDateDelete(ZonedDateTime dateDelete) {
+    public void setDateDelete(LocalDateTime dateDelete) {
         this.dateDelete = dateDelete;
     }
     public void setDelete(boolean delete) {
@@ -73,7 +72,7 @@ public class Vendor {
         return delete;
     }
 
-    public void setDateUpdate(ZonedDateTime dateUpdate) {
+    public void setDateUpdate(LocalDateTime dateUpdate) {
         this.dateUpdate = dateUpdate;
     }
 }
