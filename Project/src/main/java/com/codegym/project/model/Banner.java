@@ -41,15 +41,19 @@ public class Banner {
 
     private boolean delete = false;
 
-    public void setDateAdd(ZonedDateTime dateAdd) {
+    public void setDateAdd(LocalDateTime dateAdd) {
         this.dateAdd = dateAdd;
     }
 
-    public void setDateUpdate(ZonedDateTime dateUpdate) {
+    public void setDateUpdate(LocalDateTime dateUpdate) {
         this.dateUpdate = dateUpdate;
     }
 
-    public void setDateDelete(Date dateDelete) {
+    public void setDateDelete(LocalDateTime dateDelete) {
         this.dateDelete = dateDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
     }
 }
