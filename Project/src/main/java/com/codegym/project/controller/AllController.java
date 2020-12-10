@@ -14,7 +14,7 @@ public class AllController {
         return modelAndView;
     }
 
-@GetMapping(value = "/bannersDeleted")
+    @GetMapping(value = "/bannersDeleted")
     public ModelAndView listBannersDelete(){
         ModelAndView modelAndView = new ModelAndView("/admin/BannerIsDelete");
         return modelAndView;

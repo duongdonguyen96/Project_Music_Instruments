@@ -1,5 +1,5 @@
 var banners = {} || banners;
-var bannerData = [];
+var rates=rates||{};
 
 banners.intTable = function () {
     $('#banners-datatables').DataTable({
@@ -98,8 +98,5 @@ banners.undo = function (id){
 
 $(document).ready(function (){
     banners.intTable();
-<<<<<<< HEAD
     rates.findStatus();
-=======
->>>>>>> 9aee17485a028344472facbc05d9df826d907313
 });

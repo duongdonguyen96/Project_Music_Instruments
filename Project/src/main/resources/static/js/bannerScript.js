@@ -1,4 +1,5 @@
 var banners = {} || banners;
+var rates=rates||{};
 banners.intTable = function () {
     $("#banners-datatables").DataTable({
         ajax: {
@@ -156,4 +157,5 @@ var validator = $('#formAddEdit').validate();
 
 $(document).ready(function () {
     banners.intTable();
+    rates.findStatus();
 });
