@@ -2,7 +2,7 @@ var rates = {} || rates;
 rates.intTable = function () {
     $("#rates-datatables").DataTable({
         ajax: {
-            url: 'http://localhost:8080/api/rates/',
+            url: 'http://localhost:8080/api/ratesDeleted/',
             method: "GET",
             datatype: "json",
             dataSrc: ""
@@ -27,6 +27,10 @@ rates.intTable = function () {
                 orderable: false
             },
             {
+                data: "dateDelete", name: "Date Delete", title: "Date Delete", sortable: false,
+                orderable: false
+            },
+            {
                 data: "id", name: "Action", title: "Action", sortable: false,
                 orderable: false, "render": function (data) {
                     var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' onclick='rates.get("+data+")' title='View' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></a> " +
@@ -34,12 +38,13 @@ rates.intTable = function () {
                     return str;
                 }
             }
-        ]
+        ],
     });
 };
+
 rates.delete = function (id) {
     bootbox.confirm({
-        message: "Do you want to delete this Rates",
+        message: "Do you want to permanently delete the Rate",
         buttons: {
             confirm: {
                 label: 'Yes',
@@ -53,7 +58,7 @@ rates.delete = function (id) {
         callback: function (result) {
             if (result) {
                 $.ajax({
-                    url: "http://localhost:8080/api/rate/" + id,
+                    url: "http://localhost:8080/api/rateDeleted/" + id,
                     method: "DELETE",
                     dataType: "json",
                     success: function () {
@@ -71,7 +76,7 @@ rates.delete = function (id) {
 
 rates.get = function (id) {
     $.ajax({
-        url: "http://localhost:8080/api/rate/" + id,
+        url: "http://localhost:8080/api/findRateDeleted/" + id,
         method: "GET",
         dataType: "json",
         success: function (data) {
@@ -85,7 +90,6 @@ rates.get = function (id) {
         }
     });
 };
-
 $(document).ready(function () {
     rates.intTable();
 });
