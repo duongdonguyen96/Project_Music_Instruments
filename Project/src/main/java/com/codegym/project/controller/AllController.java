@@ -50,6 +50,12 @@ public class AllController {
         return modelAndView;
     }
 
+    @GetMapping(value = "/ratesDeleted")
+    public ModelAndView listRatesDeleted(){
+        ModelAndView modelAndView=new ModelAndView("admin/RateIsDelete");
+        return modelAndView;
+    }
+
     @GetMapping(value = "/typeProducts")
     public ModelAndView listTypes(){
         ModelAndView modelAndView=new ModelAndView("admin/ProductLine");
