@@ -14,6 +14,12 @@ public class AllController {
         return modelAndView;
     }
 
+@GetMapping(value = "/bannersDeleted")
+    public ModelAndView listBannersDelete(){
+        ModelAndView modelAndView = new ModelAndView("/admin/BannerIsDelete");
+        return modelAndView;
+    }
+
     @GetMapping(value = "/blogs")
     public ModelAndView listBlogs(){
         ModelAndView modelAndView=new ModelAndView("admin/Blog");

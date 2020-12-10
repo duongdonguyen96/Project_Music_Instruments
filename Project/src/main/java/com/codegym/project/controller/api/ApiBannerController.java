@@ -96,30 +96,30 @@ public class ApiBannerController {
     }
 
 //    BannerDeleted
-//    @GetMapping(value = "/bannersDeleted/")
-//    public ResponseEntity<List<Banner>> listBannersDeleted(){
-//        List<Banner> bannersListDeleted = bannerService.findAllBannerDeleted();
-//        return new ResponseEntity<List<Banner>>(bannersListDeleted, HttpStatus.OK);
-//    }
-//
-//    @RequestMapping(value = "/bannerDeleted/{id}", method = RequestMethod.DELETE)
-//    public boolean deleteBanner(@PathVariable("id") Long id){
-//        boolean isBanner = false;
-//        try {
-//            isBanner = bannerService.deleteBanner(id);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return isBanner;
-//    }
-//    @RequestMapping(value = "/bannerUndo/{id}", method = RequestMethod.PUT)
-//    public boolean undoBanner(@PathVariable("id") Long id){
-//        boolean isBanner = false;
-//        try {
-//            isBanner = bannerService.undoBanner(id);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return isBanner;
-//    }
+    @GetMapping(value = "/bannersDeleted/")
+    public ResponseEntity<List<Banner>> listBannersDeleted(){
+        List<Banner> bannersListDeleted = bannerService.findAllBannerDeleted();
+        return new ResponseEntity<List<Banner>>(bannersListDeleted, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/bannerDeleted/{id}", method = RequestMethod.DELETE)
+    public boolean deleteBanner(@PathVariable("id") Long id){
+        boolean isBanner = false;
+        try {
+            isBanner = bannerService.deleteBanner(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return isBanner;
+    }
+    @RequestMapping(value = "/bannerUndo/{id}", method = RequestMethod.PUT)
+    public boolean undoBanner(@PathVariable("id") Long id){
+        boolean isBanner = false;
+        try {
+            isBanner = bannerService.undoBanner(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return isBanner;
+    }
 }
