@@ -2,6 +2,7 @@ package com.codegym.project.controller.api;
 
 import com.codegym.project.model.Product;
 import com.codegym.project.model.message.MessageNotification;
+import com.codegym.project.repository.ProductRepository;
 import com.codegym.project.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -98,30 +99,30 @@ public class ApiProductController {
 
 // productDeleted
 
-//    @GetMapping(value = "/productsDeleted/")
-//    public ResponseEntity<List<Product>> listProductsDeleted() {
-//        List<Product> productListDeleted =productService.findAllProductDeleted();
-//        return new ResponseEntity<List<Product>>(productListDeleted, HttpStatus.OK);
-//    }
-//
-//    @RequestMapping(value = "/productDeleted/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-//    public boolean deleteProduct(@PathVariable("id") Long id) {
-//        boolean isProduct=false;
-//        try {
-//            isProduct= productService.deleteProduct(id);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return isProduct;
-//    }
-//    @RequestMapping(value = "/productUndo/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-//    public boolean undoProduct(@PathVariable("id") Long id) {
-//        boolean isProduct=false;
-//        try {
-//            isProduct= productService.undoProduct(id);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return isProduct;
-//    }
+    @GetMapping(value = "/productsDeleted/")
+    public ResponseEntity<List<Product>> listProductsDeleted() {
+        List<Product> productListDeleted =productService.findAllProductDeleted();
+        return new ResponseEntity<List<Product>>(productListDeleted, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/productDeleted/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public boolean deleteProduct(@PathVariable("id") Long id) {
+        boolean isProduct=false;
+        try {
+            isProduct= productService.deleteProduct(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return isProduct;
+    }
+    @RequestMapping(value = "/productUndo/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public boolean undoProduct(@PathVariable("id") Long id) {
+        boolean isProduct=false;
+        try {
+            isProduct= productService.undoProduct(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return isProduct;
+    }
 }
