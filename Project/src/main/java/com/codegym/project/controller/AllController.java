@@ -1,13 +1,21 @@
 package com.codegym.project.controller;
 
+import com.codegym.project.model.Blog;
+import com.codegym.project.service.BlogService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.sql.SQLException;
 
 @Controller
 @RequestMapping(value = "")
 public class AllController {
+    @Autowired
+    public BlogService blogService;
     @GetMapping(value = "/banners")
     public ModelAndView listBanners(){
         ModelAndView modelAndView=new ModelAndView("admin/Banner");
@@ -16,13 +24,38 @@ public class AllController {
 
     @GetMapping(value = "/bannersDeleted")
     public ModelAndView listBannersDelete(){
-        ModelAndView modelAndView = new ModelAndView("/admin/BannerIsDelete");
+        ModelAndView modelAndView = new ModelAndView("admin/BannerIsDelete");
         return modelAndView;
     }
 
     @GetMapping(value = "/blogs")
     public ModelAndView listBlogs(){
         ModelAndView modelAndView=new ModelAndView("admin/Blog");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/blogadd")
+    public ModelAndView showFormAdd(){
+        ModelAndView modelAndView = new ModelAndView("admin/BlogCreate");
+        modelAndView.addObject("blog", new Blog());
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/blogedit/{id}")
+    public ModelAndView showFormEdit(@PathVariable Long id) throws SQLException {
+        ModelAndView modelAndView = new ModelAndView();
+        Blog blog = blogService.findById(id);
+        if (blog != null){
+            modelAndView = new ModelAndView("admin/BlogEdit");
+            modelAndView.addObject("blog", blog);
+            return modelAndView;
+        }
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/blogsDeleted")
+    public ModelAndView listBlogDeleted(){
+        ModelAndView modelAndView = new ModelAndView("admin/BlogIsDelete");
         return modelAndView;
     }
 
