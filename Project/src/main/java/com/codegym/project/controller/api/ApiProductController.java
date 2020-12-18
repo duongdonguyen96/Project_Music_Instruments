@@ -2,7 +2,6 @@ package com.codegym.project.controller.api;
 
 import com.codegym.project.model.Product;
 import com.codegym.project.model.message.MessageNotification;
-import com.codegym.project.repository.ProductRepository;
 import com.codegym.project.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,11 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +65,6 @@ public class ApiProductController {
 
     @RequestMapping(value = "/product/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.PUT)
     public ResponseEntity<Object> edit(@Valid @RequestBody Product product, BindingResult bindingResult) {
-        product.setDateUpdate(LocalDateTime.now());
         return validate(product,bindingResult);
     }
 

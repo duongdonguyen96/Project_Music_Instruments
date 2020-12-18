@@ -39,7 +39,7 @@ public class TypeProduct {
     private LocalDateTime dateAdd =LocalDateTime.now() ;
 
     @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
-    private LocalDateTime dateUpdate = LocalDateTime.now();
+    private LocalDateTime dateUpdate ;
 
     @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dateDelete ;
@@ -60,6 +60,10 @@ public class TypeProduct {
 
     public boolean isDelete() {
         return delete;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setDateUpdate(LocalDateTime dateUpdate) {

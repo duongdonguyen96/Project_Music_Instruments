@@ -5,7 +5,7 @@
 
 <body>
 <!-- The Modal -->
-<div class="modal" id="modalAddEdit" name="modalAddEdit">
+<div class="modal" id="modalAddEdit" name="modalAddEdit" enctype="multipart/form-data">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -93,6 +93,8 @@
                             <label>Image</label>
                         </div>
                         <div class="col-9">
+<!--                            <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" data-rule-required=true ><br>-->
+<!--                            <img id='output' height="150px" width="100px">-->
                             <input class="form-control" type="text"
                                    name="image" id="image"
                                    data-rule-required=true>
@@ -471,4 +473,17 @@
 </body>
 <script src="js/products.js"></script>
 <script src="js/notification.js"></script>
+<script>
+    var openFile = function(event) {
+        var input = event.target;
+
+        var reader = new FileReader();
+        reader.onload = function(){
+            var dataURL = reader.result;
+            var output = document.getElementById('output');
+            output.src = dataURL;
+        };
+        reader.readAsDataURL(input.files[0]);
+    };
+</script>
 </html>

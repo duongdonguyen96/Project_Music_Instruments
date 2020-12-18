@@ -50,13 +50,17 @@ public class Product {
     private LocalDateTime dateAdd =LocalDateTime.now() ;
 
     @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
-    private LocalDateTime dateUpdate = LocalDateTime.now();
+    private LocalDateTime dateUpdate;
 
     @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dateDelete ;
 
     @NotNull
     private Long amount;
+
+    public Long getId() {
+        return id;
+    }
 
     private boolean delete = false;
 
@@ -90,5 +94,9 @@ public class Product {
 
     public void setDateUpdate(LocalDateTime dateUpdate) {
         this.dateUpdate = dateUpdate;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

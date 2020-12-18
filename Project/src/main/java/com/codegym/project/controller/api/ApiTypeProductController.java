@@ -68,7 +68,6 @@ public class ApiTypeProductController {
 
     @RequestMapping(value = "/typeProduct/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.PUT)
     public ResponseEntity<Object> edit(@Valid @RequestBody TypeProduct typeProduct, BindingResult bindingResult) {
-        typeProduct.setDateUpdate(LocalDateTime.now());
         return validate(typeProduct,bindingResult);
     }
 

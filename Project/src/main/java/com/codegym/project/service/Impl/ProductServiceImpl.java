@@ -28,6 +28,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product save(Product product) {
+        if(product.getId()!=null){
+            product.setDateUpdate(LocalDateTime.now());
+            return productRepository.save(product);
+        }
         return productRepository.save(product);
     }
 
