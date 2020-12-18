@@ -163,6 +163,59 @@
         <!-- footer area end-->
     </div>
     <!-- page container area end -->
+
+    <!-- The Modal -->
+    <div class="modal" id="modalAddEdit" name="modalAddEdit">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalTitle"></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <input style="border: none;text-align: center;font-style: italic" id="dateAdd" type="hidden">
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form id="formAddEdit" th:name="formAddEdit">
+                        <div class="row form-group">
+                            <div class="col-3">
+                                <label>Title</label>
+                            </div>
+                            <div class="col-9">
+                                <input class="form-control" type="text"
+                                       name="title" id="title"
+                                       disabled>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-3">
+                                <label>image</label>
+                            </div>
+                            <div class="col-9">
+                                <div id="image"></div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-3">
+                                <label>Content</label>
+                            </div>
+                            <div class="col-9">
+                                <div id="content"></div>
+<!--                                <textarea class="form-control" name="content" id="content" disabled></textarea>-->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- The Modal End-->
+
     <!-- offset area start -->
     <div class="offset-area">
         <div class="offset-close"><i class="ti-close"></i></div>

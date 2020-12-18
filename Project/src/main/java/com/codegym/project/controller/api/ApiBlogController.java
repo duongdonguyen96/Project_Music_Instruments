@@ -65,8 +65,6 @@ public class ApiBlogController {
 
     @RequestMapping(value = "/blog/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.PUT)
     public ResponseEntity<Object> edit(@Valid @RequestBody Blog blog, BindingResult bindingResult) throws SQLException {
-        blog.setDateAdd(blogService.findById(blog.getId()).getDateAdd());
-        blog.setDateUpdate(LocalDateTime.now());
         return validate(blog,bindingResult);
     }
 

@@ -28,6 +28,7 @@ public class Blog {
     private String title;
 
     @NotNull
+    @Column(name="content",columnDefinition="TEXT")
     private String content;
 
     @NotNull

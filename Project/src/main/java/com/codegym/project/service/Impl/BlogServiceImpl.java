@@ -25,8 +25,13 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Blog save(Blog element) throws SQLException {
-        return blogRepository.save(element);
+    public Blog save(Blog blog) throws SQLException {
+        if (blog.getId() != null){
+            blog.setDateUpdate(LocalDateTime.now());
+            blog.setDateAdd(this.findById(blog.getId()).getDateAdd());
+            blogRepository.save(blog);
+        }
+        return blogRepository.save(blog);
     }
 
     @Override

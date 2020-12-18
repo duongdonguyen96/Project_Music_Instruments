@@ -29,8 +29,8 @@ blogs.intTable = function () {
             },
             {
                 data: "id", name: "Action", title: "Action", "render": function (data) {
-                    var str = "<div style='justify-content: center; text-align: center'><a href='/blogedit/" + data + "' title='Edit'  class='btn btn-warning fa fa-cogs'></a>" +
-                        "<a href='javascript:' class='btn btn-danger' onclick='blogs.delete(" + data + ")'><i class=\"ti-trash\" title=\"Delete\"></a></div>"
+                    var str = "<div style='justify-content: center; text-align: center'><a href='javascript:' class='btn btn-warning ti-eye' onclick='blogs.view("+ data +")'></a>"+"<a href='/blogedit/" + data + "' title='Edit'  class='btn btn-warning fa fa-cogs'></a>" +
+                        "<a href='javascript:' class='btn btn-danger' onclick='blogs.delete("+ data +")'><i class=\"ti-trash\" title=\"Delete\"></a></div>"
                     return str;
                 }
             }
@@ -95,6 +95,24 @@ blogs.update = function (){
         validator.resetForm();
     }
 }
+
+blogs.view = function (id){
+    $.ajax({
+        url: 'http://localhost:8080/api/blog/' + id,
+        method: 'GET',
+        dataType: 'json',
+        success: function (data){
+            $("#formAddEdit")[0].reset();
+            $("#modalTitle").html("View Blog");
+            $("#title").val(data.title);
+            $("#image").append("<img src='"+ data.image +"'/>");
+            $("#content").append(data.content);
+            $("#dateAdd").val(data.dateAdd);
+            $("#blogs-datatables").DataTable().ajax.reload();
+            $("#modalAddEdit").modal("show");
+        }
+    });
+};
 
 blogs.delete = function (id) {
     bootbox.confirm({
