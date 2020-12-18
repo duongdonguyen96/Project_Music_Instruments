@@ -32,6 +32,10 @@ public class TypeProductServiceImpl implements TypeProductService {
 
     @Override
     public TypeProduct save(TypeProduct typeProduct) throws SQLException {
+        if (typeProduct.getId()!=null){
+            typeProduct.setDateUpdate(LocalDateTime.now());
+            typeProductRepository.save(typeProduct);
+        }
         return typeProductRepository.save(typeProduct);
     }
 
