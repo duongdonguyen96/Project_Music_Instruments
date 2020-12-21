@@ -18,9 +18,4 @@ public interface VendorRepository extends JpaRepository<Vendor, Long> {
             value = "select * from vendors where id =?1",
             nativeQuery = true)
     Vendor findVendorDeleted(long id);
-    @Query(
-            value = "select * from vendors where phone=?1 or email=?2",
-            nativeQuery = true)
-    List<Vendor> findAllVendorsByPhoneEmail( String phone,String email);
-
 }

@@ -10,5 +10,4 @@ public interface VendorService extends BaseService<Vendor> {
     Vendor findVendorDeleted(long id);
     boolean deleteVendor(long id);
     boolean undoVendor(long id);
-    List<Vendor> findAllVendorsByPhoneEmail(String phone,String email);
 }

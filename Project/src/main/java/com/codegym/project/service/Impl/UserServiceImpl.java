@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -26,56 +26,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(User employees) throws SQLException {
-        return userRepository.save(employees);
+    public User save(User element) throws SQLException {
+        return userRepository.save(element);
     }
 
     @Override
     public boolean delete(long id) throws SQLException {
-        User em = this.findById(id);
-        if (em == null) {
+        User user = this.findById(id);
+        if (user == null) {
             return false;
         }
-        em.setDelete(true);
-        em.setDateDelete(LocalDateTime.now());
-        userRepository.save(em);
+        userRepository.delete(user);
         return true;
-    }
-
-    //    user deleted
-    public List<User> findAllUsersDelete() {
-        return userRepository.findAllUserDeleted();
-    }
-
-
-
-    @Override
-    public User findUserDeleteById(long id) {
-        User em = null;
-        em = userRepository.findUserById(id);
-        return em;
-    }
-
-
-
-    @Override
-    public boolean deleteUser(long id) {
-        User em = this.findUserDeleteById(id);
-        if (em != null) {
-            userRepository.delete(em);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean undoUser(long id) {
-        User em = this.findUserDeleteById(id);
-        if (em != null) {
-            em.setDelete(false);
-            userRepository.save(em);
-            return true;
-        }
-        return false;
     }
 }
