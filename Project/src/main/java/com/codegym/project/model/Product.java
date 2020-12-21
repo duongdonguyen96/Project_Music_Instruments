@@ -8,7 +8,9 @@ import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Date;
@@ -25,16 +27,16 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotBlank
     private String name;
 
     @NotNull
     private Long price;
 
-    @NotNull
+    @NotBlank
     private String image;
 
-    @NotNull
+    @NotBlank
     private String description;
 
     @NotNull
@@ -98,5 +100,9 @@ public class Product {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getName() {
+        return name;
     }
 }

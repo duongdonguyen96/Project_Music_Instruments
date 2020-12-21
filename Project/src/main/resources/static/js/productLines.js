@@ -30,7 +30,7 @@ productLines.intTable = function () {
             {
                 data: "id", name: "Action", title: "Action", sortable: false,
                 orderable: false, "render": function (data) {
-                    var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' title='Edit' onclick='productLines.get("+data+")' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning fa fa-cogs'></a> " +
+                    var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' title='Edit' onclick='productLines.get("+data+")' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
                         "<a href='javascript:'  class='btn btn-danger' onclick='productLines.delete("+data+")' ><i class=\"ti-trash\" title=\"Delete\"></a></div>"
                     return str;
                 }
@@ -51,7 +51,7 @@ productLines.save = function () {
     if ($("#formAddEdit").valid()) {
         if ($('#id').val() == 0) {
             var typeObj = {};
-            typeObj.name = $('#name').val();
+            typeObj.name = $('#name').val().trim();
             typeObj.description = $('#description').val();
             //
             $.ajax({
@@ -76,7 +76,7 @@ productLines.save = function () {
             });
         } else {
             var typeObj = {};
-            typeObj.name = $('#name').val();
+            typeObj.name = $('#name').val().trim();
             typeObj.id = $('#id').val();
             typeObj.dateAdd = $('#dateAdd').val();
             typeObj.description = $('#description').val();

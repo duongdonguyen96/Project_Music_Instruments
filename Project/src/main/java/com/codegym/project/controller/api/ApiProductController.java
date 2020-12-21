@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -54,21 +55,35 @@ public class ApiProductController {
 //    validateBackEnd
     @PutMapping(value = "/product/")
     @ResponseBody
-    public ResponseEntity<Object> getBlogById(@Validated Product product, BindingResult bindingResult) {
-    return validate(product,bindingResult);
+    public ResponseEntity<Object> getBlogById(@Validated Product product, BindingResult bindingResult, Errors errors) {
+    return validate(product,bindingResult,errors);
     }
 
     @RequestMapping(value = "/product/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.POST)
-    public ResponseEntity<Object> create(@Valid @RequestBody Product product, BindingResult bindingResult) {
-        return validate(product,bindingResult);
+    public ResponseEntity<Object> create(@Valid @RequestBody Product product, BindingResult bindingResult,Errors errors) {
+        return validate(product,bindingResult,errors);
     }
 
     @RequestMapping(value = "/product/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.PUT)
-    public ResponseEntity<Object> edit(@Valid @RequestBody Product product, BindingResult bindingResult) {
-        return validate(product,bindingResult);
+    public ResponseEntity<Object> edit(@Valid @RequestBody Product product, BindingResult bindingResult,Errors errors) {
+        return validate(product,bindingResult,errors);
     }
 
-    public ResponseEntity<Object> validate(Product product , BindingResult bindingResult){
+    public ResponseEntity<Object> validate(Product product , BindingResult bindingResult,Errors errors){
+        String name=product.getName();
+        List<Product> list=productService.findAllProductsByName(name);
+        if (product.getId()==null){
+            for (Product item:list) {
+                if (item.getName().equals(name)) errors.rejectValue("name","name.equals","Tên sản phẩm đã tồn tại");
+                break;
+            }
+        }else {
+            for (Product item:list) {
+                if (item.getId()!=product.getId()){
+                    if (item.getName().equals(name)) errors.rejectValue("name","name.equals","Tên sản phẩm đã tồn tại");
+                }
+            }
+        }
         if(bindingResult.hasErrors()) {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
             List<String> fieldString = new ArrayList<>();

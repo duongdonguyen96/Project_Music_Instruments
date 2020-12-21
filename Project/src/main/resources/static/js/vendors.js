@@ -42,7 +42,7 @@ vendors.intTable = function () {
             {
                 data: "id", name: "Action", title: "Action", sortable: false,
                 orderable: false, "render": function (data) {
-                    var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' onclick='vendors.get("+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning fa fa-cogs'></a> " +
+                    var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' onclick='vendors.get("+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
                         "<a href='javascript:' class='btn btn-danger' onclick='vendors.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a></div>"
                     return str;
                 }
@@ -63,9 +63,9 @@ vendors.save = function () {
     if ($("#formAddEdit").valid()) {
         if ($('#id').val() == 0) {
             var vendorObj = {};
-            vendorObj.name = $('#name').val();
+            vendorObj.name = $('#name').val().trim();
             vendorObj.address = $('#address').val();
-            vendorObj.email = $('#email').val();
+            vendorObj.email = $('#email').val().trim();
             vendorObj.phone = $('#phone').val();
             vendorObj.surrogate = $('#surrogate').val();
             vendorObj.image = $('#image').val();
@@ -92,9 +92,9 @@ vendors.save = function () {
             });
         } else {
             var vendorObj = {};
-            vendorObj.name = $('#name').val();
+            vendorObj.name = $('#name').val().trim();
             vendorObj.address = $('#address').val();
-            vendorObj.email = $('#email').val();
+            vendorObj.email = $('#email').val().trim();
             vendorObj.phone = $('#phone').val();
             vendorObj.surrogate = $('#surrogate').val();
             vendorObj.image = $('#image').val();

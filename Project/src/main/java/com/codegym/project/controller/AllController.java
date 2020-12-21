@@ -78,7 +78,16 @@ public class AllController {
         ModelAndView modelAndView=new ModelAndView("admin/User");
         return modelAndView;
     }
-
+    @GetMapping(value = "/usersDelete")
+    public ModelAndView listUsersDeleted() {
+        ModelAndView modelAndView = new ModelAndView("/admin/UsersIsDelete");
+        return modelAndView;
+    }
+    @GetMapping(value = "/employeesDelete")
+    public ModelAndView listEmsDeleted() {
+        ModelAndView modelAndView = new ModelAndView("/admin/EmployeeIsDelete");
+        return modelAndView;
+    }
     @GetMapping(value = "/vendors")
     public ModelAndView listVendors(){
         ModelAndView modelAndView=new ModelAndView("admin/Vendor");

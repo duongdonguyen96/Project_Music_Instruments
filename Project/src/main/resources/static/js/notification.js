@@ -10,10 +10,18 @@ rates.findStatus = function () {
             }else {
                 $('#meg').html("");
                 $.each(data, function (i, v) {
+                    var  content=v.content.substring(0,20)+'...'
                     $('#meg').append(
-                        `<p id="nameSend">${v.name}</p>
+                        `<a href="/rates" class="notify-item">
+                        <div class="notify-thumb"  id="meg">
+                            <p id="nameSend">${v.name}</p>
                             <span class="msg">${v.email}</span>
-                            <span id="dateSend">${v.dateAdd}</span>`
+                            <span id="dateSend">${v.dateAdd}</span>
+                        </div>
+                        <div class="notify-text">
+                            <span style="color: blue;font-size: 0.8rem">${content}</span>
+                        </div>
+                    </a><br>`
                     );
                 });
             }

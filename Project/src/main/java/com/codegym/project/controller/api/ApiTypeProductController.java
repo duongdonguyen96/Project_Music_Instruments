@@ -1,6 +1,7 @@
 package com.codegym.project.controller.api;
 
 import com.codegym.project.model.TypeProduct;
+import com.codegym.project.model.Vendor;
 import com.codegym.project.model.message.MessageNotification;
 import com.codegym.project.service.TypeProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -57,21 +59,36 @@ public class ApiTypeProductController {
     //    validateBackEnd
     @PutMapping(value = "/typeProduct/")
     @ResponseBody
-    public ResponseEntity<Object> getBlogById(@Validated TypeProduct typeProduct, BindingResult bindingResult) {
-        return validate(typeProduct,bindingResult);
+    public ResponseEntity<Object> getBlogById(@Validated TypeProduct typeProduct, BindingResult bindingResult, Errors errors) {
+        return validate(typeProduct,bindingResult,errors);
     }
 
     @RequestMapping(value = "/typeProduct/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.POST)
-    public ResponseEntity<Object> create(@Valid @RequestBody TypeProduct typeProduct, BindingResult bindingResult) {
-        return validate(typeProduct,bindingResult);
+    public ResponseEntity<Object> create(@Valid @RequestBody TypeProduct typeProduct, BindingResult bindingResult,Errors errors) {
+        return validate(typeProduct,bindingResult,errors);
     }
 
     @RequestMapping(value = "/typeProduct/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.PUT)
-    public ResponseEntity<Object> edit(@Valid @RequestBody TypeProduct typeProduct, BindingResult bindingResult) {
-        return validate(typeProduct,bindingResult);
+    public ResponseEntity<Object> edit(@Valid @RequestBody TypeProduct typeProduct, BindingResult bindingResult,Errors errors) {
+        return validate(typeProduct,bindingResult,errors);
     }
 
-    public ResponseEntity<Object> validate(TypeProduct typeProduct , BindingResult bindingResult){
+    public ResponseEntity<Object> validate(TypeProduct typeProduct , BindingResult bindingResult,Errors errors){
+        String name=typeProduct.getName();
+        List<TypeProduct> list=typeProductService.findAllTypeProductsByName(name);
+        int size=list.size();
+        if (typeProduct.getId()==null){
+            for (TypeProduct item: list) {
+                if (item.getName().equals(name)) errors.rejectValue("name","name.equals","Tên thể loại đã trùng");
+            }
+        }else {
+            for (TypeProduct item:list) {
+                if (item.getId()!=typeProduct.getId()){
+                    if (item.getName().equals(name)) errors.rejectValue("name","name.equals","Tên thể loại đã trùng");
+                    break;
+                }
+            }
+        }
         if(bindingResult.hasErrors()) {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
             List<String> fieldString = new ArrayList<>();

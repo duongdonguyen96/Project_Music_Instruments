@@ -1,5 +1,6 @@
 package com.codegym.project.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -26,17 +28,21 @@ public class Blog {
     private String title;
 
     @NotNull
+    @Column(name="content",columnDefinition="TEXT")
     private String content;
 
     @NotNull
     private String image;
 
     @NotNull
-    private Date dateAdd = new Date();
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dateAdd = LocalDateTime.now();
 
-    private Date dateUpdate;
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dateUpdate;
 
-    private Date dateDelete;
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dateDelete;
 
     @Where(clause = "delete=false")
     private boolean delete=false;

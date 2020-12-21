@@ -1,6 +1,7 @@
 package com.codegym.project.repository;
 
 import com.codegym.project.model.Product;
+import com.codegym.project.model.TypeProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -25,6 +26,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             value = "select * from products where id =?1",
             nativeQuery = true)
     Product findProductDeleted(long id);
+    @Query(
+            value = "select * from products where name =?1",
+            nativeQuery = true)
+    List<Product> findAllProductsByName(String name);
 
 }
 
