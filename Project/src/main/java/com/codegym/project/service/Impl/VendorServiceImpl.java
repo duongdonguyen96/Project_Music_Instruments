@@ -99,5 +99,11 @@ public class VendorServiceImpl implements VendorService {
         return false;
     }
 
+//validate
+    @Override
+    public List<Vendor> findAllVendorsByPhoneEmail(String phone, String email) {
+        return vendorRepository.findAllVendorsByPhoneEmail(phone,email);
+    }
+
 
 }
