@@ -34,8 +34,8 @@ productLines.intTable = function () {
             {
                 data: "id", name: "Action", title: "Action", sortable: false,
                 orderable: false, "render": function (data) {
-                    var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' onclick='productLines.delete("+data+")' title='Delete' class='btn btn-danger ti-trash'></a> " +
-                        "<a href='javascript:' class='btn btn-warning' title='Undo' onclick='productLines.undo("+data+")'><i class=\"fa fa-undo\" aria-hidden=\"true\" ></i></a></div>"
+                    var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' class='btn btn-warning' title='Undo' onclick='productLines.undo("+data+")'><i class=\"fa fa-undo\" aria-hidden=\"true\" ></i></a> "+
+                        "<a href='javascript:' onclick='productLines.delete("+data+")' title='Delete' class='btn btn-danger'><i class=\"ti-trash\" title=\"Delete\"></a></div>"
                     return str;
                 }
             }
