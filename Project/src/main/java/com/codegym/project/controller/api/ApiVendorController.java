@@ -68,7 +68,6 @@ public class ApiVendorController {
 
     @RequestMapping(value = "/vendor/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.PUT)
     public ResponseEntity<Object> edit(@Valid @RequestBody Vendor vendor, BindingResult bindingResult) {
-        vendor.setDateUpdate(LocalDateTime.now());
         return validate(vendor,bindingResult);
     }
 

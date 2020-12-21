@@ -33,6 +33,10 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     public Vendor save(Vendor vendor) throws SQLException {
+        if (vendor.getId()!=null){
+            vendor.setDateUpdate(LocalDateTime.now());
+            vendorRepository.save(vendor);
+        }
         return vendorRepository.save(vendor);
     }
 
