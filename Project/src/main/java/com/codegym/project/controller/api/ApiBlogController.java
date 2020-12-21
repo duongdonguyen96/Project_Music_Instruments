@@ -93,7 +93,6 @@ public class ApiBlogController {
     }
 
 //    Api blog deleted
-
     @GetMapping(value = "/blogsDeleted")
     public ResponseEntity<List<Blog>> listBlogDeleted(){
         List<Blog> blogs = blogService.findAllBlogDeleted();

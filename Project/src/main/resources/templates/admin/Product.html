@@ -5,7 +5,7 @@
 
 <body>
 <!-- The Modal -->
-<div class="modal" id="modalAddEdit" name="modalAddEdit" enctype="multipart/form-data">
+<div class="modal" id="modalAddEdit" name="modalAddEdit">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -25,7 +25,7 @@
                         <div class="col-9">
                             <input class="form-control" type="text"
                                    name="name" id="name"
-                                   data-rule-required=true>
+                                   data-rule-required=true placeholder="Enter name">
                         </div>
                     </div>
                     <div class="row form-group">
@@ -35,7 +35,7 @@
                         <div class="col-9">
                             <input class="form-control" type="number"
                                    name="price" id="price"
-                                   data-rule-required=true>
+                                   data-rule-required=true placeholder="Enter price($)">
                         </div>
                     </div>
                     <div class="row form-group">
@@ -45,7 +45,7 @@
                         <div class="col-9">
                             <input class="form-control" type="number"
                                    name="amount" id="amount"
-                                   data-rule-required=true>
+                                   data-rule-required=true placeholder="Enter amount">
                         </div>
                     </div>
                     <div class="row form-group">
@@ -55,7 +55,7 @@
                         <div class="col-9">
                             <input class="form-control" type="number"
                                    name="weight" id="weight"
-                                   data-rule-required=true>
+                                   data-rule-required=true placeholder="Enter weight(kg)">
                         </div>
                     </div>
                     <div class="row form-group">
@@ -65,7 +65,7 @@
                         <div class="col-9">
                             <input class="form-control" type="number"
                                    name="size" id="size"
-                                   data-rule-required=true>
+                                   data-rule-required=true placeholder="Enter size">
                         </div>
                     </div>
                     <div class="row form-group">
@@ -74,7 +74,7 @@
                         </div>
                         <div class="col-9">
                             <input class="form-control" type="text"
-                                   name="color" id="color">
+                                   name="color" id="color" placeholder="Enter color">
                         </div>
                     </div>
                     <div class="row form-group">
@@ -84,7 +84,7 @@
                         <div class="col-9">
                             <textarea class="form-control" type="text"
                                    name="description" id="description"
-                                      data-rule-required=true>
+                                      data-rule-required=true placeholder="Enter content">
                             </textarea>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                             <label>Types</label>
                         </div>
                         <div class="col-9">
-                            <select class="form-control" name="type" id="type">
+                            <select class="form-control" name="type" id="type" data-rule-required="true">
 
                             </select>
                         </div>
@@ -115,7 +115,7 @@
                             <label>Vendors</label>
                         </div>
                         <div class="col-9">
-                            <select class="form-control" name="vendor" id="vendor">
+                            <select class="form-control" name="vendor" id="vendor" data-rule-required="true">
 
                             </select>
                         </div>

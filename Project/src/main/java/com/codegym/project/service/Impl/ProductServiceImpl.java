@@ -81,5 +81,10 @@ public class ProductServiceImpl implements ProductService {
         }
         return false;
     }
+//validate
+    @Override
+    public List<Product> findAllProductsByName(String name) {
+        return productRepository.findAllProductsByName(name);
+    }
 
 }

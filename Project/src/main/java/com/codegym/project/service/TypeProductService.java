@@ -11,4 +11,5 @@ public interface TypeProductService extends BaseService<TypeProduct> {
     TypeProduct findTypeProductDeleted(long id);
     boolean deleteTypeProduct(long id);
     boolean undoTypeProduct(long id);
+    List<TypeProduct> findAllTypeProductsByName(String name);
 }

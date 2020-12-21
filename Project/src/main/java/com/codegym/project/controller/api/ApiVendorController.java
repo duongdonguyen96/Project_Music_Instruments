@@ -8,15 +8,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,21 +55,45 @@ public class ApiVendorController {
     //    validateBackEnd
     @PutMapping(value = "/vendor/")
     @ResponseBody
-    public ResponseEntity<Object> getBlogById(@Validated Vendor vendor, BindingResult bindingResult) {
-        return validate(vendor,bindingResult);
+    public ResponseEntity<Object> getBlogById(@Validated Vendor vendor, BindingResult bindingResult,Errors errors) {
+        return validate(vendor,bindingResult,errors);
     }
 
     @RequestMapping(value = "/vendor/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.POST)
-    public ResponseEntity<Object> create(@Valid @RequestBody Vendor vendor, BindingResult bindingResult) {
-        return validate(vendor,bindingResult);
+    public ResponseEntity<Object> create(@Valid @RequestBody Vendor vendor, BindingResult bindingResult,Errors errors) {
+        return validate(vendor,bindingResult,errors);
     }
 
     @RequestMapping(value = "/vendor/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.PUT)
-    public ResponseEntity<Object> edit(@Valid @RequestBody Vendor vendor, BindingResult bindingResult) {
-        return validate(vendor,bindingResult);
+    public ResponseEntity<Object> edit(@Valid @RequestBody Vendor vendor, BindingResult bindingResult,Errors errors) {
+        return validate(vendor,bindingResult,errors);
     }
 
-    public ResponseEntity<Object> validate(Vendor vendor , BindingResult bindingResult){
+    public ResponseEntity<Object> validate(Vendor vendor , BindingResult bindingResult,Errors errors){
+        String phone = vendor.getPhone();
+        String email = vendor.getEmail();
+        String name=vendor.getName();
+        List<Vendor> list=vendorService.findAllVendorsByPhoneEmail(phone, email,name);
+        int size = list.size();
+        if (size >0){
+            if (vendor.getId()==null){
+                for (Vendor item:list) {
+                    if (item.getPhone().equals(phone)) errors.rejectValue("phone", "phone.equals","Phone đã trùng");
+                    if (item.getEmail().equals(email)) errors.rejectValue("email","email.equals","Email đã trùng");
+                    if (item.getName().equals(name)) errors.rejectValue("name","name.equals","Name đã trùng");
+                    break;
+                }
+            }else {
+                for (Vendor item:list) {
+                    if (item.getId()!=vendor.getId()){
+                        if (item.getPhone().equals(phone)) errors.rejectValue("phone", "phone.equals","Phone đã trùng");
+                        if (item.getEmail().equals(email)) errors.rejectValue("email","email.equals","Email đã trùng");
+                        if (item.getName().equals(name)) errors.rejectValue("name","name.equals","Name đã trùng");
+                        break;
+                    }
+                }
+            }
+        }
         if(bindingResult.hasErrors()) {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
             List<String> fieldString = new ArrayList<>();

@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
@@ -25,18 +26,17 @@ public class Rate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotBlank
     private String name;
 
-    @NotNull
+    @NotBlank
     private String email;
 
-    @NotNull
+    @NotBlank
     private String content;
 
     private String status="Chưa đọc";
 
-    @NotNull
     @NotNull
     @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dateAdd =LocalDateTime.now() ;

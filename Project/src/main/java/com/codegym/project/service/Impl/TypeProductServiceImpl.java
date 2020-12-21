@@ -92,4 +92,9 @@ public class TypeProductServiceImpl implements TypeProductService {
         }
         return false;
     }
+//validate
+    @Override
+    public List<TypeProduct> findAllTypeProductsByName(String name) {
+        return typeProductRepository.findAllTypeProductsByName(name);
+    }
 }
