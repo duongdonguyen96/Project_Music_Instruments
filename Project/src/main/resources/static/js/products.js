@@ -42,7 +42,7 @@ products.intTable = function () {
             {
                 data: "id", name: "Action", title: "Action", sortable: false,
                 orderable: false, "render": function (data) {
-                    var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' onclick='products.get("+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
+                    var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' onclick='products.get("+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning fa fa-cogs'></a> " +
                         "<a href='javascript:' class='btn btn-danger' onclick='products.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a></div>"
                     return str;
                 }

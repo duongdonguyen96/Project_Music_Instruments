@@ -1,51 +1,51 @@
 package com.codegym.project.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.Where;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.sql.Date;
-import java.time.LocalDateTime;
+
 
 @Entity
-@Table(name = "employees")
+@Table
 @Where(clause = "delete=false")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+
+
     private String userName;
-    @NotNull
+
+
     private String password;
-    @NotNull
+
     private String fullName;
-    @NotNull
+
     private String address;
-    @NotNull
+
     private String phone;
-    @NotNull
+
     private String email;
-    @NotNull
+
     private String image;
-    @NotNull
+
     private String gender;
 
-    @NotNull
-    private String idCard;
-    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-    private  LocalDateTime dateAdd = LocalDateTime.now();
-    @NotNull
-//    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
 
-    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-    private LocalDateTime dateUpdate = LocalDateTime.now();
 
-    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-    private LocalDateTime dateDelete;
+    private String idCard;
 
+
+    private Date dateAdd = new Date(1);
+
+
+    private Date dateUpdate;
+
+    private Date dateDelete;
 
     private String role = "employee";
 
@@ -127,19 +127,6 @@ public class Employee {
         this.gender = gender;
     }
 
-    public String getIdCard() {
-        return idCard;
-    }
-
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
-    }
-
-    public LocalDateTime getDateAdd() {
-        return dateAdd;
-    }
-
-
     public Date getDateOfBirth() {
         return dateOfBirth;
     }
@@ -148,19 +135,35 @@ public class Employee {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public LocalDateTime getDateUpdate() {
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public Date getDateAdd() {
+        return dateAdd;
+    }
+
+    public void setDateAdd(Date dateAdd) {
+        this.dateAdd = dateAdd;
+    }
+
+    public Date getDateUpdate() {
         return dateUpdate;
     }
 
-    public void setDateUpdate(LocalDateTime dateUpdate) {
+    public void setDateUpdate(Date dateUpdate) {
         this.dateUpdate = dateUpdate;
     }
 
-    public LocalDateTime getDateDelete() {
+    public Date getDateDelete() {
         return dateDelete;
     }
 
-    public void setDateDelete(LocalDateTime dateDelete) {
+    public void setDateDelete(Date dateDelete) {
         this.dateDelete = dateDelete;
     }
 
@@ -178,9 +181,5 @@ public class Employee {
 
     public void setDelete(boolean delete) {
         this.delete = delete;
-    }
-
-    public void setDateAdd(LocalDateTime dateAdd) {
-        this.dateAdd = dateAdd;
     }
 }
