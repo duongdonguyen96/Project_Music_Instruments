@@ -1,9 +1,13 @@
 package com.codegym.project.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.Where;
-import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -13,35 +17,35 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotBlank
     private String userName;
-
+    @NotBlank
     private String password;
-
+    @NotNull
     private String fullName;
-
-
+    @NotNull
     private String address;
-
-
+    @NotNull
     private String phone;
-
+    @NotBlank
     private String email;
-
+    @NotNull
     private String image;
-
+    @NotNull
     private String gender;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dateAdd = LocalDateTime.now();
+    @NotNull
     private Date dateOfBirth;
 
-    private Date dateAdd = new Date(1);
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dateUpdate = LocalDateTime.now();
 
-    private Date dateUpdate;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dateDelete;
 
-    private Date dateDelete;
-
-    private String statusAccount="enable";
+    private String statusAccount = "enable";
 
     @Where(clause = "delete=false")
     private boolean delete = false;
@@ -49,18 +53,6 @@ public class User {
     public User() {
     }
 
-    public User(String userName, String password, String fullName, String address, String phone, String email, String image, String gender, Date dateOfBirth, Date dateAdd) {
-        this.userName = userName;
-        this.password = password;
-        this.fullName = fullName;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
-        this.image = image;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.dateAdd = dateAdd;
-    }
 
     public Long getId() {
         return id;
@@ -158,27 +150,27 @@ public class User {
         this.delete = delete;
     }
 
-    public Date getDateAdd() {
+    public LocalDateTime getDateAdd() {
         return dateAdd;
     }
 
-    public void setDateAdd(Date dateAdd) {
+    public void setDateAdd(LocalDateTime dateAdd) {
         this.dateAdd = dateAdd;
     }
 
-    public Date getDateUpdate() {
+    public LocalDateTime getDateUpdate() {
         return dateUpdate;
     }
 
-    public void setDateUpdate(Date dateUpdate) {
+    public void setDateUpdate(LocalDateTime dateUpdate) {
         this.dateUpdate = dateUpdate;
     }
 
-    public Date getDateDelete() {
+    public LocalDateTime getDateDelete() {
         return dateDelete;
     }
 
-    public void setDateDelete(Date dateDelete) {
+    public void setDateDelete(LocalDateTime dateDelete) {
         this.dateDelete = dateDelete;
     }
 }

@@ -1,141 +1,11 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="layout/layout :: head">
 </head>
-
 <body>
-<!-- The Modal -->
-<div class="modal" id="modalAddEdit" name="modalAddEdit">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title" id="modalTitle"></h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-                <form id="formAddEdit" th:name="formAddEdit">
-                    <input type="hidden" name="id" id="id" value="">
-                    <div class="row form-group">
-                        <div class="col-3">
-                            <label>User Name</label>
-                        </div>
-                        <div class="col-9">
-                            <input type="text" id="userName" name="userName"
-                                   class="form-control" required th:maxlength="45">
-                            <p style="color: red;display: none"
-                               class="ui-state-error-text"></p>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-3">
-                            <label>Password</label>
-                        </div>
-                        <div class="col-9">
-                            <input type="text" id="password" name="password"
-                                   class="form-control" required th:maxlength="45">
-                            <p style="color: red;display: none"
-                               class="ui-state-error-text"></p>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-3">
-                            <label>Full Name</label>
-                        </div>
-                        <div class="col-9">
-                            <input type="text" id="fullName" name="fullName"
-                                   class="form-control" required th:maxlength="45">
-                            <p style="color: red;display: none"
-                               class="ui-state-error-text"></p>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-3">
-                            <label>Address</label>
-                        </div>
-                        <div class="col-9">
-                            <input type="text" id="address" name="address"
-                                   class="form-control" required th:maxlength="45">
-                            <p style="color: red;display: none"
-                               class="ui-state-error-text"></p>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-3">
-                            <label>Phone</label>
-                        </div>
-                        <div class="col-9">
-                            <input type="text" id="phone" name="phone"
-                                   class="form-control" required th:maxlength="45">
-                            <p style="color: red;display: none"
-                               class="ui-state-error-text"></p>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-3">
-                            <label>Gender</label>
-                        </div>
-                        <div class="col-9">
-                            <select class="form-control" id="gender" name="gender">
-                                <option value="male">MALE</option>
-                                <option value="female">FEMALE</option>
-                                <option value="other gender">OTHER GENDER</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col-3">
-                            <label>Email</label>
-                        </div>
-                        <div class="col-9">
-                            <input type="text" id="email" name="email"
-                                   class="form-control" required th:maxlength="45">
-                            <p style="color: red;display: none"
-                               class="ui-state-error-text"></p>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-3">
-                            <label>Date Of Birth</label>
-                        </div>
-                        <div class="col-9">
-                            <input type="date" id="dateOfBirth" name="dateOfBirth"
-                                   class="form-control" required th:maxlength="45">
-                            <p style="color: red;display: none"
-                               class="ui-state-error-text"></p>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-3">
-                            <label>Image</label>
-                        </div>
-                        <div class="col-9">
-                            <input type="text" id="image" name="image"
-                                   class="form-control" required th:maxlength="45">
-                            <p style="color: red;display: none"
-                               class="ui-state-error-text"></p>
-                        </div>
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <a href="javascript:" class="btn btn-primary"
-                           onclick="users.save()">Save</a>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- The Modal End-->
-
-
 <!--[if lt IE 8]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 <!-- preloader area start -->
 <div id="preloader">
@@ -146,29 +16,26 @@
 <div class="page-container">
     <!-- sidebar menu area start -->
     <div class="sidebar-menu">
-        <div class="sidebar-header">
-            <div class="logo">
-                <a href="index.html"><img src="assets/images/icon/logo.png" alt="logo"></a>
-            </div>
+        <div class="sidebar-header" th:replace="layout/layout::logo">
         </div>
         <div class="main-menu">
             <div class="menu-inner">
                 <nav>
                     <ul class="metismenu" id="menu">
-                        <li class="active">
+                        <li>
                             <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                 <span>Products</span></a>
                             <ul class="collapse">
-                                <li class=" active"><a href="/products">Products list</a></li>
+                                <li><a href="/products">Products list</a></li>
                                 <li><a href="/productDeleted">Products Deleted</a></li>
                             </ul>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                                 <span>Vendors</span></a>
                             <ul class="collapse">
                                 <li><a href="/vendors">Vendors list</a></li>
-                                <li><a href="VendorIsDelete.html">Vendors Deleted</a></li>
+                                <li class="active"><a href="/vendorsDeleted">Vendors Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -176,7 +43,7 @@
                                 <span>ProductLines</span></a>
                             <ul class="collapse">
                                 <li><a href="/typeProducts">ProductLines list</a></li>
-                                <li><a href="ProductLineIsDelete.html">ProductLines Deleted</a></li>
+                                <li><a href="/typeProductsDeleted">ProductLines Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -208,7 +75,7 @@
                                 <span>Rates</span></a>
                             <ul class="collapse">
                                 <li><a href="/rates">Rates list</a></li>
-                                <li><a href="RateIsDelete.html">Rates Deleted</a></li>
+                                <li><a href="/ratesDeleted">Rates Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -239,43 +106,10 @@
         <div class="header-area">
             <div class="row align-items-center">
                 <!-- nav and search button -->
-                <div class="col-md-6 col-sm-8 clearfix">
-                    <div class="nav-btn pull-left">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div class="search-box pull-left">
-                        <form action="#">
-                            <input type="text" name="search" placeholder="Search..." required>
-                            <i class="ti-search"></i>
-                        </form>
-                    </div>
+                <div class="col-md-6 col-sm-8 clearfix" th:replace="layout/layout::search">
                 </div>
                 <!-- profile info & task notification -->
-                <div class="col-md-6 col-sm-4 clearfix">
-                    <ul class="notification-area pull-right">
-                        <li id="full-view"><i class="ti-fullscreen"></i></li>
-                        <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
-                        <li class="dropdown">
-                            <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>3</span></i>
-                            <div class="dropdown-menu notify-box nt-enveloper-box">
-                                <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
-                                <div class="nofity-list">
-                                    <a href="#" class="notify-item">
-                                        <div class="notify-thumb">
-                                            <img src="assets/images/author/author-img1.jpg" alt="image">
-                                        </div>
-                                        <div class="notify-text">
-                                            <p>Aglae Mayer</p>
-                                            <span class="msg">Hey I am waiting for you...</span>
-                                            <span>3:15 PM</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                <div class="col-md-6 col-sm-4 clearfix" th:replace="layout/layout::notification">
                 </div>
             </div>
         </div>
@@ -287,22 +121,12 @@
                     <div class="breadcrumbs-area clearfix">
                         <h4 class="page-title pull-left">Dashboard</h4>
                         <ul class="breadcrumbs pull-left">
-                            <li><a href="#">Products</a></li>
-                            <li><span>Product list</span></li>
+                            <li><a href="#">Vendors</a></li>
+                            <li><span>Vendors deleted</span></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-6 clearfix">
-                    <div class="user-profile pull-right">
-                        <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
-                        <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i
-                                class="fa fa-angle-down"></i></h4>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Message</a>
-                            <a class="dropdown-item" href="#">Settings</a>
-                            <a class="dropdown-item" href="#">Log Out</a>
-                        </div>
-                    </div>
+                <div class="col-sm-6 clearfix" th:replace="layout/layout::setting">
                 </div>
             </div>
         </div>
@@ -313,33 +137,27 @@
                 <div class="col-lg-12 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title">USERS</h4>
-                            <div class="data-tables datatable-primary">
-                                <button type="button" class="btn btn-success mb-3" onclick="users.addNew()"><i
-                                        class="fa fa-plus" aria-hidden="true"> Add</i></button>
+                            <h4 class="header-title">EMPLOYEES DELETED</h4>
+                            <div class="data-tables datatable-dark">
                                 <div class="table-responsive">
-                                    <table class="table text-center" id="users-dataTable"
-                                           name="users-dataTable">
-
+                                    <table class="table text-center" id="users-datatables" name="users-datatables">
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- table success end -->
-                <!-- Contextual Classes end -->
             </div>
+            <!-- table success end -->
+            <!-- Contextual Classes end -->
         </div>
     </div>
-    <!-- main content area end -->
-    <!-- footer area start-->
-    <footer>
-        <div class="footer-area">
-            <p>© Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
-        </div>
-    </footer>
-    <!-- footer area end-->
+</div>
+<!-- main content area end -->
+<!-- footer area start-->
+<footer th:replace="layout/layout::footer">
+</footer>
+<!-- footer area end-->
 </div>
 <!-- page container area end -->
 <!-- offset area start -->
@@ -468,7 +286,7 @@
                         <div class="s-sw-title">
                             <h5>Notifications</h5>
                             <div class="s-swtich">
-                                <input type="checkbox" id="switch1"/>
+                                <input type="checkbox" id="switch1" />
                                 <label for="switch1">Toggle</label>
                             </div>
                         </div>
@@ -478,7 +296,7 @@
                         <div class="s-sw-title">
                             <h5>Show recent activity</h5>
                             <div class="s-swtich">
-                                <input type="checkbox" id="switch2"/>
+                                <input type="checkbox" id="switch2" />
                                 <label for="switch2">Toggle</label>
                             </div>
                         </div>
@@ -488,7 +306,7 @@
                         <div class="s-sw-title">
                             <h5>Show your emails</h5>
                             <div class="s-swtich">
-                                <input type="checkbox" id="switch3"/>
+                                <input type="checkbox" id="switch3" />
                                 <label for="switch3">Toggle</label>
                             </div>
                         </div>
@@ -498,7 +316,7 @@
                         <div class="s-sw-title">
                             <h5>Show Task statistics</h5>
                             <div class="s-swtich">
-                                <input type="checkbox" id="switch4"/>
+                                <input type="checkbox" id="switch4" />
                                 <label for="switch4">Toggle</label>
                             </div>
                         </div>
@@ -508,7 +326,7 @@
                         <div class="s-sw-title">
                             <h5>Notifications</h5>
                             <div class="s-swtich">
-                                <input type="checkbox" id="switch5"/>
+                                <input type="checkbox" id="switch5" />
                                 <label for="switch5">Toggle</label>
                             </div>
                         </div>
@@ -519,30 +337,8 @@
         </div>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
-        integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-<!-- offset area end -->
-<!-- jquery latest version -->
-<!--    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>-->
-<!-- bootstrap 4 js -->
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/metisMenu.min.js"></script>
-<script src="assets/js/jquery.slimscroll.min.js"></script>
-<script src="assets/js/jquery.slicknav.min.js"></script>
-
-<!-- others plugins -->
-<script src="assets/js/plugins.js"></script>
-<script src="assets/js/scripts.js"></script>
+<div th:replace="layout/layout::script"></div>
 </body>
-<script src="js/users.js"></script>
+<script src="js/usersDeleted.js"></script>
+<script src="js/notification.js"></script>
 </html>

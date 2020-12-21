@@ -1,56 +1,128 @@
 package com.codegym.project.controller.api;
+
 import com.codegym.project.model.Employee;
+import com.codegym.project.model.message.MessageNotification;
 import com.codegym.project.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(value = "/api")
 public class ApiEmployeeController {
     @Autowired
     EmployeeService employeeService;
 
-    @RequestMapping(value = "/employees/", method = RequestMethod.GET)
-    public ResponseEntity<List<Employee>> listAllCategory() {
-        List<Employee> employees = employeeService.findAll();
-        if (employees == null) {
-            return new ResponseEntity<List<Employee>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
-        }
-        return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
+    @GetMapping(value = "/employees/")
+    public ResponseEntity<List<Employee>> ListEmployees() {
+        List<Employee> employeeList = employeeService.findAll();
+        return new ResponseEntity<List<Employee>>(employeeList, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/employees/{id}", method = RequestMethod.DELETE)
-    public boolean delete(@PathVariable("id") long id) {
-        boolean isUser = false;
+
+    @RequestMapping(value = "/employees/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Employee> findEmById(@PathVariable("id") Long id) {
         try {
-            isUser = employeeService.delete(id);
+            Employee employee = employeeService.findById(id);
+            return new ResponseEntity<Employee>(employee, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<Employee>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    @RequestMapping(value = "/employees/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public boolean delete(@PathVariable("id") Long id) {
+        boolean isEm = false;
+        try {
+            isEm = employeeService.delete(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return isUser;
+        return isEm;
     }
 
-    @RequestMapping(value = "employees/", method = RequestMethod.POST)
-
-    public ResponseEntity<Employee> create(@RequestBody Employee user) throws SQLException {
-        Employee employee = employeeService.save(user);
-        return new ResponseEntity<Employee>(employee, HttpStatus.OK);
+    //    validateBackEnd
+    @PutMapping(value = "/employees/")
+    @ResponseBody
+    public ResponseEntity<Object> getBlogById(@Validated Employee employees, BindingResult bindingResult) {
+        return validate(employees, bindingResult);
     }
 
-    @RequestMapping(value = "/employees/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Employee> getCategory(@PathVariable("id") long id) throws SQLException {
-        Employee employee = (Employee) employeeService.findById(id);
-        return new ResponseEntity<Employee>(employee, HttpStatus.OK);
+    @RequestMapping(value = "/employees/", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    public ResponseEntity<Object> create(@Valid @RequestBody Employee employees, BindingResult bindingResult) {
+        employees.setDateAdd(LocalDateTime.now());
+        return validate(employees, bindingResult);
     }
 
-    @RequestMapping(value = "/employees/", method = RequestMethod.PUT)
-    public ResponseEntity<Employee> update(@RequestBody Employee employee) throws SQLException {
-        employeeService.save(employee);
-        return new ResponseEntity<Employee>(employee, HttpStatus.OK);
+    @RequestMapping(value = "/employees/", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
+    public ResponseEntity<Object> edit(@Valid @RequestBody Employee employees, BindingResult bindingResult) {
+        employees.setDateUpdate(LocalDateTime.now());
+
+        return validate(employees, bindingResult);
+    }
+
+    public ResponseEntity<Object> validate(Employee employees, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+            List<String> fieldString = new ArrayList<>();
+            for (FieldError e : fieldErrors) {
+                fieldString.add(e.getField() + ": " + e.getDefaultMessage());
+            }
+            MessageNotification messageNotification = new MessageNotification();
+            messageNotification.setCode(-2);
+            messageNotification.setStringListMessage(fieldString);
+            return new ResponseEntity<Object>(messageNotification, HttpStatus.OK);
+        } else {
+            try {
+                employeeService.save(employees);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            MessageNotification messageNotification = new MessageNotification();
+            messageNotification.setCode(2);
+            messageNotification.setObject(employees);
+            return new ResponseEntity<Object>(messageNotification, HttpStatus.OK);
+        }
+    }
+
+    //   Employee deleted
+    @GetMapping(value = "/employeesDeleted/")
+    public ResponseEntity<List<Employee>> listEmsDeleted() {
+        List<Employee> emsDelete = employeeService.findAllEmsDelete();
+        return new ResponseEntity<List<Employee>>(emsDelete, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/employeesDeleted/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public boolean deleteEmployee(@PathVariable("id") Long id) {
+        boolean emDelete = false;
+        try {
+            emDelete = employeeService.deleteEm(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return emDelete;
+    }
+
+    @RequestMapping(value = "/employeeUndo/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public boolean undoVendor(@PathVariable("id") Long id) {
+        boolean isVendors = false;
+        try {
+            isVendors = employeeService.undoEm(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isVendors;
     }
 }
