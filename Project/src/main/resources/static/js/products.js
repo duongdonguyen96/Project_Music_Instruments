@@ -1,6 +1,7 @@
 var products = {} || products;
 var rates = {} || rates;
 products.intTable = function () {
+    var id;
     $("#products-datatables").DataTable({
         ajax: {
             url: 'http://localhost:8080/api/products/',
@@ -10,26 +11,29 @@ products.intTable = function () {
         },
         columns: [
             {
-                data: "id", name: "ID", title: "ID", orderable: true
+                data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
+                    id=data;
+                    return id;
+                },
             },
             {
                 data: "image", name: "Image", title: "Image", sortable: false,
                 orderable: false, "render": function (data) {
-                    var str ="<img style='width: 80px; height: 80px; border: 1px solid red' src="+data+">" ;
+                    var str ="<img onclick='products.get(this.title,"+id+")' title='View' style='width: 80px; height: 80px; border: 1px solid red' src="+data+">" ;
                     return str;
-                }
+                },
             },
             {
                 data: "name", name: "Name", title: "Name", orderable: true,
             },
             {
-                data: "price", name: "Price", title: "Price", sortable: false,
-                orderable: false,
+                data: "price", name: "Price", title: "Price", sortable: true,
+                orderable: true,
             },
 
             {
-                data: "amount", name: "Amount", title: "Amount", sortable: false,
-                orderable: false,
+                data: "amount", name: "Amount", title: "Amount", sortable: true,
+                orderable: true,
             },
             {
                 data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false,
@@ -42,8 +46,10 @@ products.intTable = function () {
             {
                 data: "id", name: "Action", title: "Action", sortable: false,
                 orderable: false, "render": function (data) {
-                    var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' onclick='products.get("+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
-                        "<a href='javascript:' class='btn btn-danger' onclick='products.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a></div>"
+                    var str = "<div style='justify-content: center;text-align: center'>" +
+                        "<a href='javascript:' onclick='products.get(this.title,"+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
+                        "<a href='javascript:' class='btn btn-danger' onclick='products.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a>" +
+                        "</div>"
                     return str;
                 }
             }
@@ -164,15 +170,42 @@ products.delete = function (id) {
     });
 };
 
-products.get = function (id) {
+products.get = function (title,id) {
     $.ajax({
         url: "http://localhost:8080/api/product/" + id,
         method: "GET",
         dataType: "json",
         success: function (data) {
             $('#formAddEdit')[0].reset();
-            $('#modalTitle').html("Edit product");
+            $('.form-control').removeAttr('disabled');
+            if (title==='Edit'){
+                $('#modalTitle').html("Edit product");
+                $('#idHtml').hide();
+                $('#dateHtml').hide();
+                $('#dateUpdateHtml').hide();
+
+                $('#imageHtml').html(
+                `<input class="form-control" type="text"
+                           name="image" id="image"
+                           data-rule-required=true value="${data.image}">`
+                );
+            }
+            //
+            if (title==='View'){
+                $('#modalTitle').html("View product");
+                $('#idHtml').show();
+                $('#dateHtml').show();
+                $('#dateUpdateHtml').show();
+                $('#imageHtml').html(
+                    `<img class="form-control" src="${data.image}"
+                           name="image" id="image" style="width: 600px;height: 600px">`
+                );
+                $('#save').hide();
+                $('.form-control').attr('disabled','disabled');
+            }
             $('#id').val(data.id);
+            $('#dateAdd').val(data.dateAdd);
+            $('#dateUpdate').val(data.dateUpdate);
             $('#name').val(data.name);
             $('#price').val( data.price);
             $('#amount').val(data.amount);
@@ -180,14 +213,14 @@ products.get = function (id) {
             $('#size').val( data.size);
             $('#color').val( data.color);
             $('#description').val( data.description);
-            $('#image').val(data.image);
-            $('#type').val(data.typeProduct.id);
-            $('#vendor').val(data.vendor.id);
-            $('#dateAdd').val(data.dateAdd);
+            $('#type').val(data.typeProduct.id)
+            $('#vendor').val(data.vendor.id)
+
             $('#modalAddEdit').modal('show');
         }
     });
 };
+
 
 var types=types||{};
 var typeData=[];
@@ -201,7 +234,7 @@ types.initTypes = function () {
             $('#type').empty();
             $.each(data, function (i, v) {
                 $('#type').append(
-                    `<option class="form-control" value='${ v.id }'>${v.name}</option>`
+                    `<option class="form-control noDisable" value='${ v.id }'>${v.name}</option>`
                 );
             });
         }
@@ -226,7 +259,7 @@ vendors.initVendors = function () {
             $('#vendor').empty();
             $.each(data, function (i, v) {
                 $('#vendor').append(
-                    `<option class="form-control" value='${ v.id }'>${v.name}</option>`
+                    `<option class="form-control noDisable"  value='${ v.id }'>${v.name}</option>`
                 );
             });
         }

@@ -24,16 +24,16 @@ vendors.intTable = function () {
                 orderable: false,
             },
             {
-                data: "email", name: "Email", title: "Email", sortable: false,
-                orderable: false,
+                data: "email", name: "Email", title: "Email", sortable: true,
+                orderable: true,
             },
             {
-                data: "surrogate", name: "Surrogate", title: "Surrogate", sortable: false,
-                orderable: false,
+                data: "surrogate", name: "Surrogate", title: "Surrogate", sortable: true,
+                orderable: true,
             },
             {
-                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false,
-                orderable: false
+                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
+                orderable: true
             },
             {
                 data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
@@ -42,8 +42,10 @@ vendors.intTable = function () {
             {
                 data: "id", name: "Action", title: "Action", sortable: false,
                 orderable: false, "render": function (data) {
-                    var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' onclick='vendors.get("+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
-                        "<a href='javascript:' class='btn btn-danger' onclick='vendors.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a></div>"
+                    var str = "<div style='justify-content: center;text-align: center'>" +
+                        "<a href='javascript:' onclick='vendors.get("+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
+                        "<a href='javascript:' class='btn btn-danger' onclick='vendors.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a>" +
+                        "</div>"
                     return str;
                 }
             }

@@ -24,17 +24,17 @@ products.intTable = function () {
                 data: "name", name: "Name", title: "Name", orderable: true,
             },
             {
-                data: "price", name: "Price", title: "Price", sortable: false,
-                orderable: false,
+                data: "price", name: "Price", title: "Price", sortable: true,
+                orderable: true,
             },
 
             {
-                data: "amount", name: "Amount", title: "Amount", sortable: false,
-                orderable: false,
+                data: "amount", name: "Amount", title: "Amount", sortable: true,
+                orderable: true,
             },
             {
-                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false,
-                orderable: false
+                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
+                orderable: true
             },
             {
                 data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
@@ -49,7 +49,8 @@ products.intTable = function () {
                 orderable: false, "render": function (data) {
                     var str = "<div style='justify-content: center;text-align: center'>"+
                         "<a href='javascript:' class='btn btn-warning' title='Undo' onclick='products.undo("+data+")'><i class=\"fa fa-undo\" aria-hidden=\"true\"></i></a> "
-                        +"<a href='javascript:' onclick='products.delete("+data+")'class='btn btn-danger'><i class=\"ti-trash\" title=\"Delete\"></a></div>"
+                        +"<a href='javascript:' onclick='products.delete("+data+")'class='btn btn-danger'><i class=\"ti-trash\" title=\"Delete\"></a>" +
+                        "</div>"
                     return str;
                 }
             }
