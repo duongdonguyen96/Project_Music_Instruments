@@ -20,8 +20,8 @@ productLines.intTable = function () {
                 orderable: false,
             },
             {
-                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false,
-                orderable: false
+                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
+                orderable: true
             },
             {
                 data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
@@ -30,8 +30,10 @@ productLines.intTable = function () {
             {
                 data: "id", name: "Action", title: "Action", sortable: false,
                 orderable: false, "render": function (data) {
-                    var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' title='Edit' onclick='productLines.get("+data+")' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
-                        "<a href='javascript:'  class='btn btn-danger' onclick='productLines.delete("+data+")' ><i class=\"ti-trash\" title=\"Delete\"></a></div>"
+                    var str = "<div style='justify-content: center;text-align: center'>" +
+                        "<a href='javascript:' title='Edit' onclick='productLines.get("+data+")' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
+                        "<a href='javascript:'  class='btn btn-danger' onclick='productLines.delete("+data+")' ><i class=\"ti-trash\" title=\"Delete\"></a>" +
+                        "</div>"
                     return str;
                 }
             }

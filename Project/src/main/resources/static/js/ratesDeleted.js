@@ -15,16 +15,16 @@ rates.intTable = function () {
                 data: "name", name: "Name", title: "Name", orderable: true,
             },
             {
-                data: "email", name: "Email", title: "Email", sortable: false,
-                orderable: false,
+                data: "email", name: "Email", title: "Email", sortable: true,
+                orderable: true,
             },
             {
-                data: "status", name: "Status", title: "Status", sortable: false,
-                orderable: false,
+                data: "status", name: "Status", title: "Status", sortable: true,
+                orderable: true,
             },
             {
-                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false,
-                orderable: false
+                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
+                orderable: true
             },
             {
                 data: "dateDelete", name: "Date Delete", title: "Date Delete", sortable: false,
@@ -33,8 +33,10 @@ rates.intTable = function () {
             {
                 data: "id", name: "Action", title: "Action", sortable: false,
                 orderable: false, "render": function (data) {
-                    var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' onclick='rates.get("+data+")' title='View' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></a> " +
-                        "<a href='javascript:' class='btn btn-danger' onclick='rates.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a></div>"
+                    var str = "<div style='justify-content: center;text-align: center'>" +
+                        "<a href='javascript:' onclick='rates.get("+data+")' title='View' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></a> " +
+                        "<a href='javascript:' class='btn btn-danger' onclick='rates.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a>" +
+                        "</div>"
                     return str;
                 }
             }

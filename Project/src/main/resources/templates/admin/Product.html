@@ -10,14 +10,39 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title" id="modalTitle"></h4>
+                <h4 class="modal-title" id="modalTitle" style="color: #2c3cb7"></h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <!-- Modal body -->
             <div class="modal-body">
                 <form id="formAddEdit" th:name="formAddEdit">
-                    <input type="hidden" name="dateAdd" id="dateAdd">
-                    <input type="hidden" name="id" id="id" value="" >
+                    <div class="row form-group" id="idHtml">
+                        <div class="col-3">
+                            <label>Id</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="id" id="id">
+                        </div>
+                    </div>
+                    <div class="row form-group" id="dateHtml">
+                        <div class="col-3">
+                            <label>Date Add</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="dateAdd" id="dateAdd">
+                        </div>
+                    </div>
+                    <div class="row form-group" id="dateUpdateHtml">
+                        <div class="col-3">
+                            <label>Date Update</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="dateUpdate" id="dateUpdate" value="">
+                        </div>
+                    </div>
                     <div class="row form-group">
                         <div class="col-3">
                             <label>Name</label>
@@ -30,7 +55,7 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-3">
-                            <label>Price</label>
+                            <label>Price ($)</label>
                         </div>
                         <div class="col-9">
                             <input class="form-control" type="number"
@@ -50,7 +75,7 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-3">
-                            <label>Weight</label>
+                            <label>Weight (kg)</label>
                         </div>
                         <div class="col-9">
                             <input class="form-control" type="number"
@@ -79,33 +104,10 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-3">
-                            <label>Description</label>
-                        </div>
-                        <div class="col-9">
-                            <textarea class="form-control" type="text"
-                                   name="description" id="description"
-                                      data-rule-required=true placeholder="Enter content">
-                            </textarea>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-3">
-                            <label>Image</label>
-                        </div>
-                        <div class="col-9">
-<!--                            <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" data-rule-required=true ><br>-->
-<!--                            <img id='output' height="150px" width="100px">-->
-                            <input class="form-control" type="text"
-                                   name="image" id="image"
-                                   data-rule-required=true>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-3">
                             <label>Types</label>
                         </div>
                         <div class="col-9">
-                            <select class="form-control" name="type" id="type" data-rule-required="true">
+                            <select class="form-control noDisable" style="height: 45px" name="type" id="type" data-rule-required="true">
 
                             </select>
                         </div>
@@ -115,9 +117,30 @@
                             <label>Vendors</label>
                         </div>
                         <div class="col-9">
-                            <select class="form-control" name="vendor" id="vendor" data-rule-required="true">
+                            <select class="form-control noDisable" style="height: 45px" name="vendor" id="vendor" data-rule-required="true">
 
                             </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Description</label>
+                        </div>
+                        <div class="col-9">
+                            <textarea class="form-control" type="text"
+                                      name="description" id="description"
+                                      data-rule-required=true placeholder="Enter content" rows="5">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="row form-group" >
+                        <!--                            <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" data-rule-required=true ><br>-->
+                        <!--                            <img id='output' height="150px" width="100px">-->
+                        <div class="col-3">
+                            <label>Image</label>
+                        </div>
+                        <div class="col-9" id="imageHtml">
+
                         </div>
                     </div>
                 </form>
@@ -125,7 +148,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <a href="javascript:" class="btn btn-primary"
-                   onclick="products.save()">Save</a>
+                   onclick="products.save()" id="save">Save</a>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
 
