@@ -91,7 +91,7 @@ blogs.update = function (){
                     }
                 }
             });
-        blogs.resetForm();
+        // blogs.resetForm();
         validator.resetForm();
     }
 }
