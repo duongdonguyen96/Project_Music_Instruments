@@ -16,8 +16,33 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <form id="formAddEdit" th:name="formAddEdit">
-                    <input type="hidden" name="dateAdd" id="dateAdd" >
-                    <input type="hidden" name="id" id="id" value="" >
+                    <div class="row form-group hideHtml">
+                        <div class="col-3">
+                            <label>Id</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="id" id="id">
+                        </div>
+                    </div>
+                    <div class="row form-group hideHtml">
+                        <div class="col-3">
+                            <label>Date Add</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="dateAdd" id="dateAdd">
+                        </div>
+                    </div>
+                    <div class="row form-group hideHtml">
+                        <div class="col-3">
+                            <label>Date Update</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="dateUpdate" id="dateUpdate">
+                        </div>
+                    </div>
                     <div class="row form-group">
                         <div class="col-3">
                             <label>Name</label>
@@ -43,7 +68,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <a href="javascript:" class="btn btn-primary"
-                   onclick="productLines.save()">Save</a>
+                   onclick="productLines.save()" id="save">Save</a>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
 

@@ -140,4 +140,15 @@ public class ApiTypeProductController {
         }
         return isVendors;
     }
+
+    @RequestMapping(value = "/typeProductDeleted/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TypeProduct> findTypeProductDeletedById(@PathVariable("id") Long id) {
+        try{
+            TypeProduct typeProduct = typeProductService.findTypeProductDeleted(id);
+            return new ResponseEntity<TypeProduct>(typeProduct, HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<TypeProduct>(HttpStatus.NO_CONTENT);
+        }
+    }
 }

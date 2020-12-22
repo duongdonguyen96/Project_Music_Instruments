@@ -1,6 +1,7 @@
 var productLines = {} || productLines;
 var rates = {} || rates;
 productLines.intTable = function () {
+    var id;
     $("#productLines-datatables").DataTable({
         ajax: {
             url: 'http://localhost:8080/api/typeProductsDeleted/',
@@ -10,10 +11,16 @@ productLines.intTable = function () {
         },
         columns: [
             {
-                data: "id", name: "ID", title: "ID", orderable: true
+                data: "id", name: "ID", title: "ID", orderable: true,"render": function (data) {
+                    id=data;
+                    return id;
+                }
             },
             {
-                data: "name", name: "Name", title: "Name", orderable: true,
+                data: "name", name: "Name", title: "Name", orderable: true,"render": function (data) {
+                    var str ="<div><a href='javascript:' onclick='productLines.getTypeProductDeleted("+id+")' title='View'>"+data+"</a></div>" ;
+                    return str;
+                },
             },
             {
                 data: "description", name: "Description", title: "Description", sortable: false,
@@ -109,7 +116,25 @@ productLines.undo= function (id) {
         }
     });
 };
-
+productLines.getTypeProductDeleted = function (id) {
+    $.ajax({
+        url: "http://localhost:8080/api/typeProductDeleted/" + id,
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            $('#formAddEdit')[0].reset();
+            $('#modalTitle').html("View type");
+            $('#id').val(data.id);
+            $('#dateAdd').val(data.dateAdd);
+            $('#dateUpdate').val(data.dateUpdate);
+            $('#dateDelete').val(data.dateDelete);
+            $('#name').val(data.name);
+            $('#description').val( data.description );
+            $('.form-control').attr('disabled','disabled');
+            $('#modalAddEdit').modal('show');
+        }
+    });
+};
 $(document).ready(function () {
     productLines.intTable();
     rates.findStatus();

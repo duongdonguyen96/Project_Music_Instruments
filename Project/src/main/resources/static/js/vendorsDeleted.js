@@ -1,7 +1,7 @@
 var vendors = {} || vendors;
-var vendorsData=[];
 var rates = {} || rates;
 vendors.intTable = function () {
+    var id;
     $("#vendors-datatables").DataTable({
         ajax: {
             url: 'http://localhost:8080/api/vendorsDeleted/',
@@ -11,10 +11,16 @@ vendors.intTable = function () {
         },
         columns: [
             {
-                data: "id", name: "ID", title: "ID", orderable: true
+                data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
+                    id=data;
+                    return id;
+                }
             },
             {
-                data: "name", name: "Name", title: "Name", orderable: true,
+                data: "name", name: "Name", title: "Name", orderable: true,"render": function (data) {
+                    var str ="<div><a href='javascript:' onclick='vendors.getVendorDeleted("+id+")' title='View'>"+data+"</a></div>" ;
+                    return str;
+                },
             },
             {
                 data: "address", name: "Address", title: "Address", sortable: false,
@@ -122,7 +128,32 @@ vendors.undo= function (id) {
         }
     });
 };
-
+vendors.getVendorDeleted = function (id) {
+    $.ajax({
+        url: "http://localhost:8080/api/vendorDeleted/" + id,
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            $('#formAddEdit')[0].reset();
+            $('#modalTitle').html("View vendor");
+            $('#id').val(data.id);
+            $('#dateAdd').val(data.dateAdd);
+            $('#dateUpdate').val(data.dateUpdate);
+            $('#dateDelete').val(data.dateDelete);
+            $('#name').val(data.name);
+            $('#address').val( data.address);
+            $('#email').val(data.email);
+            $('#surrogate').val(data.surrogate);
+            $('#phone').val( data.phone );
+            $('#imageHtml').html(
+                `<img class="form-control" src="${data.image}"
+                           name="image" id="image" style="width: 600px;height: 600px">`
+            );
+            $('.form-control').attr('disabled','disable');
+            $('#modalAddEdit').modal('show');
+        }
+    });
+};
 $(document).ready(function () {
     vendors.intTable();
     rates.findStatus();
