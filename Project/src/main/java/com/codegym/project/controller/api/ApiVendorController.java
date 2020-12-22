@@ -147,4 +147,14 @@ public class ApiVendorController {
         return isVendors;
     }
 
+    @RequestMapping(value = "/vendorDeleted/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Vendor> findVendorDeletedById(@PathVariable("id") Long id) {
+        try{
+            Vendor vendor = vendorService.findVendorDeleted(id);
+            return new ResponseEntity<Vendor>(vendor, HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<Vendor>(HttpStatus.NO_CONTENT);
+        }
+    }
 }

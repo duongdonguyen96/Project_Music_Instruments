@@ -16,7 +16,43 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <form id="formAddEdit" th:name="formAddEdit">
-                    <input type="hidden" name="id" id="id" value="" >
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Id</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="id" id="id">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Date Add</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="dateAdd" id="dateAdd">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Date Update</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="dateUpdate" id="dateUpdate">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Date Delete</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="dateDelete" id="dateDelete"
+                                   data-rule-required=true>
+                        </div>
+                    </div>
                     <div class="row form-group">
                         <div class="col-3">
                             <label>Name</label>
@@ -82,19 +118,8 @@
                         </div>
                         <div class="col-9">
                             <textarea class="form-control" type="text"
-                                      name="description" id="description"
-                                      data-rule-required=true>
+                                      name="description" id="description">
                             </textarea>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-3">
-                            <label>Image</label>
-                        </div>
-                        <div class="col-9">
-                            <input class="form-control" type="text"
-                                   name="image" id="image"
-                                   data-rule-required=true>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -102,7 +127,7 @@
                             <label>Types</label>
                         </div>
                         <div class="col-9">
-                            <select class="form-control" name="type" id="type">
+                            <select class="form-control" style="height: 45px" name="type" id="type">
 
                             </select>
                         </div>
@@ -112,17 +137,22 @@
                             <label>Vendors</label>
                         </div>
                         <div class="col-9">
-                            <select class="form-control" name="vendor" id="vendor">
+                            <select class="form-control" style="height: 45px" name="vendor" id="vendor">
 
                             </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Image</label>
+                        </div>
+                        <div class="col-9" id="image">
                         </div>
                     </div>
                 </form>
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <a href="javascript:" class="btn btn-primary"
-                   onclick="products.save()">Save</a>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
 

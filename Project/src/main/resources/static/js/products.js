@@ -60,6 +60,14 @@ products.intTable = function () {
 products.addNew = function () {
     $('#modalTitle').html("Add new products");
     validator.resetForm();
+    $('.hideHtml').hide();
+    $('.form-control').removeAttr('disabled');
+    $('#imageHtml').html(
+        `<input class="form-control" type="text"
+                           name="image" id="image"
+                           data-rule-required=true>`
+    );
+    $('#save').show();
     products.resetForm();
     $('#modalAddEdit').modal('show');
 };
@@ -180,10 +188,8 @@ products.get = function (title,id) {
             $('.form-control').removeAttr('disabled');
             if (title==='Edit'){
                 $('#modalTitle').html("Edit product");
-                $('#idHtml').hide();
-                $('#dateHtml').hide();
-                $('#dateUpdateHtml').hide();
-
+                $('.hideHtml').hide();
+                $('#save').show();
                 $('#imageHtml').html(
                 `<input class="form-control" type="text"
                            name="image" id="image"
@@ -193,9 +199,7 @@ products.get = function (title,id) {
             //
             if (title==='View'){
                 $('#modalTitle').html("View product");
-                $('#idHtml').show();
-                $('#dateHtml').show();
-                $('#dateUpdateHtml').show();
+                $('.hideHtml').show();
                 $('#imageHtml').html(
                     `<img class="form-control" src="${data.image}"
                            name="image" id="image" style="width: 600px;height: 600px">`
@@ -206,6 +210,7 @@ products.get = function (title,id) {
             $('#id').val(data.id);
             $('#dateAdd').val(data.dateAdd);
             $('#dateUpdate').val(data.dateUpdate);
+
             $('#name').val(data.name);
             $('#price').val( data.price);
             $('#amount').val(data.amount);
@@ -215,7 +220,7 @@ products.get = function (title,id) {
             $('#description').val( data.description);
             $('#type').val(data.typeProduct.id)
             $('#vendor').val(data.vendor.id)
-
+            validator.resetForm();
             $('#modalAddEdit').modal('show');
         }
     });

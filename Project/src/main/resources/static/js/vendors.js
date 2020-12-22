@@ -1,6 +1,7 @@
 var vendors = {} || vendors;
 var rates = {} || rates;
 vendors.intTable = function () {
+    var id;
     $("#vendors-datatables").DataTable({
         ajax: {
             url: 'http://localhost:8080/api/vendors/',
@@ -10,10 +11,16 @@ vendors.intTable = function () {
         },
         columns: [
             {
-                data: "id", name: "ID", title: "ID", orderable: true
+                data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
+                    id=data;
+                    return id;
+                }
             },
             {
-                data: "name", name: "Name", title: "Name", orderable: true,
+                data: "name", name: "Name", title: "Name", orderable: true,"render": function (data) {
+                    var str ="<div><a href='javascript:' onclick='vendors.get(this.title,"+id+")' title='View'>"+data+"</a></div>" ;
+                    return str;
+                },
             },
             {
                 data: "address", name: "Address", title: "Address", sortable: false,
@@ -43,7 +50,7 @@ vendors.intTable = function () {
                 data: "id", name: "Action", title: "Action", sortable: false,
                 orderable: false, "render": function (data) {
                     var str = "<div style='justify-content: center;text-align: center'>" +
-                        "<a href='javascript:' onclick='vendors.get("+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
+                        "<a href='javascript:' onclick='vendors.get(this.title,"+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
                         "<a href='javascript:' class='btn btn-danger' onclick='vendors.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a>" +
                         "</div>"
                     return str;
@@ -55,6 +62,14 @@ vendors.intTable = function () {
 
 vendors.addNew = function () {
     $('#modalTitle').html("Add new vendors");
+    $('.hideHtml').hide();
+    $('.form-control').removeAttr('disabled');
+    $('#imageHtml').html(
+        `<input class="form-control" type="text"
+                           name="image" id="image"
+                           data-rule-required=true>`
+    );
+    $('#save').show();
     validator.resetForm();
     vendors.resetForm();
     $('#modalAddEdit').modal('show');
@@ -157,22 +172,44 @@ vendors.delete = function (id) {
     });
 };
 
-vendors.get = function (id) {
+vendors.get = function (title,id) {
     $.ajax({
         url: "http://localhost:8080/api/vendor/" + id,
         method: "GET",
         dataType: "json",
         success: function (data) {
             $('#formAddEdit')[0].reset();
-            $('#modalTitle').html("Edit vendor");
+            $('.form-control').removeAttr('disabled');
+            if (title==='Edit'){
+                $('#modalTitle').html("Edit vendor");
+                $('.hideHtml').hide();
+                $('#save').show();
+                $('#imageHtml').html(
+                    `<input class="form-control" type="text"
+                           name="image" id="image"
+                           data-rule-required=true value="${data.image}">`
+                );
+            }
+            if (title==='View'){
+                $('#modalTitle').html("View vendor");
+                $('.hideHtml').show();
+                $('#imageHtml').html(
+                    `<img class="form-control" src="${data.image}"
+                           name="image" id="image" style="width: 600px;height: 600px">`
+                );
+                $('#save').hide();
+                $('.form-control').attr('disabled','disable');
+            }
             $('#id').val(data.id);
+            $('#dateAdd').val(data.dateAdd);
+            $('#dateUpdate').val(data.dateUpdate);
+
             $('#name').val(data.name);
             $('#address').val( data.address);
             $('#email').val(data.email);
             $('#surrogate').val(data.surrogate);
             $('#phone').val( data.phone );
-            $('#image').val(data.image);
-            $('#dateAdd').val(data.dateAdd);
+            validator.resetForm();
             $('#modalAddEdit').modal('show');
         }
     });

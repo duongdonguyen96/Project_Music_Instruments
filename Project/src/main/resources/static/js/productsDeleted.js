@@ -1,7 +1,7 @@
 var products = {} || products;
 var rates = {} || rates;
-var productData=[];
 products.intTable = function () {
+    var id;
     $("#products-datatables").DataTable({
         ajax: {
             url: 'http://localhost:8080/api/productsDeleted/',
@@ -11,14 +11,17 @@ products.intTable = function () {
         },
         columns: [
             {
-                data: "id", name: "ID", title: "ID", orderable: true
+                data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
+                    id=data;
+                    return id;
+                },
             },
             {
                 data: "image", name: "Image", title: "Image", sortable: false,
                 orderable: false, "render": function (data) {
-                    var str ="<img style='width: 80px; height: 80px; border: 1px solid red' src="+data+">" ;
+                    var str ="<img onclick='products.getProductDeleted("+id+")' title='View' style='width: 80px; height: 80px; border: 1px solid red' src="+data+">" ;
                     return str;
-                }
+                },
             },
             {
                 data: "name", name: "Name", title: "Name", orderable: true,
@@ -123,7 +126,88 @@ products.undo= function (id) {
     });
 };
 
+products.getProductDeleted = function (id) {
+    $.ajax({
+        url: "http://localhost:8080/api/productDeleted/" + id,
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            $('#formAddEdit')[0].reset();
+            $('#modalTitle').html("View product");
+            $('#id').val(data.id);
+            $('#dateAdd').val(data.dateAdd);
+            $('#dateUpdate').val(data.dateUpdate);
+            $('#dateDelete').val(data.dateDelete);
+            $('#name').val(data.name);
+            $('#price').val( data.price);
+            $('#amount').val(data.amount);
+            $('#weight').val(data.weight);
+            $('#size').val( data.size);
+            $('#color').val( data.color);
+            $('#description').val( data.description);
+            $('#type').val(data.typeProduct.id)
+            $('#vendor').val(data.vendor.id)
+            $('#image').html(
+                `<img style="width: 600px;height: 600px" class="form-control" src="${data.image}">`
+            );
+            $('.form-control').attr('disabled','disable');
+            $('#modalAddEdit').modal('show');
+        }
+    });
+};
+
+var types=types||{};
+var typeData=[];
+types.initTypes = function () {
+    $.ajax({
+        url: "http://localhost:8080/api/typeProducts/",
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            typeData = data;
+            $('#type').empty();
+            $.each(data, function (i, v) {
+                $('#type').append(
+                    `<option class="form-control noDisable" value='${ v.id }'>${v.name}</option>`
+                );
+            });
+        }
+    });
+};
+types.findById = function (id) {
+    return typeData.filter(e => {
+        return e.id === id
+    })[0]
+}
+
+
+var vendors=vendors||{};
+var vendorData=[];
+vendors.initVendors = function () {
+    $.ajax({
+        url: "http://localhost:8080/api/vendors/",
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            vendorData = data;
+            $('#vendor').empty();
+            $.each(data, function (i, v) {
+                $('#vendor').append(
+                    `<option class="form-control noDisable"  value='${ v.id }'>${v.name}</option>`
+                );
+            });
+        }
+    });
+};
+
+vendors.findById = function (id) {
+    return vendorData.filter(e => {
+        return e.id === id
+    })[0]
+}
 $(document).ready(function () {
     products.intTable();
+    vendors.initVendors();
+    types.initTypes();
     rates.findStatus();
 });

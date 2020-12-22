@@ -10,13 +10,13 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title" id="modalTitle" style="color: #2c3cb7"></h4>
+                <h4 class="modal-title" id="modalTitle"></h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <!-- Modal body -->
             <div class="modal-body">
                 <form id="formAddEdit" th:name="formAddEdit">
-                    <div class="row form-group" id="idHtml">
+                    <div class="row form-group hideHtml">
                         <div class="col-3">
                             <label>Id</label>
                         </div>
@@ -25,7 +25,7 @@
                                    name="id" id="id">
                         </div>
                     </div>
-                    <div class="row form-group" id="dateHtml">
+                    <div class="row form-group hideHtml" >
                         <div class="col-3">
                             <label>Date Add</label>
                         </div>
@@ -34,7 +34,7 @@
                                    name="dateAdd" id="dateAdd">
                         </div>
                     </div>
-                    <div class="row form-group" id="dateUpdateHtml">
+                    <div class="row form-group hideHtml">
                         <div class="col-3">
                             <label>Date Update</label>
                         </div>

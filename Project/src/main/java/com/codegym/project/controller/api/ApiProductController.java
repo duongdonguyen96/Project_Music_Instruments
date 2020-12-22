@@ -33,8 +33,8 @@ public class ApiProductController {
     @RequestMapping(value = "/product/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Product> findById(@PathVariable("id") Long id) {
         try{
-            Product blog = productService.findById(id);
-            return new ResponseEntity<Product>(blog, HttpStatus.OK);
+            Product product = productService.findById(id);
+            return new ResponseEntity<Product>(product, HttpStatus.OK);
         }catch (Exception e){
             e.printStackTrace();
             return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
@@ -116,7 +116,7 @@ public class ApiProductController {
     }
 
     @RequestMapping(value = "/productDeleted/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean deleteProduct(@PathVariable("id") Long id) {
+    public boolean deleteProductDeleted(@PathVariable("id") Long id) {
         boolean isProduct=false;
         try {
             isProduct= productService.deleteProduct(id);
@@ -126,7 +126,7 @@ public class ApiProductController {
         return isProduct;
     }
     @RequestMapping(value = "/productUndo/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean undoProduct(@PathVariable("id") Long id) {
+    public boolean undoProductDeleted(@PathVariable("id") Long id) {
         boolean isProduct=false;
         try {
             isProduct= productService.undoProduct(id);
@@ -135,4 +135,16 @@ public class ApiProductController {
         }
         return isProduct;
     }
+
+    @RequestMapping(value = "/productDeleted/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Product> findProductDeletedById(@PathVariable("id") Long id) {
+        try{
+            Product product = productService.findProductDeleted(id);
+            return new ResponseEntity<Product>(product, HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
+        }
+    }
+
 }

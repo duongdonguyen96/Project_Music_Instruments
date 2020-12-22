@@ -5,6 +5,83 @@
 </head>
 
 <body>
+<!-- The Modal -->
+<div class="modal" id="modalAddEdit" name="modalAddEdit">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="formAddEdit" th:name="formAddEdit">
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Id</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="id" id="id">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Date Add</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="dateAdd" id="dateAdd">
+                        </div>
+                    </div>
+                    <div class="row form-group ">
+                        <div class="col-3">
+                            <label>Date Update</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="dateUpdate" id="dateUpdate">
+                        </div>
+                    </div>
+                    <div class="row form-group ">
+                        <div class="col-3">
+                            <label>Date Delete</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="dateDelete" id="dateDelete">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="name" id="name">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Description</label>
+                        </div>
+                        <div class="col-9" id="tera">
+                                <textarea rows="10" class="form-control" name="description" id="description">
+                                </textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- The Modal End-->
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
