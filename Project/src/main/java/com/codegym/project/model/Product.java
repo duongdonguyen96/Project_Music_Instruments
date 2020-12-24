@@ -8,9 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Date;
@@ -28,21 +26,26 @@ public class Product {
     private Long id;
 
     @NotBlank
+    @Size(min = 10,max = 100,message = "Please enter at least 10 characters!")
     private String name;
 
     @NotNull
+    @Min(value = 0,message = "The minimum price is 0")
     private Long price;
 
     @NotBlank
     private String image;
 
     @NotBlank
+    @Size(min = 100,max = 500,message = "Please enter at least 10 characters!")
     private String description;
 
     @NotNull
+    @Min(value = 0,message = "The minimum weight is 0")
     private Long weight;
 
     @NotNull
+    @Min(value = 0,message = "The minimum size is 0")
     private Long size;
 
     private String color;
