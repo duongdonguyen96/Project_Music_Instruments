@@ -94,9 +94,4 @@ public class AllController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/vendorsDeleted")
-    public ModelAndView listVendorsDeleted(){
-        ModelAndView modelAndView=new ModelAndView("admin/VendorIsDelete");
-        return modelAndView;
-    }
 }

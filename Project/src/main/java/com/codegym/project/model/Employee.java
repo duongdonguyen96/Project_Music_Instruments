@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
@@ -16,6 +18,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
+    @Size(min = 5,max = 45,message = "It nhat 5")
     private String userName;
     @NotNull
     private String password;
