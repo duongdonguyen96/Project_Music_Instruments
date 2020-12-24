@@ -34,7 +34,7 @@ public class Product {
     private Long price;
 
     @NotBlank
-    private String image;
+    private String image="abc";
 
     @NotBlank
     @Size(min = 100,max = 500,message = "Please enter at least 10 characters!")

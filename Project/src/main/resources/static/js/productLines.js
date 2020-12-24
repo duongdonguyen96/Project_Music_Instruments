@@ -59,7 +59,6 @@ productLines.addNew = function () {
 };
 
 productLines.save = function () {
-    // validator.resetForm();
     if ($("#formAddEdit").valid()) {
         if ($('#id').val() == 0) {
             var typeObj = {};
@@ -194,7 +193,7 @@ productLines.validation=function (){
             },
             description:{
                 required: true,
-                minlength: 10,
+                minlength: 100,
                 maxlength:500,
             },
         },
