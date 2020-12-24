@@ -70,7 +70,7 @@ vendors.addNew = function () {
                            data-rule-required=true>`
     );
     $('#save').show();
-    validator.resetForm();
+    $( "#formAddEdit" ).validate().resetForm();
     vendors.resetForm();
     $('#modalAddEdit').modal('show');
 };
@@ -136,7 +136,7 @@ vendors.save = function () {
                 }
             });
         }
-        validator.resetForm();
+        $( "#formAddEdit" ).validate().resetForm();
     }
 };
 
@@ -209,7 +209,7 @@ vendors.get = function (title,id) {
             $('#email').val(data.email);
             $('#surrogate').val(data.surrogate);
             $('#phone').val( data.phone );
-            validator.resetForm();
+            $( "#formAddEdit" ).validate().resetForm();
             $('#modalAddEdit').modal('show');
         }
     });
@@ -226,8 +226,40 @@ vendors.resetForm = function () {
     $('#image').val("");
 }
 
-var validator = $( "#formAddEdit" ).validate();
+vendors.validation=function (){
+    $('#formAddEdit').validate({
+        rules: {
+            name: {
+                required: true,
+                minlength: 10,
+                maxlength: 100,
+            },
+            address:{
+                required:true,
+                minlength: 10,
+                maxlength: 100,
+            },
+            phone:{
+                required:true,
+                minlength: 10,
+                maxlength:11,
+            },
+            email:{
+                required:true,
+            },
+            surrogate:{
+                required:true,
+                minlength: 10,
+                maxlength: 45,
+            },
+            image:{
+                required:true
+            },
+        },
+    });
+}
 $(document).ready(function () {
     vendors.intTable();
+    vendors.validation();
     rates.findStatus();
 });

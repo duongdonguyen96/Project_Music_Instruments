@@ -53,13 +53,13 @@ productLines.addNew = function () {
     $('.hideHtml').hide();
     $('#save').show();
     $('.form-control').removeAttr('disabled');
-    validator.resetForm();
+    $( "#formAddEdit" ).validate().resetForm();
     productLines.resetForm();
     $('#modalAddEdit').modal('show');
 };
 
 productLines.save = function () {
-    validator.resetForm();
+    // validator.resetForm();
     if ($("#formAddEdit").valid()) {
         if ($('#id').val() == 0) {
             var typeObj = {};
@@ -110,6 +110,7 @@ productLines.save = function () {
                 }
             });
         }
+        $( "#formAddEdit" ).validate().resetForm();
     }
 };
 
@@ -143,7 +144,6 @@ productLines.delete = function (id) {
             }
         }
     });
-    validator.resetForm();
 };
 
 productLines.get = function (title,id) {
@@ -171,8 +171,7 @@ productLines.get = function (title,id) {
 
             $('#name').val(data.name);
             $('#description').val( data.description );
-
-            validator.resetForm();
+            $( "#formAddEdit" ).validate().resetForm();
             $('#modalAddEdit').modal('show');
         }
     });
@@ -185,8 +184,26 @@ productLines.resetForm = function () {
     $('#description').val("");
 }
 
-var validator = $( "#formAddEdit" ).validate();
+productLines.validation=function (){
+    $('#formAddEdit').validate({
+        rules: {
+            name: {
+                required: true,
+                minlength: 10,
+                maxlength: 50,
+            },
+            description:{
+                required: true,
+                minlength: 10,
+                maxlength:500,
+            },
+        },
+    });
+}
+
 $(document).ready(function () {
     productLines.intTable();
+    productLines.validation();
     rates.findStatus();
+
 });

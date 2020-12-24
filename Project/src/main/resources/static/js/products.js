@@ -59,7 +59,6 @@ products.intTable = function () {
 
 products.addNew = function () {
     $('#modalTitle').html("Add new products");
-    validator.resetForm();
     $('.hideHtml').hide();
     $('.form-control').removeAttr('disabled');
     $('#imageHtml').html(
@@ -69,6 +68,7 @@ products.addNew = function () {
     );
     $('#save').show();
     products.resetForm();
+    $( "#formAddEdit" ).validate().resetForm();
     $('#modalAddEdit').modal('show');
 };
 
@@ -142,7 +142,7 @@ products.save = function () {
                 }
             });
         }
-        validator.resetForm();
+        $( "#formAddEdit" ).validate().resetForm();
     }
 };
 
@@ -220,7 +220,7 @@ products.get = function (title,id) {
             $('#description').val( data.description);
             $('#type').val(data.typeProduct.id)
             $('#vendor').val(data.vendor.id)
-            validator.resetForm();
+            $( "#formAddEdit" ).validate().resetForm();
             $('#modalAddEdit').modal('show');
         }
     });
@@ -264,7 +264,7 @@ vendors.initVendors = function () {
             $('#vendor').empty();
             $.each(data, function (i, v) {
                 $('#vendor').append(
-                    `<option class="form-control noDisable"  value='${ v.id }'>${v.name}</option>`
+                    `<option class="form-control noDisable" value='${ v.id }'>${v.name}</option>`
                 );
             });
         }
@@ -292,8 +292,55 @@ products.resetForm = function () {
     $("#vendor").val($("#vendor option:first").val());
 }
 
-var validator = $( "#formAddEdit" ).validate();
+products.validation=function (){
+    $('#formAddEdit').validate({
+        rules: {
+            name: {
+                required: true,
+                minlength: 10,
+                maxlength: 100,
+            },
+            price:{
+                required:true,
+                min:0
+            },
+            amount:{
+                required:true,
+                min:0
+            },
+            weight:{
+                required:true,
+                min:0
+            },
+            size:{
+                required:true,
+                min:0
+            },
+            image:{
+                required:true
+            },
+            typeProduct:{
+                required:true,
+            },
+            vendor:{
+                required:true,
+            },
+            description:{
+                required: true,
+                minlength: 10,
+                maxlength: 500,
+            },
+            messages: {
+                price: "Please enter a price greater than or equal to zero!",
+                amount: "Please enter a amount greater than or equal to zero!",
+                weight: "Please enter a weight greater than or equal to zero!",
+                size: "Please enter a size greater than or equal to zero!",
+            }
+        },
+    });
+}
 $(document).ready(function () {
+    products.validation();
     products.intTable();
     vendors.initVendors();
     types.initTypes();
