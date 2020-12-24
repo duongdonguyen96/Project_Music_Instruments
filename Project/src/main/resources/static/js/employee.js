@@ -48,6 +48,7 @@ employees.intTable = function () {
 
 employees.addNew = function () {
     $('#modalTitle').html("Add new employee");
+    employees.validation();
     employees.resetForm();
     $('#modalAddEdit').modal('show');
 };
@@ -115,6 +116,7 @@ employees.save = function () {
                         $('#modalAddEdit').modal('hide');
                         $("#employees-dataTable").DataTable().ajax.reload();
                         toastr.info('employees has been updated successfully', 'INFORMATION:')
+                        $('#formAddEdit').validate().resetForm();
                     } else {
                         data.stringListMessage.map(e => toastr.error(e));
                     }
@@ -123,7 +125,8 @@ employees.save = function () {
         }
 
     }
-    validator.resetForm();
+
+    return false;
 };
 
 employees.delete = function (id) {
@@ -167,7 +170,6 @@ employees.get = function (id) {
             $('#formAddEdit')[0].reset();
             $('#modalTitle').html("Edit employee");
             $('#userName').val(data.userName);
-
             $('#password').val(data.password);
             $('#password2').val(data.password);
             $('#fullName').val(data.fullName);
@@ -223,21 +225,16 @@ employees.showPass2 = function () {
 }
 
 
-var validator = $("#formAddEdit").validate();
+// var validator = $("#formAddEdit").validate();
 
 $.validator.addMethod("validatePassword", function (value, element) {
     return this.optional(element) || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/i.test(value);
-}, "Hãy nhập password từ 8 đến 16 ký tự bao gồm chữ hoa, chữ thường và ít nhất một chữ số");
+}, "Password is not valid...Example: Password123");
 
+$.validator.addMethod("validatePhone", function (value, element) {
+    return this.optional(element) || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/i.test(value);
+}, "Please specify a valid phone number");
 
-// $.validator.addMethod("checkPassword",function (value,element){
-//     if (document.getElementById(#pass))
-// }
-
-$(document).ready(function () {
-    employees.intTable();
-    employees.validation();
-});
 
 employees.validation = function () {
     $('#formAddEdit').validate({
@@ -260,14 +257,13 @@ employees.validation = function () {
                 validatePassword: true,
             },
             password2: {
-                required: true,
-                validatePassword: true,
                 equalTo: "#password"
             },
             phone: {
                 required: true,
                 minlength: 10,
                 maxlength: 12,
+                validatePhone:true,
 
             },
             email: {
@@ -289,6 +285,12 @@ employees.validation = function () {
             image: {
                 required: true
             }
-        },
+        }
     });
 }
+
+$(document).ready(function () {
+    employees.intTable();
+    employees.validation()
+});
+

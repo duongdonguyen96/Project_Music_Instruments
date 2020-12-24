@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-9">
                             <input type="text" id="userName" name="userName"
-                                   class="form-control" required th:maxlength="45">
+                                   class="form-control" th:maxlength="45" data-rule-required="true">
                             <p style="color: red;display: none"
                                class="ui-state-error-text"></p>
                         </div>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-8">
                             <input type="password" id="password" name="password"
-                                   class="form-control" required th:maxlength="45">
+                                   class="form-control" required th:maxlength="45" >
                             <p style="color: red;display: none"
                                class="ui-state-error-text"></p>
                         </div>
@@ -98,7 +98,7 @@
                         </div>
                         <div class="col-9">
                             <input type="text" id="phone" name="phone"
-                                   class="form-control" required th:maxlength="45">
+                                   class="form-control" required th:maxlength="11">
                             <p style="color: red;display: none"
                                class="ui-state-error-text"></p>
                         </div>
@@ -166,15 +166,15 @@
                             <input type="hidden" id="id" class="form-control" required>
                         </div>
                     </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <a href="javascript:" class="btn btn-primary"
-                           onclick="employees.save()">Save</a>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
+
                 </form>
             </div>
-
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <a href="javascript:" class="btn btn-primary"
+                   onclick="employees.save()">Save</a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>
@@ -264,7 +264,7 @@
                                 <span>Employees</span></a>
                             <ul class="collapse">
                                 <li><a href="/employees">Employees list</a></li>
-                                <li><a href="EmployeeIsDelete.html">Employees Deleted</a></li>
+                                <li><a href="/employeesDelete">Employees Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -272,7 +272,7 @@
                                 <span>employees</span></a>
                             <ul class="collapse">
                                 <li><a href="/employees">employees list</a></li>
-                                <li><a href="UserIsBanner.html">employees Deleted</a></li>
+                                <li><a href="/usersDelete">employees Deleted</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -567,30 +567,7 @@
         </div>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
-        integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-<!-- offset area end -->
-<!-- jquery latest version -->
-<!--    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>-->
-<!-- bootstrap 4 js -->
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/metisMenu.min.js"></script>
-<script src="assets/js/jquery.slimscroll.min.js"></script>
-<script src="assets/js/jquery.slicknav.min.js"></script>
-
-<!-- others plugins -->
-<script src="assets/js/plugins.js"></script>
-<script src="assets/js/scripts.js"></script>
+<div th:replace="layout/layout::script"></div>
 </body>
 <script src="js/employee.js"></script>
 </html>
