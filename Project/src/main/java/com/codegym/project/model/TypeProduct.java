@@ -37,7 +37,7 @@ public class TypeProduct {
     private String name;
 
     @NotBlank
-    @Size(min = 100,max = 500,message = "Please enter at least 10 characters!")
+    @Size(min = 100,max = 500,message = "Please enter at least 100 characters!")
     private String description;
 
     @NotNull

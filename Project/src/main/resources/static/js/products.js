@@ -327,7 +327,7 @@ products.validation=function (){
             },
             description:{
                 required: true,
-                minlength: 10,
+                minlength: 100,
                 maxlength: 500,
             },
             messages: {
