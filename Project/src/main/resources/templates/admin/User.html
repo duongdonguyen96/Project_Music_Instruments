@@ -2,7 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout/layout :: head">
 </head>
-
+<style>
+    .error {
+        color: red;
+    }
+</style>
 <body>
 <!-- The Modal -->
 <div class="modal" id="modalAddEdit" name="modalAddEdit">
@@ -32,11 +36,37 @@
                         <div class="col-3">
                             <label>Password</label>
                         </div>
-                        <div class="col-9">
-                            <input type="text" id="password" name="password"
+                        <div class="col-8">
+                            <input type="password" id="password" name="password"
+                                   class="form-control" required th:maxlength="45" >
+                            <p style="color: red;display: none"
+                               class="ui-state-error-text"></p>
+                        </div>
+                        <div class="col-1">
+                            <img src="https://icon-library.com/images/eyes-icon/eyes-icon-8.jpg"
+
+                                 alt=""
+                                 onclick="users.showPass1()">
+
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Enter Password Again</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="password" id="password2" name="password2"
                                    class="form-control" required th:maxlength="45">
                             <p style="color: red;display: none"
                                class="ui-state-error-text"></p>
+                        </div>
+                        <div class="col-1">
+                            <img src="https://icon-library.com/images/eyes-icon/eyes-icon-8.jpg"
+
+                                 alt=""
+                                 onclick="users.showPass2()">
                         </div>
                     </div>
                     <div class="row form-group">
@@ -216,7 +246,7 @@
                                 <span>Employees</span></a>
                             <ul class="collapse">
                                 <li><a href="/employees">Employees list</a></li>
-                                <li><a href="EmployeeIsDelete.html">Employees Deleted</a></li>
+                                <li><a href="/employeesDelete">Employees Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -224,7 +254,7 @@
                                 <span>Users</span></a>
                             <ul class="collapse">
                                 <li><a href="/users">Users list</a></li>
-                                <li><a href="UserIsBanner.html">Users Deleted</a></li>
+                                <li><a href="/usersDelete">Users Deleted</a></li>
                             </ul>
                         </li>
                     </ul>
