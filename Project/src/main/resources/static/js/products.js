@@ -67,6 +67,7 @@ products.addNew = function () {
                            data-rule-required=true>`
     );
     $('#save').show();
+    products.validation();
     products.resetForm();
     $( "#formAddEdit" ).validate().resetForm();
     $('#modalAddEdit').modal('show');
@@ -319,7 +320,7 @@ products.validation=function (){
             image:{
                 required:true
             },
-            typeProduct:{
+            type:{
                 required:true,
             },
             vendor:{
@@ -330,13 +331,44 @@ products.validation=function (){
                 minlength: 100,
                 maxlength: 500,
             },
-            messages: {
-                price: "Please enter a price greater than or equal to zero!",
-                amount: "Please enter a amount greater than or equal to zero!",
-                weight: "Please enter a weight greater than or equal to zero!",
-                size: "Please enter a size greater than or equal to zero!",
-            }
         },
+        messages: {
+            name:{
+                required:"Please enter input name product",
+                minlength:"Enter names of at least 10 characters",
+                maxlength:"Enter names of up to 100 characters"
+            },
+            price:{
+                required:"Please enter input price product",
+                min:"Please enter a price greater than or equal to zero!",
+            },
+            amount:{
+                required:"Please enter input amount product",
+                min:"Please enter a amount greater than or equal to zero!",
+            },
+            weight:{
+                required:"Please enter input weight product",
+                min:"Please enter a weight greater than or equal to zero!",
+            },
+            size:{
+                required:"Please enter input size product",
+                min:"Please enter a size greater than or equal to zero!",
+            },
+            vendor:{
+                required: "Please initialize the manufacturer first",
+            },
+            description:{
+                required: "Please enter input description product",
+                minlength:"Enter names of at least 100 characters",
+                maxlength:"Enter names of up to 500 characters"
+            },
+            image:{
+                required:"Please upload the image",
+            },
+            type:{
+                required:"Please initialize the category first",
+            },
+        }
     });
 }
 $(document).ready(function () {

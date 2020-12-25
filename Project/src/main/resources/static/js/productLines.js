@@ -197,6 +197,18 @@ productLines.validation=function (){
                 maxlength:500,
             },
         },
+        messages: {
+            name:{
+                required:"Please enter input name types",
+                minlength:"Enter names of at least 10 characters",
+                maxlength:"Enter names of up to 100 characters"
+            },
+            description:{
+                required:"Please enter input description",
+                minlength:"Enter description of at least 100 characters",
+                maxlength:"Enter description of up to 500 characters"
+            },
+        }
     });
 }
 
@@ -204,5 +216,4 @@ $(document).ready(function () {
     productLines.intTable();
     productLines.validation();
     rates.findStatus();
-
 });

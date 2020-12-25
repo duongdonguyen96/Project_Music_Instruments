@@ -76,7 +76,6 @@ public class ApiTypeProductController {
     public ResponseEntity<Object> validate(TypeProduct typeProduct , BindingResult bindingResult,Errors errors){
         String name=typeProduct.getName();
         List<TypeProduct> list=typeProductService.findAllTypeProductsByName(name);
-        int size=list.size();
         if (typeProduct.getId()==null){
             for (TypeProduct item: list) {
                 if (item.getName().equals(name)) errors.rejectValue("name","name.equals","Tên thể loại đã trùng");
