@@ -256,6 +256,34 @@ vendors.validation=function (){
                 required:true
             },
         },
+        messages: {
+            name:{
+                required:"Please enter input name vendor",
+                minlength:"Enter names of at least 10 characters",
+                maxlength:"Enter names of up to 100 characters"
+            },
+            address:{
+                required:"Please enter input address",
+                minlength:"Enter address of at least 10 characters",
+                maxlength:"Enter address of up to 100 characters"
+            },
+            phone:{
+                required:"Please enter input phone number",
+                minlength:"Enter phone number of at least 10 characters",
+                maxlength:"Enter phone number of up to 11 characters"
+            },
+            email:{
+                required:"Please enter input email",
+            },
+            surrogate:{
+                required:"Please enter input name surrogate",
+                minlength:"Enter names surrogate of at least 10 characters",
+                maxlength:"Enter names surrogate of up to 45 characters"
+            },
+            image:{
+                required:"Please upload the image",
+            },
+        }
     });
 }
 $(document).ready(function () {
