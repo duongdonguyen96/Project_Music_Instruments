@@ -48,7 +48,7 @@ users.intTable = function () {
 
 users.addNew = function () {
     $('#modalTitle').html("Add new user");
-    // validator.resetForm();
+    users.validation();
     users.resetForm();
     $('#modalAddEdit').modal('show');
 };
@@ -111,6 +111,7 @@ users.save = function () {
                         $('#modalAddEdit').modal('hide');
                         $("#users-dataTable").DataTable().ajax.reload();
                         toastr.info('Users has been updated successfully', 'INFORMATION:')
+                        $('#formAddEdit').validate().resetForm();
                     } else {
                         data.stringListMessage.map(e => toastr.error(e));
                     }
@@ -121,7 +122,7 @@ users.save = function () {
 
 
     }
-    validator.resetForm();
+    return false;
 };
 
 users.delete = function (id) {
@@ -193,8 +194,37 @@ users.resetForm = function () {
     $('#dateOfBirth').val('');
 }
 
+//  Làm mắt đọc
+let check = true;
+users.showPass1 = function () {
+    if (check) {
+        document.getElementById("password").type = "text";
+        check = false;
+    } else {
+        document.getElementById("password").type = "password";
+        check = true;
+    }
+}
 
-var validator = $("#formAddEdit").validate();
+users.showPass2 = function () {
+    if (check) {
+        document.getElementById("password2").type = "text";
+        check = false;
+    } else {
+        document.getElementById("password2").type = "password";
+        check = true;
+    }
+}
+
+$.validator.addMethod("validatePassword", function (value, element) {
+    return this.optional(element) || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/i.test(value);
+}, "Password is not valid...Example: Password123");
+// var validator = $("#formAddEdit").validate();
+
+$.validator.addMethod("validatePhone", function (value, element) {
+    return this.optional(element) || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/i.test(value);
+}, "Please specify a valid phone number");
+
 
 
 $(document).ready(function () {
@@ -219,8 +249,13 @@ users.validation = function () {
                 required: true,
                 minlength: 5,
                 maxlength: 45,
+                validatePassword: true,
+            },
+            password2: {
+                equalTo: "#password"
             },
             phone: {
+                validatePhone:true,
                 required: true,
                 minlength: 10,
                 maxlength: 12,
