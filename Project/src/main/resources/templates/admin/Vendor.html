@@ -1,5 +1,6 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="layout/layout :: head">
 </head>
@@ -256,7 +257,11 @@
                             <div class="card-body">
                                 <h4 class="header-title">VENDORS</h4>
                                 <div class="data-tables datatable-primary">
-                                    <button type="button" class="btn btn-success mb-3" onclick="vendors.addNew()"><i class="fa fa-plus" aria-hidden="true"> Add</i></button>
+                                    <div sec:authorize="isAuthenticated()">
+                                        <div sec:authorize="hasRole('ADMIN')">
+                                            <button type="button" class="btn btn-success mb-3" onclick="vendors.addNew()"><i class="fa fa-plus" aria-hidden="true"> Add</i></button>
+                                        </div>
+                                    </div>
                                     <div class="table-responsive">
                                         <table class="table text-center" id="vendors-datatables" name="vendors-datatables">
                                         </table>
