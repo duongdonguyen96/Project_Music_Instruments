@@ -45,10 +45,9 @@ public class Employee {
 
     @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private LocalDateTime dateDelete;
-
-
-    private String role = "employee";
-
+//Security
+    private String role = "EMPLOYEE";
+    private int enable=1;
 
     public Employee() {
     }

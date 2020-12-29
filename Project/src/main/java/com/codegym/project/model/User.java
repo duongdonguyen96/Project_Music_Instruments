@@ -33,6 +33,9 @@ public class User {
     private String image;
     @NotNull
     private String gender;
+//Security
+    private String role="USER";
+    private int enable=1;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dateAdd = LocalDateTime.now();
@@ -52,7 +55,6 @@ public class User {
 
     public User() {
     }
-
 
     public Long getId() {
         return id;
