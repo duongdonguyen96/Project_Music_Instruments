@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.security.Principal;
 import java.sql.SQLException;
 
 @Controller
@@ -20,6 +19,12 @@ import java.sql.SQLException;
 public class AllController {
     @Autowired
     public BlogService blogService;
+
+    @GetMapping(value = "/login")
+    public ModelAndView login(){
+        ModelAndView modelAndView=new ModelAndView("login/formLogin");
+        return modelAndView;
+    }
 
     @GetMapping(value = "/banners")
     public ModelAndView listBanners(){
