@@ -32,8 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authoritiesByUsernameQuery("SELECT user_name,concat('ROLE_',role) as roles FROM employees WHERE user_name = ?;")
                 .passwordEncoder(encoder());
     }
-//                .authorizeRequests().antMatchers("/register").permitAll()
-//                .and()
+//
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -45,12 +44,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests().antMatchers("/blogadd","/blogedit/**").hasAnyRole("ADMIN")
                 .and()
-                .formLogin()
+                .formLogin().loginPage("/login")
+                .defaultSuccessUrl("/products")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+
         http.authorizeRequests()
                 .and().formLogin()
-                .defaultSuccessUrl("/products")
+//        .defaultSuccessUrl("/products")
                 .failureUrl("/login")
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
