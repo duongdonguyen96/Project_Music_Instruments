@@ -2,59 +2,106 @@ var products = {} || products;
 var rates = {} || rates;
 products.intTable = function () {
     var id;
-    $("#products-datatables").DataTable({
-        ajax: {
-            url: 'http://localhost:8080/api/products/',
-            method: "GET",
-            datatype: "json",
-            dataSrc: ""
-        },
-        columns: [
-            {
-                data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
-                    id=data;
-                    return id;
+    var role=$('#role').val();
+    if (role==='ADMIN'){
+        $("#products-datatables").DataTable({
+            ajax: {
+                url: 'http://localhost:8080/api/products/',
+                method: "GET",
+                datatype: "json",
+                dataSrc: ""
+            },
+            columns: [
+                {
+                    data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
+                        id=data;
+                        return id;
+                    },
                 },
-            },
-            {
-                data: "image", name: "Image", title: "Image", sortable: false,
-                orderable: false, "render": function (data) {
-                    var str ="<img onclick='products.get(this.title,"+id+")' title='View' style='width: 80px; height: 80px; border: 1px solid red' src="+data+">" ;
-                    return str;
+                {
+                    data: "image", name: "Image", title: "Image", sortable: false,
+                    orderable: false, "render": function (data) {
+                        var str ="<img onclick='products.get(this.title,"+id+")' title='View' style='width: 80px; height: 80px; border: 1px solid red' src="+data+">" ;
+                        return str;
+                    },
                 },
-            },
-            {
-                data: "name", name: "Name", title: "Name", orderable: true,
-            },
-            {
-                data: "price", name: "Price", title: "Price", sortable: true,
-                orderable: true,
-            },
+                {
+                    data: "name", name: "Name", title: "Name", orderable: true,
+                },
+                {
+                    data: "price", name: "Price", title: "Price", sortable: true,
+                    orderable: true,
+                },
 
-            {
-                data: "amount", name: "Amount", title: "Amount", sortable: true,
-                orderable: true,
-            },
-            {
-                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false,
-                orderable: false
-            },
-            {
-                data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
-                orderable: false
-            },
-            {
-                data: "id", name: "Action", title: "Action", sortable: false,
-                orderable: false, "render": function (data) {
-                    var str = "<div style='justify-content: center;text-align: center'>" +
-                        "<a href='javascript:' onclick='products.get(this.title,"+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
-                        "<a href='javascript:' class='btn btn-danger' onclick='products.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a>" +
-                        "</div>"
-                    return str;
+                {
+                    data: "amount", name: "Amount", title: "Amount", sortable: true,
+                    orderable: true,
+                },
+                {
+                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false,
+                    orderable: false
+                },
+                {
+                    data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
+                    orderable: false
+                },
+                {
+                    data: "id", name: "Action", title: "Action", sortable: false,
+                    orderable: false, "render": function (data) {
+                        var str = "<div style='justify-content: center;text-align: center'>" +
+                            "<a href='javascript:' onclick='products.get(this.title,"+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
+                            "<a href='javascript:' class='btn btn-danger' onclick='products.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a>" +
+                            "</div>"
+                        return str;
+                    }
                 }
-            }
+            ],
+        });
+    }else {
+        $("#products-datatables").DataTable({
+            ajax: {
+                url: 'http://localhost:8080/api/products/',
+                method: "GET",
+                datatype: "json",
+                dataSrc: ""
+            },
+            columns: [
+                {
+                    data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
+                        id=data;
+                        return id;
+                    },
+                },
+                {
+                    data: "image", name: "Image", title: "Image", sortable: false,
+                    orderable: false, "render": function (data) {
+                        var str ="<img onclick='products.get(this.title,"+id+")' title='View' style='width: 80px; height: 80px; border: 1px solid red' src="+data+">" ;
+                        return str;
+                    },
+                },
+                {
+                    data: "name", name: "Name", title: "Name", orderable: true,
+                },
+                {
+                    data: "price", name: "Price", title: "Price", sortable: true,
+                    orderable: true,
+                },
+
+                {
+                    data: "amount", name: "Amount", title: "Amount", sortable: true,
+                    orderable: true,
+                },
+                {
+                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false,
+                    orderable: false
+                },
+                {
+                    data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
+                    orderable: false
+                },
         ]
-    });
+        });
+    }
 };
 
 products.addNew = function () {
