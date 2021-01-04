@@ -94,6 +94,9 @@
         <h4 class="user-name dropdown-toggle" data-toggle="dropdown">
             <span sec:authorize="isAuthenticated()">
               <span sec:authentication="principal.username"></span>
+                <span sec:authorize="hasRole('ADMIN')">
+                   <input type="hidden" name="role" value="ADMIN" id="role">
+                </span>
             </span>
             <i class="fa fa-angle-down"></i>
         </h4>

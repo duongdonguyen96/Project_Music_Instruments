@@ -1,47 +1,93 @@
 var rates = {} || rates;
 rates.intTable = function () {
-    $("#rates-datatables").DataTable({
-        ajax: {
-            url: 'http://localhost:8080/api/ratesDeleted/',
-            method: "GET",
-            datatype: "json",
-            dataSrc: ""
-        },
-        columns: [
-            {
-                data: "id", name: "ID", title: "ID", orderable: true
+    var role=$('#role').val();
+    if (role==='ADMIN'){
+        $("#rates-datatables").DataTable({
+            ajax: {
+                url: 'http://localhost:8080/api/ratesDeleted/',
+                method: "GET",
+                datatype: "json",
+                dataSrc: ""
             },
-            {
-                data: "name", name: "Name", title: "Name", orderable: true,
-            },
-            {
-                data: "email", name: "Email", title: "Email", sortable: true,
-                orderable: true,
-            },
-            {
-                data: "status", name: "Status", title: "Status", sortable: true,
-                orderable: true,
-            },
-            {
-                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
-                orderable: true
-            },
-            {
-                data: "dateDelete", name: "Date Delete", title: "Date Delete", sortable: false,
-                orderable: false
-            },
-            {
-                data: "id", name: "Action", title: "Action", sortable: false,
-                orderable: false, "render": function (data) {
-                    var str = "<div style='justify-content: center;text-align: center'>" +
-                        "<a href='javascript:' onclick='rates.get("+data+")' title='View' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></a> " +
-                        "<a href='javascript:' class='btn btn-danger' onclick='rates.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a>" +
-                        "</div>"
-                    return str;
+            columns: [
+                {
+                    data: "id", name: "ID", title: "ID", orderable: true
+                },
+                {
+                    data: "name", name: "Name", title: "Name", orderable: true,
+                },
+                {
+                    data: "email", name: "Email", title: "Email", sortable: true,
+                    orderable: true,
+                },
+                {
+                    data: "status", name: "Status", title: "Status", sortable: true,
+                    orderable: true,
+                },
+                {
+                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
+                    orderable: true
+                },
+                {
+                    data: "dateDelete", name: "Date Delete", title: "Date Delete", sortable: false,
+                    orderable: false
+                },
+                {
+                    data: "id", name: "Action", title: "Action", sortable: false,
+                    orderable: false, "render": function (data) {
+                        var str = "<div style='justify-content: center;text-align: center'>" +
+                            "<a href='javascript:' onclick='rates.get("+data+")' title='View' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></a> " +
+                            "<a href='javascript:' class='btn btn-danger' onclick='rates.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a>" +
+                            "</div>"
+                        return str;
+                    }
                 }
-            }
-        ],
-    });
+            ],
+        });
+    }else {
+        $("#rates-datatables").DataTable({
+            ajax: {
+                url: 'http://localhost:8080/api/ratesDeleted/',
+                method: "GET",
+                datatype: "json",
+                dataSrc: ""
+            },
+            columns: [
+                {
+                    data: "id", name: "ID", title: "ID", orderable: true
+                },
+                {
+                    data: "name", name: "Name", title: "Name", orderable: true,
+                },
+                {
+                    data: "email", name: "Email", title: "Email", sortable: true,
+                    orderable: true,
+                },
+                {
+                    data: "status", name: "Status", title: "Status", sortable: true,
+                    orderable: true,
+                },
+                {
+                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
+                    orderable: true
+                },
+                {
+                    data: "dateDelete", name: "Date Delete", title: "Date Delete", sortable: false,
+                    orderable: false
+                },
+                {
+                    data: "id", name: "Action", title: "Action", sortable: false,
+                    orderable: false, "render": function (data) {
+                        var str = "<div style='justify-content: center;text-align: center'>" +
+                            "<a href='javascript:' onclick='rates.get("+data+")' title='View' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></a> " +
+                            "</div>"
+                        return str;
+                    }
+                }
+            ],
+        });
+    }
+
 };
 
 rates.delete = function (id) {
