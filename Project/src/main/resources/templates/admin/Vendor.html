@@ -101,10 +101,9 @@
                             <label>Image</label>
                         </div>
                         <div class="col-9" id="imageHtml">
-                            <input class="form-control" type="text"
-                                   name="image" id="image"
-                                   data-rule-required=true>
                         </div>
+                    </div>
+                    <div th:replace="layout/layout::base64">
                     </div>
                 </form>
             </div>
@@ -463,4 +462,5 @@
 </body>
 <script src="js/vendors.js"></script>
 <script src="js/notification.js"></script>
+<script src="js/uploadFile.js"></script>
 </html>
