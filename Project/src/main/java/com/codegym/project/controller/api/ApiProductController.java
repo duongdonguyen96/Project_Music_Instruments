@@ -12,6 +12,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.Valid;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -60,7 +62,7 @@ public class ApiProductController {
     }
 
     @RequestMapping(value = "/product/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.POST)
-    public ResponseEntity<Object> create(@Valid @RequestBody Product product, BindingResult bindingResult,Errors errors) {
+    public ResponseEntity<Object> create(@Valid @RequestBody Product product, BindingResult bindingResult, Errors errors) {
         return validate(product,bindingResult,errors);
     }
 
