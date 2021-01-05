@@ -74,6 +74,10 @@ banners.intTable = function () {
 banners.addNew = function () {
     $('#modalTitle').html(("Add new banner"));
     validator.resetForm();
+    $('#imageHtml').html(
+        `<img id='output' height="150px" width="100px">
+               <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" data-rule-required=true ><br>`
+    );
     banners.resetForm();
     $('#modalAddEdit').modal('show');
 };
@@ -82,7 +86,7 @@ banners.save = function (){
     if ($("#formAddEdit").valid()){
         if ($('#id').val() == 0){
             var bannerObj = {};
-            bannerObj.image = $('#image').val();
+            bannerObj.image = $('#base64').val();
 
             $.ajax({
                 url: "http://localhost:8080/api/banner/",
@@ -107,7 +111,7 @@ banners.save = function (){
         }else {
             var bannerObj = {};
             bannerObj.id = $('#id').val();
-            bannerObj.image = $('#image').val();
+            bannerObj.image = $('#base64').val();
             bannerObj.dateAdd = $("#dateAdd").val();
 
             $.ajax({
@@ -173,7 +177,11 @@ banners.get = function (id) {
             $('#formAddEdit')[0].reset();
             $('#modalTitle').html("Edit banner");
             $('#id').val(data.id);
-            $('#image').val(data.image);
+            $('#base64').val(data.image);
+            $('#imageHtml').html(
+                `<img id='output' height="150px" width="100px" src="${data.image}">
+                            <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" ><br>`
+            );
             $('#dateAdd').val(data.dateAdd);
             $('#modalAddEdit').modal('show');
         }

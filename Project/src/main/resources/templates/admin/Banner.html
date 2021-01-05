@@ -25,10 +25,10 @@
                         <div class="col-3">
                             <label>Image</label>
                         </div>
-                        <div class="col-9">
-                            <input class="form-control" type="text"
-                                   name="image" id="image"
-                                   data-rule-required=true>
+                        <div class="col-9" id="imageHtml">
+
+                        </div>
+                        <div th:replace="layout/layout::base64">
                         </div>
                     </div>
                 </form>
@@ -393,4 +393,5 @@
 
 <script src="js/bannerScript.js"></script>
 <script src="js/notification.js"></script>
+<script src="js/uploadFile.js"></script>
 </html>
