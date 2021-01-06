@@ -42,6 +42,7 @@ public class Vendor {
     private String email;
 
     @NotNull
+    @Column(name="image",columnDefinition="TEXT")
     private String image;
 
     @NotBlank
