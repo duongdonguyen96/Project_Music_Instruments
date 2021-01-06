@@ -67,6 +67,7 @@ public class Vendor {
     public void setDateDelete(LocalDateTime dateDelete) {
         this.dateDelete = dateDelete;
     }
+
     public void setDelete(boolean delete) {
         this.delete = delete;
     }
