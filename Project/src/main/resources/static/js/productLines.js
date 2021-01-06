@@ -226,7 +226,7 @@ productLines.validation=function (){
         rules: {
             name: {
                 required: true,
-                minlength: 10,
+                minlength: 5,
                 maxlength: 50,
             },
             description:{
@@ -238,7 +238,7 @@ productLines.validation=function (){
         messages: {
             name:{
                 required:"Please enter input name types",
-                minlength:"Enter names of at least 10 characters",
+                minlength:"Enter names of at least 5 characters",
                 maxlength:"Enter names of up to 100 characters"
             },
             description:{
