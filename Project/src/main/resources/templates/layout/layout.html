@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:fragment="head">
     <meta charset="utf-8">
@@ -88,16 +89,28 @@
 
 <!--setting information admin/employees-->
 <div class="col-sm-6 clearfix" th:fragment="setting">
-    <div class="user-profile pull-right">
-        <img class="avatar user-thumb" src="../assets/images/author/avatar.png" alt="avatar">
-        <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i
-                class="fa fa-angle-down"></i></h4>
+    <div class="user-profile pull-right" sec:authorize="isAuthenticated()">
+        <img class="avatar user-thumb" src="" alt="avatar">
+        <h4 class="user-name dropdown-toggle" data-toggle="dropdown">
+            <span>
+              <span sec:authentication="principal.username"></span>
+                <span sec:authorize="hasRole('ADMIN')">
+                   <input type="hidden" name="role" value="ADMIN" id="role">
+                </span>
+            </span>
+            <i class="fa fa-angle-down"></i>
+        </h4>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Message</a>
-            <a class="dropdown-item" href="#">Settings</a>
-            <a class="dropdown-item" href="#">Log Out</a>
+            <a class="dropdown-item" th:href="@{/rates}">Message</a>
+            <a class="dropdown-item" th:href="@{/employees}">Settings</a>
+            <a class="dropdown-item" th:href="@{/logout}">Log Out</a>
         </div>
     </div>
+</div>
+
+<!--upload-->
+<div th:fragment="base64">
+    <input type="hidden" value="" id="base64">
 </div>
 
 <!--footer-->

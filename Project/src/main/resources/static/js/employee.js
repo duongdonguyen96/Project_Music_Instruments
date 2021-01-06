@@ -1,4 +1,5 @@
 var employees = {} || employees;
+var rates = rates || {};
 employees.intTable = function () {
     $("#employees-dataTable").DataTable({
         ajax: {
@@ -291,6 +292,7 @@ employees.validation = function () {
 
 $(document).ready(function () {
     employees.intTable();
-    employees.validation()
+    employees.validation();
+    rates.findStatus();
 });
 

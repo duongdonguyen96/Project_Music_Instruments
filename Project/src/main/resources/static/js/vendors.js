@@ -2,62 +2,112 @@ var vendors = {} || vendors;
 var rates = {} || rates;
 vendors.intTable = function () {
     var id;
-    $("#vendors-datatables").DataTable({
-        ajax: {
-            url: 'http://localhost:8080/api/vendors/',
-            method: "GET",
-            datatype: "json",
-            dataSrc: ""
-        },
-        columns: [
-            {
-                data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
-                    id=data;
-                    return id;
-                }
+    var role=$('#role').val();
+    if (role==="ADMIN"){
+        $("#vendors-datatables").DataTable({
+            ajax: {
+                url: 'http://localhost:8080/api/vendors/',
+                method: "GET",
+                datatype: "json",
+                dataSrc: ""
             },
-            {
-                data: "name", name: "Name", title: "Name", orderable: true,"render": function (data) {
-                    var str ="<div><a href='javascript:' onclick='vendors.get(this.title,"+id+")' title='View'>"+data+"</a></div>" ;
-                    return str;
+            columns: [
+                {
+                    data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
+                        id=data;
+                        return id;
+                    }
                 },
-            },
-            {
-                data: "address", name: "Address", title: "Address", sortable: false,
-                orderable: false,
-            },
-            {
-                data: "phone", name: "Phone", title: "Phone", sortable: false,
-                orderable: false,
-            },
-            {
-                data: "email", name: "Email", title: "Email", sortable: true,
-                orderable: true,
-            },
-            {
-                data: "surrogate", name: "Surrogate", title: "Surrogate", sortable: true,
-                orderable: true,
-            },
-            {
-                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
-                orderable: true
-            },
-            {
-                data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
-                orderable: false
-            },
-            {
-                data: "id", name: "Action", title: "Action", sortable: false,
-                orderable: false, "render": function (data) {
-                    var str = "<div style='justify-content: center;text-align: center'>" +
-                        "<a href='javascript:' onclick='vendors.get(this.title,"+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
-                        "<a href='javascript:' class='btn btn-danger' onclick='vendors.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a>" +
-                        "</div>"
-                    return str;
+                {
+                    data: "name", name: "Name", title: "Name", orderable: true,"render": function (data) {
+                        var str ="<div><a href='javascript:' onclick='vendors.get(this.title,"+id+")' title='View'>"+data+"</a></div>" ;
+                        return str;
+                    },
+                },
+                {
+                    data: "address", name: "Address", title: "Address", sortable: false,
+                    orderable: false,
+                },
+                {
+                    data: "phone", name: "Phone", title: "Phone", sortable: false,
+                    orderable: false,
+                },
+                {
+                    data: "email", name: "Email", title: "Email", sortable: true,
+                    orderable: true,
+                },
+                {
+                    data: "surrogate", name: "Surrogate", title: "Surrogate", sortable: true,
+                    orderable: true,
+                },
+                {
+                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
+                    orderable: true
+                },
+                {
+                    data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
+                    orderable: false
+                },
+                {
+                    data: "id", name: "Action", title: "Action", sortable: false,
+                    orderable: false, "render": function (data) {
+                        var str = "<div style='justify-content: center;text-align: center'>" +
+                            "<a href='javascript:' onclick='vendors.get(this.title,"+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
+                            "<a href='javascript:' class='btn btn-danger' onclick='vendors.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a>" +
+                            "</div>"
+                        return str;
+                    }
                 }
-            }
-        ]
-    });
+            ]
+        });
+    }else {
+        $("#vendors-datatables").DataTable({
+            ajax: {
+                url: 'http://localhost:8080/api/vendors/',
+                method: "GET",
+                datatype: "json",
+                dataSrc: ""
+            },
+            columns: [
+                {
+                    data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
+                        id=data;
+                        return id;
+                    }
+                },
+                {
+                    data: "name", name: "Name", title: "Name", orderable: true,"render": function (data) {
+                        var str ="<div><a href='javascript:' onclick='vendors.get(this.title,"+id+")' title='View'>"+data+"</a></div>" ;
+                        return str;
+                    },
+                },
+                {
+                    data: "address", name: "Address", title: "Address", sortable: false,
+                    orderable: false,
+                },
+                {
+                    data: "phone", name: "Phone", title: "Phone", sortable: false,
+                    orderable: false,
+                },
+                {
+                    data: "email", name: "Email", title: "Email", sortable: true,
+                    orderable: true,
+                },
+                {
+                    data: "surrogate", name: "Surrogate", title: "Surrogate", sortable: true,
+                    orderable: true,
+                },
+                {
+                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
+                    orderable: true
+                },
+                {
+                    data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
+                    orderable: false
+                },
+            ]
+        });
+    }
 };
 
 vendors.addNew = function () {
@@ -65,9 +115,8 @@ vendors.addNew = function () {
     $('.hideHtml').hide();
     $('.form-control').removeAttr('disabled');
     $('#imageHtml').html(
-        `<input class="form-control" type="text"
-                           name="image" id="image"
-                           data-rule-required=true>`
+        `<img id='output' height="150px" width="100px">
+               <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" data-rule-required=true ><br>`
     );
     $('#save').show();
     $( "#formAddEdit" ).validate().resetForm();
@@ -85,7 +134,7 @@ vendors.save = function () {
             vendorObj.email = $('#email').val().trim();
             vendorObj.phone = $('#phone').val();
             vendorObj.surrogate = $('#surrogate').val();
-            vendorObj.image = $('#image').val();
+            vendorObj.image = $('#base64').val();
             //
             $.ajax({
                 url: "http://localhost:8080/api/vendor/",
@@ -114,7 +163,7 @@ vendors.save = function () {
             vendorObj.email = $('#email').val().trim();
             vendorObj.phone = $('#phone').val();
             vendorObj.surrogate = $('#surrogate').val();
-            vendorObj.image = $('#image').val();
+            vendorObj.image = $('#base64').val();
             vendorObj.id = $('#id').val();
             vendorObj.dateAdd = $('#dateAdd').val();
             //
@@ -184,10 +233,10 @@ vendors.get = function (title,id) {
                 $('#modalTitle').html("Edit vendor");
                 $('.hideHtml').hide();
                 $('#save').show();
+                $('#base64').val(data.image)
                 $('#imageHtml').html(
-                    `<input class="form-control" type="text"
-                           name="image" id="image"
-                           data-rule-required=true value="${data.image}">`
+                    `<img id='output' height="150px" width="100px" src="${data.image}">
+                            <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" ><br>`
                 );
             }
             if (title==='View'){
@@ -286,6 +335,7 @@ vendors.validation=function (){
         }
     });
 }
+
 $(document).ready(function () {
     vendors.intTable();
     vendors.validation();

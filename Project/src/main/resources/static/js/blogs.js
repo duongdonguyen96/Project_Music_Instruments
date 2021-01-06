@@ -1,41 +1,81 @@
 var blogs = {} || blogs;
 var rates = rates || {};
 blogs.intTable = function () {
-    $("#blogs-datatables").DataTable({
-        ajax: {
-            url: 'http://localhost:8080/api/blogs/',
-            method: "GET",
-            dataType: "json",
-            dataSrc: ""
-        },
-        columns: [
-            {
-                data: "id", name: "Id", title: "Id", orderable: true
+    var role=$('#role').val();
+    if (role==='ADMIN'){
+        $("#blogs-datatables").DataTable({
+            ajax: {
+                url: 'http://localhost:8080/api/blogs/',
+                method: "GET",
+                dataType: "json",
+                dataSrc: ""
             },
-            {
-                data: "title", name: "Title", title: "Title", orderable: true
-            },
-            {
-                data: "image", name: "Image", title: "Image", orderable: true, "render": function (data) {
-                    var str = "<img style='width: 103px; height: 130px; border: 1px solid red' src=" + data + ">";
-                    return str
+            columns: [
+                {
+                    data: "id", name: "Id", title: "Id", orderable: true
+                },
+                {
+                    data: "title", name: "Title", title: "Title", orderable: true
+                },
+                {
+                    data: "image", name: "Image", title: "Image", orderable: true, "render": function (data) {
+                        var str = "<img style='width: 103px; height: 130px; border: 1px solid red' src=" + data + ">";
+                        return str
+                    }
+                },
+                {
+                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false
+                },
+                {
+                    data: "dateUpdate", name: "Date Update", title: "Date Update", sortable: false
+                },
+                {
+                    data: "id", name: "Action", title: "Action", "render": function (data) {
+                        var str = "<div style='justify-content: center; text-align: center'><a href='javascript:' class='btn btn-warning ti-eye' onclick='blogs.view("+ data +")'></a>"+"<a href='/blogedit/" + data + "' title='Edit'  class='btn btn-warning fa fa-cogs'></a>" +
+                            "<a href='javascript:' class='btn btn-danger' onclick='blogs.delete("+ data +")'><i class=\"ti-trash\" title=\"Delete\"></a></div>"
+                        return str;
+                    }
                 }
+            ],
+        });
+    }else {
+        $("#blogs-datatables").DataTable({
+            ajax: {
+                url: 'http://localhost:8080/api/blogs/',
+                method: "GET",
+                dataType: "json",
+                dataSrc: ""
             },
-            {
-                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false
-            },
-            {
-                data: "dateUpdate", name: "Date Update", title: "Date Update", sortable: false
-            },
-            {
-                data: "id", name: "Action", title: "Action", "render": function (data) {
-                    var str = "<div style='justify-content: center; text-align: center'><a href='javascript:' class='btn btn-warning ti-eye' onclick='blogs.view("+ data +")'></a>"+"<a href='/blogedit/" + data + "' title='Edit'  class='btn btn-warning fa fa-cogs'></a>" +
-                        "<a href='javascript:' class='btn btn-danger' onclick='blogs.delete("+ data +")'><i class=\"ti-trash\" title=\"Delete\"></a></div>"
-                    return str;
+            columns: [
+                {
+                    data: "id", name: "Id", title: "Id", orderable: true
+                },
+                {
+                    data: "title", name: "Title", title: "Title", orderable: true
+                },
+                {
+                    data: "image", name: "Image", title: "Image", orderable: true, "render": function (data) {
+                        var str = "<img style='width: 103px; height: 130px; border: 1px solid red' src=" + data + ">";
+                        return str
+                    }
+                },
+                {
+                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false
+                },
+                {
+                    data: "dateUpdate", name: "Date Update", title: "Date Update", sortable: false
+                },
+                {
+                    data: "id", name: "Action", title: "Action", "render": function (data) {
+                        var str = "<div style='justify-content: center; text-align: center'><a href='javascript:' class='btn btn-warning ti-eye' onclick='blogs.view("+ data +")'></a>"+"<a href='/blogedit/" + data + "' title='Edit'  class='btn btn-warning fa fa-cogs'></a>" +
+                            "</div>"
+                        return str;
+                    }
                 }
-            }
-        ],
-    });
+            ],
+        });
+    }
+
 };
 
 blogs.save = function () {

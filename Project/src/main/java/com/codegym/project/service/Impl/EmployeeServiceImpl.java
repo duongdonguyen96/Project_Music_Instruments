@@ -4,6 +4,7 @@ import com.codegym.project.model.Employee;
 import com.codegym.project.repository.EmployeeRepository;
 import com.codegym.project.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -27,6 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee save(Employee employees) throws SQLException {
+        employees.setPassword(new BCryptPasswordEncoder().encode(employees.getPassword()));
         return employeeRepository.save(employees);
     }
 

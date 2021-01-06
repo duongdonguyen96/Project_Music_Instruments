@@ -17,6 +17,12 @@ public class AllController {
     @Autowired
     public BlogService blogService;
 
+    @GetMapping(value = "/login")
+    public ModelAndView login(){
+        ModelAndView modelAndView=new ModelAndView("login/formLogin");
+        return modelAndView;
+    }
+
     @GetMapping(value = "/banners")
     public ModelAndView listBanners(){
         ModelAndView modelAndView=new ModelAndView("admin/Banner");

@@ -41,7 +41,7 @@ public class Vendor {
     @Email
     private String email;
 
-    @NotBlank
+    @NotNull
     private String image;
 
     @NotBlank
@@ -77,6 +77,7 @@ public class Vendor {
     public Long getId() {
         return id;
     }
+
     public void setDateUpdate(LocalDateTime dateUpdate) {
         this.dateUpdate = dateUpdate;
     }
