@@ -280,12 +280,12 @@ vendors.validation=function (){
         rules: {
             name: {
                 required: true,
-                minlength: 10,
+                minlength: 5,
                 maxlength: 100,
             },
             address:{
                 required:true,
-                minlength: 10,
+                minlength: 5,
                 maxlength: 100,
             },
             phone:{
@@ -308,12 +308,12 @@ vendors.validation=function (){
         messages: {
             name:{
                 required:"Please enter input name vendor",
-                minlength:"Enter names of at least 10 characters",
+                minlength:"Enter names of at least 5 characters",
                 maxlength:"Enter names of up to 100 characters"
             },
             address:{
                 required:"Please enter input address",
-                minlength:"Enter address of at least 10 characters",
+                minlength:"Enter address of at least 5 characters",
                 maxlength:"Enter address of up to 100 characters"
             },
             phone:{
