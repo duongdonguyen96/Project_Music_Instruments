@@ -165,4 +165,10 @@ public class AllController {
         ModelAndView modelAndView = new ModelAndView("frontEnd/category");
         return modelAndView;
     }
+
+    @GetMapping(value = "/details")
+    public ModelAndView detail(){
+        ModelAndView modelAndView = new ModelAndView("frontEnd/details");
+        return modelAndView;
+    }
 }

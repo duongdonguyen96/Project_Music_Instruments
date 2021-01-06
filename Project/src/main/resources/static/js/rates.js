@@ -79,8 +79,8 @@ rates.intTable = function () {
             ]
         });
     }
-
 };
+
 rates.delete = function (id) {
     bootbox.confirm({
         message: "Do you want to delete this Rates",
