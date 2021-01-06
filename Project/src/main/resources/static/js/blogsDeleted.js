@@ -2,68 +2,38 @@ var blogs = {} || blogs;
 var rates = rates || {};
 
 blogs.intTable = function (){
-    var role=$('#role').val();
-    if (role==='ADMIN'){
-        $("#blogs-datatables").DataTable({
-            ajax:{
-                url: 'http://localhost:8080/api/blogsDeleted/',
-                method: 'GET',
-                dataType: 'json',
-                dataSrc: ''
+    $("#blogs-datatables").DataTable({
+        ajax:{
+            url: 'http://localhost:8080/api/blogsDeleted/',
+            method: 'GET',
+            dataType: 'json',
+            dataSrc: ''
+        },
+        columns: [
+            {
+                data: "id", name: "Id", title: "Id", orderable: true
             },
-            columns: [
-                {
-                    data: "id", name: "Id", title: "Id", orderable: true
-                },
-                {
-                    data: "title", name: "Title", title: "Title", orderable: true
-                },
-                {
-                    data: "image", name: "Image", title: "Image", sortable:false, "render": function (data){
-                        var str = "<img style='width: 106px; height: 130px; border: 1px solid red' src="+data+">"
-                        return str;
-                    }
-                },
-                {
-                    data: "dateDelete", name: "DateDelete", title: "Date Delete", sortable: false, orderable: false
-                },
-                {
-                    data: "id", name: "Action", title: "Action", "render": function (data){
-                        var str = "<div style='justify-content: center; text-align: center'><a href='javascript:' onclick='blogs.delete("+data+")' title='Delete' class='btn btn-danger ti-trash'></a>" +
-                            "<a href='javascript:' onclick='blogs.undo("+data+")' class='btn btn-warning' title='Undo'><i class=\"fa fa-undo\" aria-hidden=\"true\" ></i></a></div>"
-                        return str;
-                    }
+            {
+                data: "title", name: "Title", title: "Title", orderable: true
+            },
+            {
+                data: "image", name: "Image", title: "Image", sortable:false, "render": function (data){
+                    var str = "<img style='width: 106px; height: 130px; border: 1px solid red' src="+data+">"
+                    return str;
                 }
-            ],
-        });
-    }else {
-        $("#blogs-datatables").DataTable({
-            ajax:{
-                url: 'http://localhost:8080/api/blogsDeleted/',
-                method: 'GET',
-                dataType: 'json',
-                dataSrc: ''
             },
-            columns: [
-                {
-                    data: "id", name: "Id", title: "Id", orderable: true
-                },
-                {
-                    data: "title", name: "Title", title: "Title", orderable: true
-                },
-                {
-                    data: "image", name: "Image", title: "Image", sortable:false, "render": function (data){
-                        var str = "<img style='width: 106px; height: 130px; border: 1px solid red' src="+data+">"
-                        return str;
-                    }
-                },
-                {
-                    data: "dateDelete", name: "DateDelete", title: "Date Delete", sortable: false, orderable: false
-                },
-            ],
-        });
-    }
-
+            {
+                data: "dateDelete", name: "DateDelete", title: "Date Delete", sortable: false, orderable: false
+            },
+            {
+                data: "id", name: "Action", title: "Action", "render": function (data){
+                    var str = "<div style='justify-content: center; text-align: center'><a href='javascript:' onclick='blogs.delete("+data+")' title='Delete' class='btn btn-danger ti-trash'></a>" +
+                    "<a href='javascript:' onclick='blogs.undo("+data+")' class='btn btn-warning' title='Undo'><i class=\"fa fa-undo\" aria-hidden=\"true\" ></i></a></div>"
+                    return str;
+                }
+            }
+        ],
+    });
 };
 
 blogs.delete = function (id){

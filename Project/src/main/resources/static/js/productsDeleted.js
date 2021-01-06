@@ -2,115 +2,63 @@ var products = {} || products;
 var rates = {} || rates;
 products.intTable = function () {
     var id;
-    var role=$('#role').val();
-    if (role==="ADMIN"){
-        $("#products-datatables").DataTable({
-            ajax: {
-                url: 'http://localhost:8080/api/productsDeleted/',
-                method: "GET",
-                datatype: "json",
-                dataSrc: ""
+    $("#products-datatables").DataTable({
+        ajax: {
+            url: 'http://localhost:8080/api/productsDeleted/',
+            method: "GET",
+            datatype: "json",
+            dataSrc: ""
+        },
+        columns: [
+            {
+                data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
+                    id=data;
+                    return id;
+                },
             },
-            columns: [
-                {
-                    data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
-                        id=data;
-                        return id;
-                    },
+            {
+                data: "image", name: "Image", title: "Image", sortable: false,
+                orderable: false, "render": function (data) {
+                    var str ="<img onclick='products.getProductDeleted("+id+")' title='View' style='width: 80px; height: 80px; border: 1px solid red' src="+data+">" ;
+                    return str;
                 },
-                {
-                    data: "image", name: "Image", title: "Image", sortable: false,
-                    orderable: false, "render": function (data) {
-                        var str ="<img onclick='products.getProductDeleted("+id+")' title='View' style='width: 80px; height: 80px; border: 1px solid red' src="+data+">" ;
-                        return str;
-                    },
-                },
-                {
-                    data: "name", name: "Name", title: "Name", orderable: true,
-                },
-                {
-                    data: "price", name: "Price", title: "Price", sortable: true,
-                    orderable: true,
-                },
+            },
+            {
+                data: "name", name: "Name", title: "Name", orderable: true,
+            },
+            {
+                data: "price", name: "Price", title: "Price", sortable: true,
+                orderable: true,
+            },
 
-                {
-                    data: "amount", name: "Amount", title: "Amount", sortable: true,
-                    orderable: true,
-                },
-                {
-                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
-                    orderable: true
-                },
-                {
-                    data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
-                    orderable: false
-                },
-                {
-                    data: "dateDelete", name: "Date Delete", title: "Date Delete", sortable: false,
-                    orderable: false
-                },
-                {
-                    data: "id", name: "Action", title: "Action", sortable: false,
-                    orderable: false, "render": function (data) {
-                        var str = "<div style='justify-content: center;text-align: center'>"+
-                            "<a href='javascript:' class='btn btn-warning' title='Undo' onclick='products.undo("+data+")'><i class=\"fa fa-undo\" aria-hidden=\"true\"></i></a> "
-                            +"<a href='javascript:' onclick='products.delete("+data+")'class='btn btn-danger'><i class=\"ti-trash\" title=\"Delete\"></a>" +
-                            "</div>"
-                        return str;
-                    }
+            {
+                data: "amount", name: "Amount", title: "Amount", sortable: true,
+                orderable: true,
+            },
+            {
+                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
+                orderable: true
+            },
+            {
+                data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
+                orderable: false
+            },
+            {
+                data: "dateDelete", name: "Date Delete", title: "Date Delete", sortable: false,
+                orderable: false
+            },
+            {
+                data: "id", name: "Action", title: "Action", sortable: false,
+                orderable: false, "render": function (data) {
+                    var str = "<div style='justify-content: center;text-align: center'>"+
+                        "<a href='javascript:' class='btn btn-warning' title='Undo' onclick='products.undo("+data+")'><i class=\"fa fa-undo\" aria-hidden=\"true\"></i></a> "
+                        +"<a href='javascript:' onclick='products.delete("+data+")'class='btn btn-danger'><i class=\"ti-trash\" title=\"Delete\"></a>" +
+                        "</div>"
+                    return str;
                 }
-            ],
-        });
-    }else {
-        $("#products-datatables").DataTable({
-            ajax: {
-                url: 'http://localhost:8080/api/productsDeleted/',
-                method: "GET",
-                datatype: "json",
-                dataSrc: ""
-            },
-            columns: [
-                {
-                    data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
-                        id=data;
-                        return id;
-                    },
-                },
-                {
-                    data: "image", name: "Image", title: "Image", sortable: false,
-                    orderable: false, "render": function (data) {
-                        var str ="<img onclick='products.getProductDeleted("+id+")' title='View' style='width: 80px; height: 80px; border: 1px solid red' src="+data+">" ;
-                        return str;
-                    },
-                },
-                {
-                    data: "name", name: "Name", title: "Name", orderable: true,
-                },
-                {
-                    data: "price", name: "Price", title: "Price", sortable: true,
-                    orderable: true,
-                },
-
-                {
-                    data: "amount", name: "Amount", title: "Amount", sortable: true,
-                    orderable: true,
-                },
-                {
-                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
-                    orderable: true
-                },
-                {
-                    data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
-                    orderable: false
-                },
-                {
-                    data: "dateDelete", name: "Date Delete", title: "Date Delete", sortable: false,
-                    orderable: false
-                },
-            ],
-        });
-    }
-
+            }
+        ],
+    });
 };
 
 products.delete = function (id) {

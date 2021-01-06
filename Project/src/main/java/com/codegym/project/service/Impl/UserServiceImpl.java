@@ -4,7 +4,6 @@ import com.codegym.project.model.User;
 import com.codegym.project.repository.UserRepository;
 import com.codegym.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -27,9 +26,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(User user) throws SQLException {
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        return userRepository.save(user);
+    public User save(User employees) throws SQLException {
+        return userRepository.save(employees);
     }
 
     @Override

@@ -2,63 +2,36 @@ var banners = {} || banners;
 var rates=rates||{};
 
 banners.intTable = function () {
-    var role=$('#role').val();
-    if (role==='ADMIN'){
-        $('#banners-datatables').DataTable({
-            ajax: {
-                url: 'http://localhost:8080/api/bannersDeleted/',
-                method: 'GET',
-                dataType: 'json',
-                dataSrc: ''
+    $('#banners-datatables').DataTable({
+        ajax: {
+            url: 'http://localhost:8080/api/bannersDeleted/',
+            method: 'GET',
+            dataType: 'json',
+            dataSrc: ''
+        },
+        columns: [
+            {
+                data: "id", name: "Id", title: "Id", orderable: true
             },
-            columns: [
-                {
-                    data: "id", name: "Id", title: "Id", orderable: true
-                },
-                {
-                    data: "image", name: "Image", title: "Image", sortable: false, orderable: true, "render": function (data){
-                        var str = "<img style='width: 106px; height: 130px; border:1px solid red' src="+ data +">";
-                        return str;
-                    }
-                },
-                {
-                    data: "dateDelete", name: "Date Delete", title: "date Delete", sortable: false, orderable: false
-                },
-                {
-                    data: "id", name: "Action", title: "Action", sortable: false,
-                    orderable: false, "render": function (data) {
-                        var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' onclick='banners.delete("+data+")' title='Delete' class='btn btn-danger ti-trash'></a> " +
-                            "<a href='javascript:' class='btn btn-warning' title='Undo' onclick='banners.undo("+data+")'><i class=\"fa fa-undo\" aria-hidden=\"true\" ></i></a></div>"
-                        return str;
-                    }
+            {
+                data: "image", name: "Image", title: "Image", sortable: false, orderable: true, "render": function (data){
+                    var str = "<img style='width: 106px; height: 130px; border:1px solid red' src="+ data +">";
+                    return str;
                 }
-            ],
-        });
-    }else {
-        $('#banners-datatables').DataTable({
-            ajax: {
-                url: 'http://localhost:8080/api/bannersDeleted/',
-                method: 'GET',
-                dataType: 'json',
-                dataSrc: ''
             },
-            columns: [
-                {
-                    data: "id", name: "Id", title: "Id", orderable: true
-                },
-                {
-                    data: "image", name: "Image", title: "Image", sortable: false, orderable: true, "render": function (data){
-                        var str = "<img style='width: 106px; height: 130px; border:1px solid red' src="+ data +">";
-                        return str;
-                    }
-                },
-                {
-                    data: "dateDelete", name: "Date Delete", title: "date Delete", sortable: false, orderable: false
-                },
-            ],
-        });
-    }
-
+            {
+                data: "dateDelete", name: "Date Delete", title: "date Delete", sortable: false, orderable: false
+            },
+            {
+                data: "id", name: "Action", title: "Action", sortable: false,
+                orderable: false, "render": function (data) {
+                    var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' onclick='banners.delete("+data+")' title='Delete' class='btn btn-danger ti-trash'></a> " +
+                        "<a href='javascript:' class='btn btn-warning' title='Undo' onclick='banners.undo("+data+")'><i class=\"fa fa-undo\" aria-hidden=\"true\" ></i></a></div>"
+                    return str;
+                }
+            }
+        ],
+    });
 };
 
 banners.delete = function (id){

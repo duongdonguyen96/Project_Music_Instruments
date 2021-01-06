@@ -1,83 +1,46 @@
 var banners = {} || banners;
 var rates=rates||{};
 banners.intTable = function () {
-    var role=$('#role').val();
-    if (role==='ADMIN'){
-        $("#banners-datatables").DataTable({
-            ajax: {
-                url: 'http://localhost:8080/api/banners/',
-                method: "GET",
-                dataType: "json",
-                dataSrc: ""
+    $("#banners-datatables").DataTable({
+        ajax: {
+            url: 'http://localhost:8080/api/banners/',
+            method: "GET",
+            dataType: "json",
+            dataSrc: ""
+        },
+        columns:[
+            {
+                data: "id", name: "Id", title:"Id", orderable: true,
             },
-            columns:[
-                {
-                    data: "id", name: "Id", title:"Id", orderable: true,
-                },
-                {
-                    data: "image", name: "Image", title: "Image", orderable: true, "render": function (data){
-                        var str = "<img style='width: 106px; height: 130px; border: 1px solid red' src="+data+">";
-                        return str;
-                    }
-                },
-                {
-                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false,
-                    orderable: false
-
-                },
-                {
-                    data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
-                    orderable: false
-                },
-                {
-                    data: "id", name: "Action", title: "Action", sortable: false, orderable: false, "render": function (data) {
-                        var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' onclick='banners.get("+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning fa fa-cogs'></a> " +
-                            "<a href='javascript:' class='btn btn-danger' onclick='banners.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a></div>"
-                        return str;
-                    }
+            {
+                data: "image", name: "Image", title: "Image", orderable: true, "render": function (data){
+                    var str = "<img style='width: 106px; height: 130px; border: 1px solid red' src="+data+">";
+                    return str;
                 }
-            ]
-        });
-    }else {
-        $("#banners-datatables").DataTable({
-            ajax: {
-                url: 'http://localhost:8080/api/banners/',
-                method: "GET",
-                dataType: "json",
-                dataSrc: ""
             },
-            columns:[
-                {
-                    data: "id", name: "Id", title:"Id", orderable: true,
-                },
-                {
-                    data: "image", name: "Image", title: "Image", orderable: true, "render": function (data){
-                        var str = "<img style='width: 106px; height: 130px; border: 1px solid red' src="+data+">";
-                        return str;
-                    }
-                },
-                {
-                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false,
-                    orderable: false
+            {
+                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false,
+                orderable: false
 
-                },
-                {
-                    data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
-                    orderable: false
-                },
-            ]
-        });
-    }
-
+            },
+            {
+                data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
+                orderable: false
+            },
+            {
+                data: "id", name: "Action", title: "Action", sortable: false, orderable: false, "render": function (data) {
+                    var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' onclick='banners.get("+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning fa fa-cogs'></a> " +
+                        "<a href='javascript:' class='btn btn-danger' onclick='banners.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a></div>"
+                    return str;
+                }
+            }
+        ]
+    });
 };
 
 banners.addNew = function () {
     $('#modalTitle').html(("Add new banner"));
     validator.resetForm();
-    $('#imageHtml').html(
-        `<img id='output' height="150px" width="100px">
-               <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" data-rule-required=true ><br>`
-    );
     banners.resetForm();
     $('#modalAddEdit').modal('show');
 };
@@ -86,7 +49,7 @@ banners.save = function (){
     if ($("#formAddEdit").valid()){
         if ($('#id').val() == 0){
             var bannerObj = {};
-            bannerObj.image = $('#base64').val();
+            bannerObj.image = $('#image').val();
 
             $.ajax({
                 url: "http://localhost:8080/api/banner/",
@@ -111,7 +74,7 @@ banners.save = function (){
         }else {
             var bannerObj = {};
             bannerObj.id = $('#id').val();
-            bannerObj.image = $('#base64').val();
+            bannerObj.image = $('#image').val();
             bannerObj.dateAdd = $("#dateAdd").val();
 
             $.ajax({
@@ -177,11 +140,7 @@ banners.get = function (id) {
             $('#formAddEdit')[0].reset();
             $('#modalTitle').html("Edit banner");
             $('#id').val(data.id);
-            $('#base64').val(data.image);
-            $('#imageHtml').html(
-                `<img id='output' height="150px" width="100px" src="${data.image}">
-                            <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" ><br>`
-            );
+            $('#image').val(data.image);
             $('#dateAdd').val(data.dateAdd);
             $('#modalAddEdit').modal('show');
         }

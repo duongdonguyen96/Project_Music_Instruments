@@ -2,88 +2,50 @@ var productLines = {} || productLines;
 var rates = {} || rates;
 productLines.intTable = function () {
     var id;
-    var role=$('#role').val();
-    if (role==="ADMIN"){
-        $("#productLines-datatables").DataTable({
-            ajax: {
-                url: 'http://localhost:8080/api/typeProducts/',
-                method: "GET",
-                datatype: "json",
-                dataSrc: ""
-            },
-            columns: [
-                {
-                    data: "id", name: "ID", title: "ID", orderable: true,"render": function (data) {
-                        id=data;
-                        return id;
-                    }
-                },
-                {
-                    data: "name", name: "Name", title: "Name", orderable: true,"render": function (data) {
-                        var str ="<div><a href='javascript:' onclick='productLines.get(this.title,"+id+")' title='View'>"+data+"</a></div>" ;
-                        return str;
-                    },
-                },
-                {
-                    data: "description", name: "Description", title: "Description", sortable: false,
-                    orderable: false,
-                },
-                {
-                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
-                    orderable: true
-                },
-                {
-                    data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
-                    orderable: false
-                },
-                {
-                    data: "id", name: "Action", title: "Action", sortable: false,
-                    orderable: false, "render": function (data) {
-                        var str = "<div style='justify-content: center;text-align: center'>" +
-                            "<a href='javascript:' title='Edit' onclick='productLines.get(this.title,"+data+")' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
-                            "<a href='javascript:'  class='btn btn-danger' onclick='productLines.delete("+data+")' ><i class=\"ti-trash\" title=\"Delete\"></a>" +
-                            "</div>"
-                        return str;
-                    }
+    $("#productLines-datatables").DataTable({
+        ajax: {
+            url: 'http://localhost:8080/api/typeProducts/',
+            method: "GET",
+            datatype: "json",
+            dataSrc: ""
+        },
+        columns: [
+            {
+                data: "id", name: "ID", title: "ID", orderable: true,"render": function (data) {
+                    id=data;
+                    return id;
                 }
-            ]
-        });
-    }else {
-        $("#productLines-datatables").DataTable({
-            ajax: {
-                url: 'http://localhost:8080/api/typeProducts/',
-                method: "GET",
-                datatype: "json",
-                dataSrc: ""
             },
-            columns: [
-                {
-                    data: "id", name: "ID", title: "ID", orderable: true,"render": function (data) {
-                        id=data;
-                        return id;
-                    }
+            {
+                data: "name", name: "Name", title: "Name", orderable: true,"render": function (data) {
+                    var str ="<div><a href='javascript:' onclick='productLines.get(this.title,"+id+")' title='View'>"+data+"</a></div>" ;
+                    return str;
                 },
-                {
-                    data: "name", name: "Name", title: "Name", orderable: true,"render": function (data) {
-                        var str ="<div><a href='javascript:' onclick='productLines.get(this.title,"+id+")' title='View'>"+data+"</a></div>" ;
-                        return str;
-                    },
-                },
-                {
-                    data: "description", name: "Description", title: "Description", sortable: false,
-                    orderable: false,
-                },
-                {
-                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
-                    orderable: true
-                },
-                {
-                    data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
-                    orderable: false
-                },
-            ]
-        });
-    }
+            },
+            {
+                data: "description", name: "Description", title: "Description", sortable: false,
+                orderable: false,
+            },
+            {
+                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
+                orderable: true
+            },
+            {
+                data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
+                orderable: false
+            },
+            {
+                data: "id", name: "Action", title: "Action", sortable: false,
+                orderable: false, "render": function (data) {
+                    var str = "<div style='justify-content: center;text-align: center'>" +
+                        "<a href='javascript:' title='Edit' onclick='productLines.get(this.title,"+data+")' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
+                        "<a href='javascript:'  class='btn btn-danger' onclick='productLines.delete("+data+")' ><i class=\"ti-trash\" title=\"Delete\"></a>" +
+                        "</div>"
+                    return str;
+                }
+            }
+        ]
+    });
 };
 
 productLines.addNew = function () {
@@ -226,7 +188,7 @@ productLines.validation=function (){
         rules: {
             name: {
                 required: true,
-                minlength: 5,
+                minlength: 10,
                 maxlength: 50,
             },
             description:{
@@ -238,7 +200,7 @@ productLines.validation=function (){
         messages: {
             name:{
                 required:"Please enter input name types",
-                minlength:"Enter names of at least 5 characters",
+                minlength:"Enter names of at least 10 characters",
                 maxlength:"Enter names of up to 100 characters"
             },
             description:{

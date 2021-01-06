@@ -2,106 +2,59 @@ var products = {} || products;
 var rates = {} || rates;
 products.intTable = function () {
     var id;
-    var role=$('#role').val();
-    if (role==='ADMIN'){
-        $("#products-datatables").DataTable({
-            ajax: {
-                url: 'http://localhost:8080/api/products/',
-                method: "GET",
-                datatype: "json",
-                dataSrc: ""
+    $("#products-datatables").DataTable({
+        ajax: {
+            url: 'http://localhost:8080/api/products/',
+            method: "GET",
+            datatype: "json",
+            dataSrc: ""
+        },
+        columns: [
+            {
+                data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
+                    id=data;
+                    return id;
+                },
             },
-            columns: [
-                {
-                    data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
-                        id=data;
-                        return id;
-                    },
+            {
+                data: "image", name: "Image", title: "Image", sortable: false,
+                orderable: false, "render": function (data) {
+                    var str ="<img onclick='products.get(this.title,"+id+")' title='View' style='width: 80px; height: 80px; border: 1px solid red' src="+data+">" ;
+                    return str;
                 },
-                {
-                    data: "image", name: "Image", title: "Image", sortable: false,
-                    orderable: false, "render": function (data) {
-                        var str ="<img onclick='products.get(this.title,"+id+")' title='View' style='width: 80px; height: 80px; border: 1px solid red' src="+data+">" ;
-                        return str;
-                    },
-                },
-                {
-                    data: "name", name: "Name", title: "Name", orderable: true,
-                },
-                {
-                    data: "price", name: "Price", title: "Price", sortable: true,
-                    orderable: true,
-                },
+            },
+            {
+                data: "name", name: "Name", title: "Name", orderable: true,
+            },
+            {
+                data: "price", name: "Price", title: "Price", sortable: true,
+                orderable: true,
+            },
 
-                {
-                    data: "amount", name: "Amount", title: "Amount", sortable: true,
-                    orderable: true,
-                },
-                {
-                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false,
-                    orderable: false
-                },
-                {
-                    data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
-                    orderable: false
-                },
-                {
-                    data: "id", name: "Action", title: "Action", sortable: false,
-                    orderable: false, "render": function (data) {
-                        var str = "<div style='justify-content: center;text-align: center'>" +
-                            "<a href='javascript:' onclick='products.get(this.title,"+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
-                            "<a href='javascript:' class='btn btn-danger' onclick='products.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a>" +
-                            "</div>"
-                        return str;
-                    }
+            {
+                data: "amount", name: "Amount", title: "Amount", sortable: true,
+                orderable: true,
+            },
+            {
+                data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false,
+                orderable: false
+            },
+            {
+                data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
+                orderable: false
+            },
+            {
+                data: "id", name: "Action", title: "Action", sortable: false,
+                orderable: false, "render": function (data) {
+                    var str = "<div style='justify-content: center;text-align: center'>" +
+                        "<a href='javascript:' onclick='products.get(this.title,"+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
+                        "<a href='javascript:' class='btn btn-danger' onclick='products.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a>" +
+                        "</div>"
+                    return str;
                 }
-            ],
-        });
-    }else {
-        $("#products-datatables").DataTable({
-            ajax: {
-                url: 'http://localhost:8080/api/products/',
-                method: "GET",
-                datatype: "json",
-                dataSrc: ""
-            },
-            columns: [
-                {
-                    data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
-                        id=data;
-                        return id;
-                    },
-                },
-                {
-                    data: "image", name: "Image", title: "Image", sortable: false,
-                    orderable: false, "render": function (data) {
-                        var str ="<img onclick='products.get(this.title,"+id+")' title='View' style='width: 80px; height: 80px; border: 1px solid red' src="+data+">" ;
-                        return str;
-                    },
-                },
-                {
-                    data: "name", name: "Name", title: "Name", orderable: true,
-                },
-                {
-                    data: "price", name: "Price", title: "Price", sortable: true,
-                    orderable: true,
-                },
-
-                {
-                    data: "amount", name: "Amount", title: "Amount", sortable: true,
-                    orderable: true,
-                },
-                {
-                    data: "dateAdd", name: "Date Add", title: "Date Add", sortable: false,
-                    orderable: false
-                },
-                {
-                    data: "dateUpdate", name: "Date Edit", title: "Date Edit", sortable: false,
-                    orderable: false
-                },
+            }
         ]
-        });
-    }
+    });
 };
 
 products.addNew = function () {
@@ -109,8 +62,9 @@ products.addNew = function () {
     $('.hideHtml').hide();
     $('.form-control').removeAttr('disabled');
     $('#imageHtml').html(
-        `<img id='output' height="150px" width="100px">
-               <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" data-rule-required=true ><br>`
+        `<input class="form-control" type="text"
+                           name="image" id="image"
+                           data-rule-required=true>`
     );
     $('#save').show();
     products.validation();
@@ -131,7 +85,7 @@ products.save = function () {
             productObj.size = $('#size').val();
             productObj.color = $('#color').val();
             productObj.description = $('#description').val();
-            productObj.image = $('#base64').val();
+            productObj.image = $('#image').val();
             productObj.typeProduct = types.findById(parseInt($('#type').val()));
             productObj.vendor = vendors.findById(parseInt($('#vendor').val()));
             console.log(productObj);
@@ -150,7 +104,7 @@ products.save = function () {
                     if(data.code === 2){
                         $('#modalAddEdit').modal('hide');
                         $("#products-datatables").DataTable().ajax.reload();
-                        toastr.info('Product has been created successfully', 'INFORMATION:')
+                        toastr.info('Vendor has been created successfully', 'INFORMATION:')
                     }else {
                         data.stringListMessage.map(e =>toastr.error(e));
                     }
@@ -165,7 +119,7 @@ products.save = function () {
             productObj.size = $('#size').val();
             productObj.color = $('#color').val();
             productObj.description = $('#description').val();
-            productObj.image = $('#base64').val();
+            productObj.image = $('#image').val();
             productObj.typeProduct = types.findById(parseInt($('#type').val()));
             productObj.vendor = vendors.findById(parseInt($('#vendor').val()));
             productObj.id = $('#id').val();
@@ -237,12 +191,12 @@ products.get = function (title,id) {
                 $('#modalTitle').html("Edit product");
                 $('.hideHtml').hide();
                 $('#save').show();
-                $('#base64').val(data.image)
                 $('#imageHtml').html(
-                    `<img id='output' height="150px" width="100px" src="${data.image}">
-                            <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" ><br>`
+                `<input class="form-control" type="text"
+                           name="image" id="image"
+                           data-rule-required=true value="${data.image}">`
                 );
-            };
+            }
             //
             if (title==='View'){
                 $('#modalTitle').html("View product");
@@ -257,6 +211,7 @@ products.get = function (title,id) {
             $('#id').val(data.id);
             $('#dateAdd').val(data.dateAdd);
             $('#dateUpdate').val(data.dateUpdate);
+
             $('#name').val(data.name);
             $('#price').val( data.price);
             $('#amount').val(data.amount);

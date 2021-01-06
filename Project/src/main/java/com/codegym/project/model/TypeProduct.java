@@ -32,7 +32,7 @@ public class TypeProduct {
     private Long id;
 
     @NotBlank
-    @Size(min = 5,max = 100,message = "Please enter at least 5 characters!")
+    @Size(min = 10,max = 100,message = "Please enter at least 10 characters!")
     @Pattern(regexp = "^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s\\W|_]+$",message = "Please enter another name!")
     private String name;
 

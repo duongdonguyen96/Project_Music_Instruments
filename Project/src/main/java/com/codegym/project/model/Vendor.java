@@ -26,7 +26,7 @@ public class Vendor {
     private Long id;
 
     @NotBlank
-    @Size(min =5,max = 100,message = "Please enter at least 5 characters!")
+    @Size(min = 10,max = 100,message = "Please enter at least 10 characters!")
     @Pattern(regexp = "^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s\\W|_]+$",message = "Tên không phù hợp")
     private String name;
 
@@ -41,8 +41,7 @@ public class Vendor {
     @Email
     private String email;
 
-    @NotNull
-    @Column(name="image",columnDefinition="TEXT")
+    @NotBlank
     private String image;
 
     @NotBlank
@@ -67,7 +66,6 @@ public class Vendor {
     public void setDateDelete(LocalDateTime dateDelete) {
         this.dateDelete = dateDelete;
     }
-
     public void setDelete(boolean delete) {
         this.delete = delete;
     }
@@ -79,7 +77,6 @@ public class Vendor {
     public Long getId() {
         return id;
     }
-
     public void setDateUpdate(LocalDateTime dateUpdate) {
         this.dateUpdate = dateUpdate;
     }
