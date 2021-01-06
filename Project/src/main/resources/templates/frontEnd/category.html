@@ -5,29 +5,9 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
-<html>
-<head>
-<title>Gretong a Ecommerce Category Flat Bootstarp Responsive Website Template | Women :: w3layouts</title>
-<link href="fe/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary JavaScript plugins) -->
-<script type='text/javascript' src="fe/js/jquery-1.11.1.min.js"></script>
-<!-- Custom Theme files -->
-<link href="fe/css/style.css" rel='stylesheet' type='text/css' />
-<!-- Custom Theme files -->
-<!--//theme-style-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Gretong Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
-<!-- start menu -->
-<link href="fe/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="fe/js/megamenu.js"></script>
-<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-<script src="fe/js/menu_jquery.js"></script>
-<script src="fe/js/simpleCart.min.js"> </script>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/homepagelayout::head">
 </head>
 <body>
 <!-- header_top -->
@@ -54,7 +34,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="header">
 			<div class="head-t">
 				<div class="logo">
-					<a href="/home"><img src="fe/images/logo.png" class="img-responsive" alt="" /> </a>
+					<a href="/"><img src="fe/images/logo.png" class="img-responsive" alt="" /> </a>
 				</div>
 				<!-- start header_right -->
 				<div class="header_right">
@@ -112,7 +92,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<!-- start header menu -->
 			<ul class="megamenu skyblue">
-				<li class="active grid"><a class="color1" href="/home">Home</a></li>
+				<li class="active grid"><a class="color1" href="/">Home</a></li>
 				<li class="grid"><a class="color2" href="#">Products</a>
 					<div class="megapanel">
 						<div class="row">
