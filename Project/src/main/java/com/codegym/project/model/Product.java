@@ -32,7 +32,7 @@ public class Product {
     private Long price;
 
     @NotNull
-    @Size(max = 99999)
+    @Column(name="image",columnDefinition="TEXT")
     private String image;
 
     @NotBlank
