@@ -9,4 +9,4 @@ var openFile = function(event) {
         document.getElementById("base64").value=dataURL;
     }
     reader.readAsDataURL(input.files[0]);
-};
+}; 
