@@ -2530,7 +2530,7 @@ p.cart a {
 	text-transform: capitalize;
 	font-weight: normal;
 }
-.contact-form input[type="text"], .contact-form textarea {
+.contact-form input[type="text"],input[type="email"], .contact-form textarea {
 	font-family: 'Open Sans', sans-serif;
 	background: #FFFFFF;
 	border: 1px solid #E7E7E7;
@@ -2540,7 +2540,6 @@ p.cart a {
 	width: 96.3333%;
 	outline: none;
 	-webkit-appearance: none;
-	text-transform: capitalize;
 }
 .contact-form textarea{
 	resize:none;
@@ -3410,7 +3409,7 @@ ul.icon1 {
 .contact-form div {
   padding: 0px 0;
 }
-.contact-form input[type="text"], .contact-form textarea {
+.contact-form input[type="text"],input[type="email"], .contact-form textarea {
   padding: 6px;
 }
 .button1 {

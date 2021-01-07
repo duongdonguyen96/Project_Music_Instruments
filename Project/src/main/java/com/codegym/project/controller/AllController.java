@@ -17,7 +17,7 @@ public class AllController {
     @Autowired
     public BlogService blogService;
 
-    @GetMapping(value = "/login")
+    @GetMapping(value = "/login1")
     public ModelAndView login(){
         ModelAndView modelAndView=new ModelAndView("login/formLogin");
         return modelAndView;
