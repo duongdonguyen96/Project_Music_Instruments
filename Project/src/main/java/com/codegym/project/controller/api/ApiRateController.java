@@ -35,7 +35,6 @@ public class ApiRateController {
     public ResponseEntity<Rate> findById(@PathVariable("id") Long id) {
         try{
             Rate rate = rateService.findById(id);
-            rate.setStatus("Đã đọc");
             rateService.save(rate);
             return new ResponseEntity<Rate>(rate, HttpStatus.OK);
         }catch (Exception e){
@@ -56,11 +55,6 @@ public class ApiRateController {
     }
 
     //    validateBackEnd
-    @PutMapping(value = "/rate/")
-    @ResponseBody
-    public ResponseEntity<Object> getRateById(@Validated Rate rate, BindingResult bindingResult) {
-        return validate(rate,bindingResult);
-    }
 
     @RequestMapping(value = "/rate/",produces = MediaType.APPLICATION_JSON_VALUE,method =RequestMethod.POST)
     public ResponseEntity<Object> create(@Valid @RequestBody Rate rate, BindingResult bindingResult) {
@@ -114,6 +108,7 @@ public class ApiRateController {
     public ResponseEntity<Rate> findRateDeleted(@PathVariable("id") Long id) {
         try{
             Rate rate = rateService.findRateDeleted(id);
+            rateService.save(rate);
             return new ResponseEntity<Rate>(rate, HttpStatus.OK);
         }catch (Exception e){
             e.printStackTrace();

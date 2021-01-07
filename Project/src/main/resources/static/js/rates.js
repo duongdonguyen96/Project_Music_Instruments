@@ -18,7 +18,17 @@ rates.intTable = function () {
                 },
                 {
                     data: "email", name: "Email", title: "Email", sortable: true,
-                    orderable: true,
+                    orderable: true,"render": function (data) {
+                        var str=`<a href="mailto:${data}" title="Send mail">${data}</a>`
+                        return str;
+                    }
+                },
+                {
+                    data: "content", name: "Content", title: "Content", sortable: false,
+                    orderable: false,"render": function (data) {
+                        var str=data.substring(0,20)+'...'
+                        return str;
+                    }
                 },
                 {
                     data: "status", name: "Status", title: "Status", sortable: true,
@@ -57,7 +67,17 @@ rates.intTable = function () {
                 },
                 {
                     data: "email", name: "Email", title: "Email", sortable: true,
-                    orderable: true,
+                    orderable: true,"render": function (data) {
+                        var str=`<a href="mailto:${data}" title="Send mail">${data}</a>`
+                        return str;
+                    }
+                },
+                {
+                    data: "content", name: "Content", title: "Content", sortable: false,
+                    orderable: false,"render": function (data) {
+                        var str=data.substring(0,20)+'...'
+                        return str;
+                    }
                 },
                 {
                     data: "status", name: "Status", title: "Status", sortable: true,
@@ -101,6 +121,7 @@ rates.delete = function (id) {
                     method: "DELETE",
                     dataType: "json",
                     success: function () {
+                        rates.findStatus();
                         $("#rates-datatables").DataTable().ajax.reload();
                         toastr.info('Rate has been deleted successfully', 'INFORMATION:')
                     },

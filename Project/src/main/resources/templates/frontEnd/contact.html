@@ -19,11 +19,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="Gretong Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+SmartrateObj Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
 	<!-- start menu -->
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+
 	<link href="fe/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 	<script type="text/javascript" src="fe/js/megamenu.js"></script>
 	<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
@@ -60,23 +63,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					   			<iframe src="https://maps.google.com/maps?q=28%20Nguy%E1%BB%85n%20Tri%20Ph%C6%B0%C6%A1ng&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="350" frameborder="0" style="border:0"></iframe>
 					   		</div>
       				</div>
-				  <div class="contact-form" id="formRates">
+				  <div class="contact-form">
 			 	  	 	<h2>Contact Us</h2>
-			 	 	    <form>
+			 	 	    <form id="formRates" method="post">
 					    	<div>
 						    	<span><label>Name</label></span>
 						    	<span><input name="name" type="text" class="textbox" id="name"></span>
 						    </div>
 						    <div>
 						    	<span><label>E-mail</label></span>
-						    	<span><input name="email" type="text" class="textbox" id="email"></span>
+						    	<span><input name="email" type="email" class="textbox" id="mail" ></span>
 						    </div>
 						    <div>
 						    	<span><label>Subject</label></span>
-						    	<span><textarea name="userMsg" id="content"> </textarea></span>
+						    	<span><textarea name="content" id="content"></textarea></span>
 						    </div>
 						   <div>
-						   		<span><input type="submit" onclick="rates.save()" class="" value="Submit us"></span>
+							   <span><input type="submit" onclick="return rates.create()"  class="" value="Submit us"></span>
 						  </div>
 					    </form>
 				    </div>
@@ -85,5 +88,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 </div>
 <div th:replace="layout/homepagelayout::footer"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+		integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+		crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
+		integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
+		crossorigin="anonymous"></script>
 </body>
+<script src="js/contact.js"></script>
 </html>
