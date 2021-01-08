@@ -8,7 +8,6 @@ import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -27,14 +26,13 @@ public class Rate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotBlank
     private String name;
 
-    @NotNull
-    @Email
+    @NotBlank
     private String email;
 
-    @NotNull
+    @NotBlank
     private String content;
 
     private String status="Chưa đọc";
@@ -59,9 +57,5 @@ public class Rate {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Long getId() {
-        return id;
     }
 }
