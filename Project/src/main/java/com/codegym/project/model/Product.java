@@ -10,8 +10,6 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "products")
@@ -33,8 +31,9 @@ public class Product {
     @Min(value = 0,message = "The minimum price is 0")
     private Long price;
 
-    @NotBlank
-    private String image="abc";
+    @NotNull
+    @Column(name="image",columnDefinition="TEXT")
+    private String image;
 
     @NotBlank
     @Size(min = 100,max = 500,message = "Please enter at least 10 characters!")

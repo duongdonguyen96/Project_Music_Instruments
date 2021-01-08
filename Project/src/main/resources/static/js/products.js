@@ -109,9 +109,8 @@ products.addNew = function () {
     $('.hideHtml').hide();
     $('.form-control').removeAttr('disabled');
     $('#imageHtml').html(
-        `<input class="form-control" type="text"
-                           name="image" id="image"
-                           data-rule-required=true>`
+        `<img id='output' height="150px" width="100px">
+               <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" data-rule-required=true ><br>`
     );
     $('#save').show();
     products.validation();
@@ -132,7 +131,7 @@ products.save = function () {
             productObj.size = $('#size').val();
             productObj.color = $('#color').val();
             productObj.description = $('#description').val();
-            productObj.image = $('#image').val();
+            productObj.image = $('#base64').val();
             productObj.typeProduct = types.findById(parseInt($('#type').val()));
             productObj.vendor = vendors.findById(parseInt($('#vendor').val()));
             console.log(productObj);
@@ -151,7 +150,7 @@ products.save = function () {
                     if(data.code === 2){
                         $('#modalAddEdit').modal('hide');
                         $("#products-datatables").DataTable().ajax.reload();
-                        toastr.info('Vendor has been created successfully', 'INFORMATION:')
+                        toastr.info('Product has been created successfully', 'INFORMATION:')
                     }else {
                         data.stringListMessage.map(e =>toastr.error(e));
                     }
@@ -166,7 +165,7 @@ products.save = function () {
             productObj.size = $('#size').val();
             productObj.color = $('#color').val();
             productObj.description = $('#description').val();
-            productObj.image = $('#image').val();
+            productObj.image = $('#base64').val();
             productObj.typeProduct = types.findById(parseInt($('#type').val()));
             productObj.vendor = vendors.findById(parseInt($('#vendor').val()));
             productObj.id = $('#id').val();
@@ -238,12 +237,12 @@ products.get = function (title,id) {
                 $('#modalTitle').html("Edit product");
                 $('.hideHtml').hide();
                 $('#save').show();
+                $('#base64').val(data.image)
                 $('#imageHtml').html(
-                `<input class="form-control" type="text"
-                           name="image" id="image"
-                           data-rule-required=true value="${data.image}">`
+                    `<img id='output' height="150px" width="100px" src="${data.image}">
+                            <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" ><br>`
                 );
-            }
+            };
             //
             if (title==='View'){
                 $('#modalTitle').html("View product");
@@ -258,7 +257,6 @@ products.get = function (title,id) {
             $('#id').val(data.id);
             $('#dateAdd').val(data.dateAdd);
             $('#dateUpdate').val(data.dateUpdate);
-
             $('#name').val(data.name);
             $('#price').val( data.price);
             $('#amount').val(data.amount);

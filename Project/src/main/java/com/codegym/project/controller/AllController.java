@@ -139,11 +139,12 @@ public class AllController {
         ModelAndView modelAndView=new ModelAndView("admin/VendorIsDelete");
         return modelAndView;
     }
-    @GetMapping(value = "/home")
+    @GetMapping(value = "/")
     public ModelAndView Home(){
         ModelAndView modelAndView=new ModelAndView("frontEnd/index");
         return modelAndView;
     }
+
     @GetMapping(value = "/contacts")
     public ModelAndView contact() {
         ModelAndView modelAndView = new ModelAndView("frontEnd/contact");
@@ -162,6 +163,11 @@ public class AllController {
     @GetMapping(value = "/categories")
     public ModelAndView category(){
         ModelAndView modelAndView = new ModelAndView("frontEnd/category");
+        return modelAndView;
+    }
+    @GetMapping(value = "/detail")
+    public ModelAndView detail(){
+        ModelAndView modelAndView = new ModelAndView("frontEnd/details");
         return modelAndView;
     }
 }

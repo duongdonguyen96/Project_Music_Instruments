@@ -115,9 +115,8 @@ vendors.addNew = function () {
     $('.hideHtml').hide();
     $('.form-control').removeAttr('disabled');
     $('#imageHtml').html(
-        `<input class="form-control" type="text"
-                           name="image" id="image"
-                           data-rule-required=true>`
+        `<img id='output' height="150px" width="100px">
+               <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" data-rule-required=true ><br>`
     );
     $('#save').show();
     $( "#formAddEdit" ).validate().resetForm();
@@ -135,7 +134,7 @@ vendors.save = function () {
             vendorObj.email = $('#email').val().trim();
             vendorObj.phone = $('#phone').val();
             vendorObj.surrogate = $('#surrogate').val();
-            vendorObj.image = $('#image').val();
+            vendorObj.image = $('#base64').val();
             //
             $.ajax({
                 url: "http://localhost:8080/api/vendor/",
@@ -164,7 +163,7 @@ vendors.save = function () {
             vendorObj.email = $('#email').val().trim();
             vendorObj.phone = $('#phone').val();
             vendorObj.surrogate = $('#surrogate').val();
-            vendorObj.image = $('#image').val();
+            vendorObj.image = $('#base64').val();
             vendorObj.id = $('#id').val();
             vendorObj.dateAdd = $('#dateAdd').val();
             //
@@ -234,10 +233,10 @@ vendors.get = function (title,id) {
                 $('#modalTitle').html("Edit vendor");
                 $('.hideHtml').hide();
                 $('#save').show();
+                $('#base64').val(data.image)
                 $('#imageHtml').html(
-                    `<input class="form-control" type="text"
-                           name="image" id="image"
-                           data-rule-required=true value="${data.image}">`
+                    `<img id='output' height="150px" width="100px" src="${data.image}">
+                            <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" ><br>`
                 );
             }
             if (title==='View'){
