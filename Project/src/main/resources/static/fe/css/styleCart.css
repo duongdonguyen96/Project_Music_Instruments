@@ -4239,3 +4239,7 @@ body {
     background-color: hsl(192, 15%, 89.3%);
     background-color: hsl(var(--cd-color-4-h), var(--cd-color-4-s), calc(var(--cd-color-4-l)*0.95))
 }
+
+.button-cart-home{
+    border-radius: 0 !important;
+}
