@@ -27,6 +27,10 @@ public class RateServiceImpl implements RateService {
 
     @Override
     public Rate save(Rate rate) throws SQLException {
+        if (rate.getId()!=null){
+            rate.setStatus("Đã đọc");
+            return rateRepository.save(rate);
+        }
         return rateRepository.save(rate);
     }
 

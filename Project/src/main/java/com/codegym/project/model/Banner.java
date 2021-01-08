@@ -27,6 +27,7 @@ public class Banner {
     private Long id;
 
     @NotNull
+    @Column(name="image",columnDefinition="TEXT")
     private String image;
 
     @NotNull
