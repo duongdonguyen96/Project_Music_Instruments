@@ -15,6 +15,9 @@ banners.intTable = function () {
                     data: "id", name: "Id", title:"Id", orderable: true,
                 },
                 {
+                    data: "title", name: "Title", title: "Title", orderable: true,
+                },
+                {
                     data: "image", name: "Image", title: "Image", orderable: true, "render": function (data){
                         var str = "<img style='width: 106px; height: 130px; border: 1px solid red' src="+data+">";
                         return str;
@@ -49,6 +52,9 @@ banners.intTable = function () {
             columns:[
                 {
                     data: "id", name: "Id", title:"Id", orderable: true,
+                },
+                {
+                    data: "title", name: "Title", title: "Title", orderable: true,
                 },
                 {
                     data: "image", name: "Image", title: "Image", orderable: true, "render": function (data){
@@ -86,6 +92,7 @@ banners.save = function (){
     if ($("#formAddEdit").valid()){
         if ($('#id').val() == 0){
             var bannerObj = {};
+            bannerObj.title = $('#title').val();
             bannerObj.image = $('#base64').val();
 
             $.ajax({
@@ -111,6 +118,7 @@ banners.save = function (){
         }else {
             var bannerObj = {};
             bannerObj.id = $('#id').val();
+            bannerObj.title = $('#title').val();
             bannerObj.image = $('#base64').val();
             bannerObj.dateAdd = $("#dateAdd").val();
 
@@ -126,7 +134,7 @@ banners.save = function (){
                         $('#banners-datatables').DataTable().ajax.reload();
                         toastr.info('Banner has been updated successfully', 'INFORMATION:')
                     }else {
-                        data.stringLIstMessage.map(e => toastr.error(e));
+                        data.stringListMessage.map(e => toastr.error(e));
                     }
                 }
             });
@@ -177,6 +185,7 @@ banners.get = function (id) {
             $('#formAddEdit')[0].reset();
             $('#modalTitle').html("Edit banner");
             $('#id').val(data.id);
+            $('#title').val(data.title);
             $('#base64').val(data.image);
             $('#imageHtml').html(
                 `<img id='output' height="150px" width="100px" src="${data.image}">
@@ -191,10 +200,12 @@ banners.get = function (id) {
 banners.resetForm = function (){
     $('#formAddEdit')[0].reset();
     $('#id').val(0);
+    $('#title').val("");
     $('#image').val("");
 }
 
 var validator = $('#formAddEdit').validate();
+
 
 $(document).ready(function () {
     banners.intTable();
