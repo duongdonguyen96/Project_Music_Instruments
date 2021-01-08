@@ -28,7 +28,7 @@ public class ApiTypeProductController {
     TypeProductService typeProductService;
 
     @GetMapping(value = "/typeProducts/")
-    public ResponseEntity<List<TypeProduct>> listProducts() {
+    public ResponseEntity<List<TypeProduct>> listTypeProducts() {
         List<TypeProduct> typeProductList = typeProductService.findAll();
         return new ResponseEntity<List<TypeProduct>>(typeProductList, HttpStatus.OK);
     }
@@ -59,7 +59,7 @@ public class ApiTypeProductController {
     //    validateBackEnd
     @PutMapping(value = "/typeProduct/")
     @ResponseBody
-    public ResponseEntity<Object> getBlogById(@Validated TypeProduct typeProduct, BindingResult bindingResult, Errors errors) {
+    public ResponseEntity<Object> getTypeProductById(@Validated TypeProduct typeProduct, BindingResult bindingResult, Errors errors) {
         return validate(typeProduct,bindingResult,errors);
     }
 
@@ -113,13 +113,13 @@ public class ApiTypeProductController {
 
 // type deleted
     @GetMapping(value = "/typeProductsDeleted/")
-    public ResponseEntity<List<TypeProduct>> listProductsDeleted() {
+    public ResponseEntity<List<TypeProduct>> listTypeProductsDeleted() {
         List<TypeProduct> typeProductListDeleted = typeProductService.findAllTypeProductsDeleted();
         return new ResponseEntity<List<TypeProduct>>(typeProductListDeleted, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/typeProductDeleted/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean deleteProduct(@PathVariable("id") Long id) {
+    public boolean deleteTypeProduct(@PathVariable("id") Long id) {
         boolean isVendors=false;
         try {
             isVendors= typeProductService.deleteTypeProduct(id);
@@ -130,7 +130,7 @@ public class ApiTypeProductController {
     }
 
     @RequestMapping(value = "/typeProductUndo/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean undoVendor(@PathVariable("id") Long id) {
+    public boolean undoTypeProduct(@PathVariable("id") Long id) {
         boolean isVendors=false;
         try {
             isVendors= typeProductService.undoTypeProduct(id);
@@ -150,4 +150,12 @@ public class ApiTypeProductController {
             return new ResponseEntity<TypeProduct>(HttpStatus.NO_CONTENT);
         }
     }
+
+//    HomePage
+    @GetMapping(value = "/listTypeProductsById/")
+    public ResponseEntity<List<TypeProduct>> listTypeProductsHome() {
+        List<TypeProduct> typeProductList = typeProductService.listTypeProductsById();
+        return new ResponseEntity<List<TypeProduct>>(typeProductList, HttpStatus.OK);
+    }
+
 }

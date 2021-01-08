@@ -31,6 +31,12 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             nativeQuery = true)
     List<Product> findAllProductsByName(String name);
 
+//Hỗ trợ cho type_product
+    @Query(
+            value = "select DISTINCT type_product_id from products where delete=false",
+            nativeQuery = true)
+    List<Long> listIdTypeProduct();
+
 }
 
 

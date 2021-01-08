@@ -20,6 +20,8 @@ public class TypeProductServiceImpl implements TypeProductService {
     TypeProductRepository typeProductRepository;
     @Autowired
     ProductRepository productRepository;
+
+//    Home
     @Override
     public List<TypeProduct> findAll() {
         return typeProductRepository.findAll();
@@ -59,7 +61,7 @@ public class TypeProductServiceImpl implements TypeProductService {
         return true;
     }
 
-//    type deleted
+//    Type deleted Admin
     @Override
     public List<TypeProduct> findAllTypeProductsDeleted() {
         return typeProductRepository.findAllTypeProductsDeleted();
@@ -92,9 +94,20 @@ public class TypeProductServiceImpl implements TypeProductService {
         }
         return false;
     }
+
 //validate
     @Override
     public List<TypeProduct> findAllTypeProductsByName(String name) {
         return typeProductRepository.findAllTypeProductsByName(name);
     }
+
+
+//HomePage
+    @Override
+    public List<TypeProduct> listTypeProductsById() {
+        List<Long> listId=productRepository.listIdTypeProduct();
+        List<TypeProduct> list = typeProductRepository.findAllById(listId);
+        return list;
+    }
+
 }
