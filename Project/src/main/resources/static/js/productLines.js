@@ -91,10 +91,6 @@ productLines.addNew = function () {
     $('.hideHtml').hide();
     $('#save').show();
     $('.form-control').removeAttr('disabled');
-    $('#imageHtml').html(
-        `<img id='output' height="150px" width="100px">
-               <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" data-rule-required=true ><br>`
-    );
     $( "#formAddEdit" ).validate().resetForm();
     productLines.resetForm();
     $('#modalAddEdit').modal('show');
@@ -106,7 +102,6 @@ productLines.save = function () {
             var typeObj = {};
             typeObj.name = $('#name').val().trim();
             typeObj.description = $('#description').val();
-            typeObj.image = $('#base64').val();
             //
             $.ajax({
                 url: "http://localhost:8080/api/typeProduct/",
@@ -134,7 +129,6 @@ productLines.save = function () {
             typeObj.id = $('#id').val();
             typeObj.dateAdd = $('#dateAdd').val();
             typeObj.description = $('#description').val();
-            typeObj.image = $('#base64').val();
             //
             $.ajax({
                 url: "http://localhost:8080/api/typeProduct/",
@@ -200,20 +194,11 @@ productLines.get = function (title,id) {
                 $('#modalTitle').html("Edit type");
                 $('.hideHtml').hide();
                 $('#save').show();
-                $('#base64').val(data.image)
-                $('#imageHtml').html(
-                    `<img id='output' height="150px" width="100px" src="${data.image}">
-                            <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" ><br>`
-                );
                 $('.form-control').removeAttr('disabled');
             }
             if (title==='View'){
                 $('#modalTitle').html("View type");
                 $('.hideHtml').show();
-                $('#imageHtml').html(
-                    `<img class="form-control" src="${data.image}"
-                           name="image" id="image" style="width: 600px;height: 600px">`
-                );
                 $('#save').hide();
                 $('.form-control').attr('disabled','disabled');
             }

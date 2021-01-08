@@ -172,10 +172,6 @@ productLines.getTypeProductDeleted = function (id) {
             $('#dateUpdate').val(data.dateUpdate);
             $('#dateDelete').val(data.dateDelete);
             $('#name').val(data.name);
-            $('#imageHtml').html(
-                `<img class="form-control" src="${data.image}"
-                           name="image" id="image" style="width: 600px;height: 600px">`
-            );
             $('#description').val( data.description );
             $('.form-control').attr('disabled','disabled');
             $('#modalAddEdit').modal('show');
