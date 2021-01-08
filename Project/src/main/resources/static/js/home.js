@@ -18,10 +18,9 @@ banners.bannerList = function () {
                         );
                         $('#slides').append(
                             `<div class="item active">
-                            <img src="${v.image}" alt="New York" width="100%" height="400">
+                            <img src="${v.image}" alt="New York" width="100%" height="100%">
                             <div class="carousel-caption">
-                                <h3>New York</h3>
-                                <p>The atmosphere in New York is lorem ipsum.</p>
+                                <h3>${v.title}</h3>
                             </div>
                          </div>`
                         );
@@ -31,10 +30,9 @@ banners.bannerList = function () {
                         );
                         $('#slides').append(
                             `<div class="item">
-                            <img src="${v.image}" alt="New York" width="100%" height="400">
+                            <img src="${v.image}" alt="New York" width="100%" height="100%">
                             <div class="carousel-caption">
-                                <h3>New York</h3>
-                                <p>The atmosphere in New York is lorem ipsum.</p>
+                                <h3>${v.title}</h3>
                             </div>
                          </div>`
                         );
