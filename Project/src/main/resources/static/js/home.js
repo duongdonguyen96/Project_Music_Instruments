@@ -25,7 +25,6 @@ banners.bannerList = function () {
                             </div>
                          </div>`
                         );
-
                     }else {
                         $('#index').append(
                             `<li data-target="#myCarousel" data-slide-to="${i}"></li>`
@@ -50,6 +49,7 @@ banners.bannerList = function () {
         }
     });
 };
+
 $(document).ready(function () {
     banners.bannerList();
 });
