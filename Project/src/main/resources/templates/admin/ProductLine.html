@@ -63,6 +63,15 @@
                                 </textarea>
                         </div>
                     </div>
+                    <div class="row form-group" >
+                        <div class="col-3">
+                            <label>Image</label>
+                        </div>
+                        <div class="col-9" id="imageHtml">
+                        </div>
+                    </div>
+                    <div th:replace="layout/layout::base64">
+                    </div>
                 </form>
             </div>
 
@@ -245,4 +254,5 @@
 </body>
 <script src="js/productLines.js"></script>
 <script src="js/notification.js"></script>
+<script src="js/uploadFile.js"></script>
 </html>

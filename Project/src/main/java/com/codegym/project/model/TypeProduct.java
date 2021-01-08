@@ -36,6 +36,10 @@ public class TypeProduct {
     @Pattern(regexp = "^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s\\W|_]+$",message = "Please enter another name!")
     private String name;
 
+    @NotNull
+    @Column(name="image",columnDefinition="TEXT")
+    private String image;
+
     @NotBlank
     @Size(min = 100,max = 500,message = "Please enter at least 100 characters!")
     private String description;
