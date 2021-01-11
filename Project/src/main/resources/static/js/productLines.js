@@ -26,7 +26,13 @@ productLines.intTable = function () {
                 },
                 {
                     data: "description", name: "Description", title: "Description", sortable: false,
-                    orderable: false,
+                    orderable: false,"render": function (data) {
+                        var str=data;
+                        if (str.length>20){
+                            str=data.substring(0,20)+'...'
+                        }
+                        return str;
+                    }
                 },
                 {
                     data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
@@ -71,7 +77,13 @@ productLines.intTable = function () {
                 },
                 {
                     data: "description", name: "Description", title: "Description", sortable: false,
-                    orderable: false,
+                    orderable: false,"render": function (data) {
+                        var str=data;
+                        if (str.length>20){
+                            str=data.substring(0,20)+'...'
+                        }
+                        return str;
+                    }
                 },
                 {
                     data: "dateAdd", name: "Date Add", title: "Date Add", sortable: true,
