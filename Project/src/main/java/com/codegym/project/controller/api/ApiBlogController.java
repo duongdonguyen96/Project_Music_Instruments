@@ -120,4 +120,13 @@ public class ApiBlogController {
         }
         return isBlog;
     }
+
+//    Home
+    @GetMapping(value = "/newFourBlogs/")
+    public ResponseEntity<List<Blog>> listNewFourBlogs(){
+        long sl=4;
+        List<Blog> blogList = blogService.listFourNewBlogs(sl);
+        return new ResponseEntity<List<Blog>>(blogList, HttpStatus.OK);
+    }
+
 }

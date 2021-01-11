@@ -9,4 +9,6 @@ public interface BlogService extends BaseService<Blog> {
     Blog findBlogDeleted(long id);
     boolean deleteBlog(long id);
     boolean undoBlog(long id);
+
+    List<Blog> listFourNewBlogs(Long sl);
 }

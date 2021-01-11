@@ -9,13 +9,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<title>Trang Chủ</title>
-	<link href="fe/css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link th:href="@{../fe/css/bootstrap.css}" rel='stylesheet' type='text/css' />
 	<!-- jQuery (necessary JavaScript plugins) -->
-	<script type='text/javascript' src="fe/js/jquery-1.11.1.min.js"></script>
+	<script type='text/javascript' th:src="@{../fe/js/jquery-1.11.1.min.js}"></script>
 	<!-- Custom Theme files -->
-	<link href="fe/css/style.css" rel='stylesheet' type='text/css' />
+	<link th:href="@{../fe/css/style.css}" rel='stylesheet' type='text/css' />
 	<script>document.getElementsByTagName("html")[0].className += " js";</script>
-	<link rel="stylesheet" href="fe/css/styleCart.css" type="text/css">
+	<link rel="stylesheet" th:href="@{../fe/css/styleCart.css}" type="text/css">
 	<!-- Custom Theme files -->
 	<!--//theme-style-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,10 +31,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<!-- start menu -->
 	<link href="fe/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-	<script type="text/javascript" src="fe/js/megamenu.js"></script>
+	<script type="text/javascript" th:src="@{../fe/js/megamenu.js}"></script>
 	<script>$(document).ready(function () { $(".megamenu").megamenu(); });</script>
-	<script src="fe/js/menu_jquery.js"></script>
-	<script src="fe/js/simpleCart.min.js"> </script>
+	<script th:src="@{../fe/js/menu_jquery.js}"></script>
 </head>
 
 <body>
@@ -57,14 +56,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
-
+<!--Starts banner-->
+	<div class="container">
 	<div class="container-arriv" id="banner">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators" id="index">
+
 			</ol>
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox" id="slides">
+
 			</div>
 
 			<!-- Left and right controls -->
@@ -81,190 +83,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="clearfix"> </div>
 	</div>
+	</div>
 
+<!--	Starts list type-->
 	<div class="arriv">
-		<div class="container">
+		<div class="container" id="type">
 			<div class="arriv-top">
-				<div class="col-md-4 arriv-left2">
-					<img src="fe/images/piano-363x200.png" class="img-responsive-category img-responsive" alt="">
-					<div class="arriv-info3">
-						<div class="crt-btn">
-							<a href="details.html">Piano</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 arriv-middle">
-					<img src="fe/images/banner-vietthuongvn-363x200-organ-keyboard.png" class="img-responsive-category img-responsive" alt="">
-					<div class="arriv-info3">
-						<div class="crt-btn">
-							<a href="details.html">Keyboard</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 arriv-right2">
-					<img src="fe/images/banner-vietthuongvn-363x200-guitar-1.png" class="img-responsive-category img-responsive" alt="">
-					<div class="arriv-info3">
-						<div class="crt-btn">
-							<a href="details.html">Guitar</a>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="arriv-las">
-				<div class="col-md-4 arriv-left2">
-					<img src="fe/images/banner-vietthuongvn-363x200-trong-1.png" class="img-responsive-category img-responsive" alt="">
-					<div class="arriv-info3">
-						<div class="crt-btn">
-							<a href="details.html">Drum</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 arriv-middle">
-					<img src="fe/images/banner-amply.png" class="img-responsive-category img-responsive" alt="">
-					<div class="arriv-info3">
-						<div class="crt-btn">
-							<a href="details.html">Sound</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 arriv-right2">
-					<img src="fe/images/arriv-accessories.png" class="img-responsive-category img-responsive" alt="">
-					<div class="arriv-info3">
-						<h3>KEYBOARD</h3>
-						<div class="crt-btn">
-							<a href="details.html">Accessories</a>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
+
 			</div>
 		</div>
 	</div>
+
+<!-- Starts new 4 products-->
 	<div class="special special-offer">
 		<div class="container">
-			<h3>Special Offers</h3>
+			<h3>New Products</h3>
 			<div class="specia-top">
-				<ul class="grid_2">
-					<li>
-						<a href="details.html"><img src="fe/images/k300_2.jpg" class="img-responsive" alt=""></a>
-						<div class="special-info grid_1 simpleCart_shelfItem">
-							<h5>Kawai K-300</h5>
-							<div class="item_add"><span class="item_price">
-									<h6 style="margin: 10px 0">ONLY $7760.00</h6>
-								</span></div>
-							<div class="item_add">
-								<span class="item_price">
-									<a href="#0" class="cd-add-to-cart js-cd-add-to-cart" data-price="25.99">add to cart
-									</a>
-								</span>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="details.html"><img src="fe/images/k300_2.jpg" class="img-responsive" alt=""></a>
-						<div class="special-info grid_1 simpleCart_shelfItem">
-							<h5>Kawai K-300</h5>
-							<div class="item_add"><span class="item_price">
-									<h6  style="margin: 10px 0">ONLY $3814.00</h6>
-								</span></div>
-							<div class="item_add">
-								<span class="item_price">
-									<a href="#0" class="cd-add-to-cart js-cd-add-to-cart" data-price="25.99">add to cart
-									</a>
-								</span>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="details.html"><img src="fe/images/k300_2.jpg" class="img-responsive" alt=""></a>
-						<div class="special-info grid_1 simpleCart_shelfItem">
-							<h5>Kawai K-300</h5>
-							<div class="item_add"><span class="item_price">
-									<h6  style="margin: 10px 0">ONLY $14782.00</h6>
-								</span></div>
-							<div class="item_add">
-								<span class="item_price">
-									<a href="#0" class="cd-add-to-cart js-cd-add-to-cart" data-price="25.99">add to cart
-									</a>
-								</span>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="details.html"><img src="fe/images/k300_2.jpg" class="img-responsive" alt=""></a>
-						<div class="special-info grid_1 simpleCart_shelfItem">
-							<h5>Kawai K-300</h5>
-							<div class="item_add"><span class="item_price">
-									<h6  style="margin: 10px 0">ONLY $10404.00</h6>
-								</span></div>
-							<div class="item_add">
-								<span class="item_price">
-									<a href="#0" class="cd-add-to-cart js-cd-add-to-cart" data-price="25.99">add to cart
-									</a>
-								</span>
-							</div>
-						</div>
-					</li>
-					<div class="clearfix"> </div>
+				<ul class="grid_2" id="new4products">
 				</ul>
 			</div>
 		</div>
 	</div>
+
+<!--	Starts new 4 blogs-->
 	<div class="special">
 		<div class="container">
-			<h3>Blog</h3>
+			<h3>New Blogs</h3>
 			<div class="specia-top">
-				<ul class="grid_2">
-					<li>
-						<a href="details.html"><img src="fe/images/blog1.png" class="img-responsive" alt=""></a>
-						<div class="special-info grid_1 simpleCart_shelfItem">
-							<h5 class="blog-title">Ứng dụng tốt nhất để học piano cho mọi đối tượng người chơi</h5>
-							<div class="item_add blog-btn-read">
-								<span class="item_price">
-									<a href="#0" class="cd-add-to-cart js-cd-add-to-cart button-cart-home" data-price="25.99">Read more
-									</a>
-								</span>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="details.html"><img src="fe/images/blog1.png" class="img-responsive" alt=""></a>
-						<div class="special-info grid_1 simpleCart_shelfItem">
-							<h5 class="blog-title">Ứng dụng tốt nhất để học piano cho mọi đối tượng người chơi</h5>
-							<div class="item_add blog-btn-read">
-								<span class="item_price">
-									<a href="#0" class="cd-add-to-cart js-cd-add-to-cart button-cart-home" data-price="25.99">Read more
-									</a>
-								</span>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="details.html"><img src="fe/images/blog1.png" class="img-responsive" alt=""></a>
-						<div class="special-info grid_1 simpleCart_shelfItem">
-							<h5 class="blog-title">Ứng dụng tốt nhất để học piano cho mọi đối tượng người chơi</h5>
-							<div class="item_add blog-btn-read">
-								<span class="item_price">
-									<a href="#0" class="cd-add-to-cart js-cd-add-to-cart button-cart-home" data-price="25.99">Read more
-									</a>
-								</span>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="details.html"><img src="fe/images/blog1.png" class="img-responsive" alt=""></a>
-						<div class="special-info grid_1 simpleCart_shelfItem">
-							<h5 class="blog-title">Ứng dụng tốt nhất để học piano cho mọi đối tượng người chơi</h5>
-							<div class="item_add blog-btn-read">
-								<span class="item_price">
-									<a href="#0" class="cd-add-to-cart js-cd-add-to-cart button-cart-home" data-price="25.99">Read more
-									</a>
-								</span>
-							</div>
-						</div>
-					</li>
-					<div class="clearfix"> </div>
+				<ul class="grid_2" id="new4blogs">
 				</ul>
 			</div>
 		</div>
@@ -272,6 +118,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<div th:replace="layout/homepagelayout::footer"></div>
 
+<!--Add to card-->
 	<div class="cd-cart cd-cart--empty js-cd-cart">
 		<a href="#0" class="cd-cart__trigger">
 
@@ -311,10 +158,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</footer>
 			</div>
 		</div> <!-- .cd-cart__content -->
-	</div> <!-- cd-cart -->
-	<script src="fe/js/util.js"></script>
-	<script src="fe/js/main.js"></script>
+	</div>
 </body>
-<script src="js/home.js"></script>
-<script src="js/menu.js"></script>
+<script th:src="@{../js/home.js}"></script>
+<script th:src="@{../fe/js/util.js}"></script>
+<script th:src="@{../fe/js/main.js}"></script>
+<script th:src="@{../js/menu.js}"></script>
 </html>

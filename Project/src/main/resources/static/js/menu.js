@@ -6,10 +6,8 @@ productLines.listType = function () {
         dataType: "json",
         success: function (data) {
             var size=data.unshift();
-            var index=Math.floor(size/6);
-            console.log(size);
-            console.log(index);
-            for (let i=0;i<=index;i++){
+            var index1=Math.floor(size/6);
+            for (let i=0;i<=index1;i++){
                 let str="";
                 let j=i+5*i;
                 let index2=((i+1)*6-1);
@@ -21,7 +19,7 @@ productLines.listType = function () {
                                 <div class="h_nav">
                                     <ul>
                                         <li>
-                                        <a href="/categories"><h4>${data[j].name}</h4></a>
+                                        <a href="/categories/${data[j].id}"><h4>${data[j].name}</h4></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -33,45 +31,66 @@ productLines.listType = function () {
                     </div>`
                 );
             }
+            if ($('#type').empty()){
+                var size=data.unshift();
+                var index3=Math.floor(size/3);
+                for (let k=0;k<=index3;k++){
+                    let substr="";
+                    let l=k+2*k;
+                    let index4=((k+1)*3-1);
+                    if (index4>=size){
+                        index4=size-1;
+                    }
+                    for (l;l<=index4;l++){
+                        if(l%3===0) {
+                            substr = substr + `<div class="col-md-4 arriv-left2">
+                                    <img src="${data[l].image}" class="img-responsive-category img-responsive" alt="">
+                                    <div class="arriv-info3">
+                                        <div class="crt-btn">
+                                            <a href="/categories/${data[l].id}">${data[l].name}</a>
+                                        </div>
+                                    </div>
+                                </div>`
+                        }
+                        if (l%3===1) {
+                            substr = substr + `<div class="col-md-4 arriv-middle">
+                                    <img src="${data[l].image}" class="img-responsive-category img-responsive" alt="">
+                                    <div class="arriv-info3">
+                                        <div class="crt-btn">
+                                            <a href="/categories/${data[l].id}">${data[l].name}</a>
+                                        </div>
+                                    </div>
+                                </div>`
+                        }
+                        if (l%3===2){
+                            substr=substr+`<div class="col-md-4 arriv-right2">
+                                    <img src="${data[l].image}" class="img-responsive-category img-responsive" alt="">
+                                    <div class="arriv-info3">
+                                        <div class="crt-btn">
+                                            <a href="/categories/${data[l].id}">${data[l].name}</a>
+                                        </div>
+                                    </div>
+                                </div>`
+                        }
+                    }
+                    $('#type').append(
+                        `<div class="arriv-top">
+                        ${substr}
+                        <div class="clearfix"> </div>
+                    </div>`
+                    );
+                }
+            }
+            if ($('#allType').empty()){
+                $.each(data, function (i, v) {
+                    $('#allType').append(
+                        `<li><a href="/categories/${v.id}">${v.name}</a></li>`
+                    );
+                });
+            }
 
         }
     });
-}
-users.save = function () {
-    if ($("#formAddEdit").valid()) {
-        if ($('#id').val() == 0) {
-            var user = {};
-            user.userName = $('#userName').val();
-            user.password = $('#password').val();
-            user.fullName = $('#fullName').val();
-            user.address = $('#address').val();
-            user.phone = $('#phone').val();
-            user.email = $('#email').val();
-            user.gender = $('#gender').val();
-            user.image = $('#image').val();
-            user.dateOfBirth = $('#dateOfBirth').val();
-            $.ajax({
-                url: "http://localhost:8080/api/users/",
-                method: "POST", //"POST"
-                dataType: 'json',
-                contentType: "application/json",
-                data: JSON.stringify(user),
-                done: function () {
-                    $('#modalAddEdit').modal('hide');
-                    $("#users-dataTable").DataTable().ajax.reload();
-                },
-                success: function (data) {
-                    if (data.code === 2) {
-                        $('#modalAddEdit').modal('hide');
-                        $("#users-dataTable").DataTable().ajax.reload();
-                        toastr.info('User has been created successfully', 'INFORMATION:')
-                    } else {
-                        data.stringListMessage.map(e => toastr.error(e));
-                    }
-                }
-            });
-        }
-    }
 }
 
 $(document).ready(function () {
