@@ -1,14 +1,20 @@
 package com.codegym.project.controller;
 
 import com.codegym.project.model.Blog;
+import com.codegym.project.model.Product;
+import com.codegym.project.model.TypeProduct;
 import com.codegym.project.service.BlogService;
+import com.codegym.project.service.ProductService;
+import com.codegym.project.service.TypeProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
 @Controller
@@ -16,6 +22,11 @@ import java.sql.SQLException;
 public class AllController {
     @Autowired
     public BlogService blogService;
+    @Autowired
+    public TypeProductService typeProductService;
+    @Autowired
+    public ProductService productService;
+
 
     @GetMapping(value = "/login")
     public ModelAndView login(){
@@ -150,25 +161,33 @@ public class AllController {
         ModelAndView modelAndView = new ModelAndView("frontEnd/contact");
         return modelAndView;
     }
+
     @GetMapping(value = "/registers")
     public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView("frontEnd/register");
         return modelAndView;
     }
+
     @GetMapping(value = "/checkouts")
     public ModelAndView checkout(){
         ModelAndView modelAndView = new ModelAndView("frontEnd/checkout");
         return modelAndView;
     }
-    @GetMapping(value = "/categories")
-    public ModelAndView category(){
-        ModelAndView modelAndView = new ModelAndView("frontEnd/category");
+
+    @GetMapping(value = "/categories/{id}")
+    public ModelAndView category(@PathVariable Long id) throws SQLException {
+        ModelAndView modelAndView=new ModelAndView("frontEnd/category");
+        TypeProduct typeProduct=typeProductService.findById(id);
+        modelAndView.addObject("typeProduct",typeProduct);
         return modelAndView;
     }
 
-    @GetMapping(value = "/details")
-    public ModelAndView detail(){
+    @GetMapping(value = "/details/{id}")
+    public ModelAndView detail(@PathVariable Long id) throws SQLException {
+        Product product=productService.findById(id);
         ModelAndView modelAndView = new ModelAndView("frontEnd/details");
+        modelAndView.addObject("product",product);
         return modelAndView;
     }
+
 }

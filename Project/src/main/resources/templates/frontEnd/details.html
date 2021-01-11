@@ -9,11 +9,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<title>Trang Chủ</title>
-	<link href="fe/css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link th:href="@{../fe/css/bootstrap.css}" rel='stylesheet' type='text/css' />
 	<!-- jQuery (necessary JavaScript plugins) -->
-	<script type='text/javascript' src="fe/js/jquery-1.11.1.min.js"></script>
+	<script type='text/javascript' th:src="@{../fe/js/jquery-1.11.1.min.js}"></script>
 	<!-- Custom Theme files -->
-	<link href="fe/css/style.css" rel='stylesheet' type='text/css' />
+	<link th:href="@{../fe/css/style.css}" rel='stylesheet' type='text/css' />
 	<!-- Custom Theme files -->
 	<!--//theme-style-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,12 +24,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
 	<!-- start menu -->
-	<link href="fe/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-	<link rel="stylesheet" href="fe/css/etalage.css">
-	<script type="text/javascript" src="fe/js/megamenu.js"></script>
+	<link th:href="@{../fe/css/megamenu.css}" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" th:href="@{../fe/css/etalage.css}">
+	<script type="text/javascript" th:src="@{../fe/js/megamenu.js}"></script>
 	<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-	<script src="fe/js/jquery.etalage.min.js"></script>
-	<script src="fe/js/menu_jquery.js"></script>
+	<script th:src="@{../fe/js/jquery.etalage.min.js}"></script>
+	<script th:src="@{../fe/js/menu_jquery.js}"></script>
 	<script>
 		jQuery(document).ready(function($){
 
@@ -78,59 +78,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="grid images_3_of_2">
 						<ul id="etalage">
 							<li>
-								<a href="optionallink.html">
-									<img class="etalage_thumb_image img-responsive" src="images/d1.jpg"  />
-									<img class="etalage_source_image img-responsive" src="images/d1.jpg"  title="" />
+								<a th:href="${product.name}">
+									<img class="etalage_thumb_image img-responsive" th:src="${product.image}"  />
+									<img class="etalage_source_image img-responsive" th:src="${product.image}"  title="" />
 								</a>
-							</li>
-							<li>class="" />
-								<img class="etalage_source_image img-responsive" src="images/d2.jpg" title="" />
-							</li>
-							<li>
-								<img class="etalage_thumb_image img-responsive" src="images/d3.jpg"   />
-								<img class="etalage_source_image img-responsive" src="images/d3.jpg"  />
-							</li>
-						    <li>
-								<img class="etalage_thumb_image img-responsive" src="images/d4.jpg"   />
-								<img class="etalage_source_image img-responsive" src="images/d4.jpg"  />
 							</li>
 						</ul>
 						 <div class="clearfix"></div>		
 				  </div>
 				  <div class="desc1 span_3_of_2">
-					<h3>soluta nobis eleifend option</h3>
-					<span class="brand">Brand: <a href="#">Sed do eiusmod </a></span>
+					<h3 th:text="${product.name}"></h3>
+					<span class="brand">Brand: <a href="#" th:text="${product.getTypeProduct().getName()}"></a></span>
 					<br>
-					<span class="code">Product Code: Product 11</span>
-					<p>when an unknown printer took a galley of type and scrambled it to make</p>
+					<span class="code">Product Code: <span th:text="${product.id}"></span></span>
+					<small>when an unknown printer took a galley of type and scrambled it to make</small>
 						<div class="price">
 							<span class="text">Price:</span>
-							<span class="price-new">$110.00</span><span class="price-old">$100.00</span> 
-							<span class="price-tax">Ex Tax: $90.00</span><br>
-							<span class="points"><small>Price in reward points: 400</small></span><br>
+							<span class="price-new">$<text th:text="${product.price}"></text></span>
+<!--							<span class="price-old">$100.00</span>-->
+<!--							<span class="price-tax">Ex Tax: $90.00</span><br>-->
+<!--							<span class="points"><small>Price in reward points: 400</small></span><br>-->
 						</div>
 					<div class="det_nav1">
 						<h4>Select a size :</h4>
 							<div class=" sky-form col col-4">
 								<ul>
-									<li><label class="checkbox"><input type="checkbox" name="checkbox"><i></i>L</label></li>
-									<li><label class="checkbox"><input type="checkbox" name="checkbox"><i></i>S</label></li>
-									<li><label class="checkbox"><input type="checkbox" name="checkbox"><i></i>M</label></li>
-									<li><label class="checkbox"><input type="checkbox" name="checkbox"><i></i>XL</label></li>
+									<li><label class="checkbox"><input type="checkbox" name="checkbox" checked><i></i><span th:text="${product.size}"></span></label></li>
 								</ul>
 							</div>
 					</div>
 					<div class="btn_form">
 						<a href="checkout.html">buy</a>
 					</div>
-					<a href="#"><span>login to save in wishlist </span></a>
+					  <div sec:authorize="!isAuthenticated()">
+						  <a href="/login"><span>login to save in wishlist </span></a>
+					  </div>
+
 					
 			   	 </div>
           	    <div class="clearfix"></div>
           	   </div>
           	    <div class="single-bottom1">
 					<h6>Details</h6>
-					<p class="prod-desc">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option</p>
+					<p class="prod-desc" th:text="${product.description}"></p>
 				</div>
 				<div class="single-bottom2">
 					<h6>Related Products</h6>
@@ -174,38 +164,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	  <div class="w_sidebar">
 		<div class="w_nav1">
 			<h4>All</h4>
-			<ul>
-				<li><a href="category.html">women</a></li>
-				<li><a href="#">new arrivals</a></li>
-				<li><a href="#">trends</a></li>
-				<li><a href="#">boys</a></li>
-				<li><a href="#">girls</a></li>
-				<li><a href="#">sale</a></li>
-			</ul>	
 		</div>
 		<h3>filter by</h3>
 		<section  class="sky-form">
 					<h4>catogories</h4>
 						<div class="row1 scroll-pane">
-							<div class="col col-4">
-								<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>kurtas</label>
-							</div>
-							<div class="col col-4">
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>kutis</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>churidar kurta</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>salwar</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>printed sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>shree</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>biba</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>	
+							<div class="col col-4" id="allType">
 							</div>
 						</div>
 		</section>
@@ -281,5 +245,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <div th:replace="layout/homepagelayout::footer"></div>
 </body>
-<script src="js/menu.js"></script>
+<script th:src="@{../js/menu.js}"></script>
 </html>
