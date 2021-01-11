@@ -9,6 +9,7 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -22,14 +23,12 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    private Date orderDate;
+    @ManyToOne
+    private User user;
 
-    @NotNull
-    private Date orderShipping;
+    @OneToMany
+    private List<OrderDetail> orderDetailList;
 
-    @NotNull
-    private Long total;
     @Where(clause = "delete=false")
     private boolean delete = false;
 

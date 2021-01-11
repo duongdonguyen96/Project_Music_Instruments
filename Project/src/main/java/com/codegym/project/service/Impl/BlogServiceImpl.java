@@ -79,4 +79,9 @@ public class BlogServiceImpl implements BlogService {
         }
         return false;
     }
+
+    @Override
+    public List<Blog> listFourNewBlogs(Long sl) {
+        return blogRepository.listFourNewBlogs(sl);
+    }
 }

@@ -47,5 +47,27 @@ public class Blog {
     @Where(clause = "delete=false")
     private boolean delete=false;
 
+    public void setDateAdd(LocalDateTime dateAdd) {
+        this.dateAdd = dateAdd;
+    }
 
+    public void setDateUpdate(LocalDateTime dateUpdate) {
+        this.dateUpdate = dateUpdate;
+    }
+
+    public void setDateDelete(LocalDateTime dateDelete) {
+        this.dateDelete = dateDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDateTime getDateAdd() {
+        return dateAdd;
+    }
 }

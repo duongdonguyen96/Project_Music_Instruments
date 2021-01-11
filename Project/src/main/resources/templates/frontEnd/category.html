@@ -9,11 +9,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<title>Trang Chủ</title>
-	<link href="fe/css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link th:href="@{../fe/css/bootstrap.css}" rel='stylesheet' type='text/css' />
 	<!-- jQuery (necessary JavaScript plugins) -->
-	<script type='text/javascript' src="fe/js/jquery-1.11.1.min.js"></script>
+	<script type='text/javascript' th:src="@{../fe/js/jquery-1.11.1.min.js}"></script>
 	<!-- Custom Theme files -->
-	<link href="fe/css/style.css" rel='stylesheet' type='text/css' />
+	<link th:href="@{../fe/css/style.css}" rel='stylesheet' type='text/css' />
 	<!-- Custom Theme files -->
 	<!--//theme-style-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,17 +24,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
 	<!-- start menu -->
-	<link href="fe/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-	<script type="text/javascript" src="fe/js/megamenu.js"></script>
+	<link th:href="@{../fe/css/megamenu.css}" rel="stylesheet" type="text/css" media="all" />
+	<script type="text/javascript" th:src="@{../fe/js/megamenu.js}"></script>
 	<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-	<script src="fe/js/menu_jquery.js"></script>
-	<script src="fe/js/simpleCart.min.js"> </script>
+	<script th:src="@{../fe/js/menu_jquery.js}"></script>
+	<script th:src="@{../fe/js/simpleCart.min.js}"> </script>
 </head>
 <body>
 <!-- header_top -->
 <div th:replace="layout/homepagelayout::header"></div>
 <!-- header -->
-<div class="header_bg">v
+<div class="header_bg">
+	<div class="container">
 	<div class="container-header-top">
 		<div class="header">
 			<div class="head-t">
@@ -49,6 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div th:replace="layout/homepagelayout::menu"></div>
 		</div>
 	</div>
+	</div>
 </div>
 <!-- content -->
 <div class="container">
@@ -58,39 +60,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	  <div class="w_sidebar">
 		<div class="w_nav1">
 			<h4>All</h4>
-			<ul>
-				<li><a href="/categories">Guitar</a></li>
-				<li><a href="#">Piano</a></li>
-				<li><a href="#">Drum</a></li>
-				<li><a href="#">Violin</a></li>
-				<li><a href="#">Keyboard</a></li>
-				<li><a href="#">Accessories</a></li>
-				<li><a href="#">Sound</a></li>
-			</ul>
 		</div>
 		<h3>filter by</h3>
 		<section  class="sky-form">
 					<h4>catogories</h4>
 						<div class="row1 scroll-pane">
-							<div class="col col-4">
-								<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>kurtas</label>
-							</div>
-							<div class="col col-4">
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>kutis</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>churidar kurta</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>salwar</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>printed sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>shree</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>biba</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>	
+							<div class="col col-4" id="allType">
 							</div>
 						</div>
 		</section>
@@ -162,7 +137,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- start content -->
 	<div class="col-md-9 w_content">
 		<div class="women">
-			<a href="#"><h4>Enthecwear - <span>4449 itemms</span> </h4></a>
+			<a href="#"><h4><span th:text="${typeProduct.name}"></span> - <span>4449 itemms</span> </h4></a>
 			<ul class="w_nav">
 						<li>Sort : </li>
 		     			<li><a class="active" href="#">popular</a></li> |
@@ -352,5 +327,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <div th:replace="layout/homepagelayout::footer"></div>
 </body>
-<script src="js/menu.js"></script>
+<script th:src="@{../js/menu.js}"></script>
 </html>
