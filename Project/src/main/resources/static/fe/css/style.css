@@ -3618,7 +3618,10 @@ a.cpns {
 
 .blog-btn-read{
 	text-align: left;
-
+}
+.blog-title a{
+	text-decoration: none;
+	
 }
 
 

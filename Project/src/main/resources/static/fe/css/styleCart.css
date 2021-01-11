@@ -998,8 +998,8 @@ small, .text-sm {
 } */
 
 a, .link {
-    color: hsl(220, 90%, 56%);
-    color: var(--color-primary, #2a6df4);
+    /*color: hsl(220, 90%, 56%);*/
+    /*color: var(--color-primary, #2a6df4);*/
     text-decoration: underline
 }
 
