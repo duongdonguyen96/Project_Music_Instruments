@@ -113,6 +113,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					  <div sec:authorize="!isAuthenticated()">
 						  <a href="/login"><span>login to save in wishlist </span></a>
 					  </div>
+					  <div sec:authorize="isAuthenticated()" >
+						  <a href="/login" sec:authorize="hasRole('ADMIN')"><span>login to save in wishlist </span></a>
+					  </div>
 
 					
 			   	 </div>
