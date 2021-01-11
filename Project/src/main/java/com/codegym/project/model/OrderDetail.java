@@ -25,17 +25,13 @@ public class OrderDetail {
     @NotNull
     private Long quantity;
 
-    private String status="pending";
-
-    @NotNull
-    private Date dateAdd = new Date();
-
-    private Date dateUpdate;
-
-    private Date dateDelete;
+    @ManyToOne
+    private Product product;
 
     @NotNull
     private Long price;
+
     @Where(clause = "delete=false")
     private boolean delete = false;
+
 }

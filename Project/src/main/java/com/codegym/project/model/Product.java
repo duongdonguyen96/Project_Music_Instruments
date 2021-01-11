@@ -107,4 +107,44 @@ public class Product {
     public String getName() {
         return name;
     }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public Long getSize() {
+        return size;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public Long getWeight() {
+        return weight;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public LocalDateTime getDateAdd() {
+        return dateAdd;
+    }
+
+    public LocalDateTime getDateUpdate() {
+        return dateUpdate;
+    }
+
+    public LocalDateTime getDateDelete() {
+        return dateDelete;
+    }
+
+    public Long getAmount() {
+        return amount;
+    }
 }
