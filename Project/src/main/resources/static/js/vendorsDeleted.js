@@ -34,7 +34,10 @@ vendors.intTable = function () {
                 },
                 {
                     data: "email", name: "Email", title: "Email", sortable: true,
-                    orderable: true,
+                    orderable: true,"render": function (data) {
+                        var str = `<a href="mailto:${data}" title="Send mail">${data}</a>`;
+                        return str;
+                    }
                 },
                 {
                     data: "surrogate", name: "Surrogate", title: "Surrogate", sortable: true,
