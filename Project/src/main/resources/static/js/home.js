@@ -91,11 +91,15 @@ blogs.new4blogs = function () {
         success: function (data) {
             $('#new4blogs').empty();
             $.each(data, function (i, v) {
+                var  title=v.title
+                if (title.length>20) {
+                    title = v.title.substring(0, 20) + '...'
+                }
                 $('#new4blogs').append(
                     `<li>
                         <a href="details.html"><img src="fe/images/blog1.png" class="img-responsive" alt=""></a>
                         <div class="special-info grid_1 simpleCart_shelfItem">
-                            <h5 class="blog-title">${v.title}</h5>
+                            <h5 class="blog-title">${title}</h5>
                             <div class="item_add blog-btn-read">
                                 <span class="item_price">
                                 <a href="#0" class="cd-add-to-cart js-cd-add-to-cart button-cart-home" data-price="25.99">Read more

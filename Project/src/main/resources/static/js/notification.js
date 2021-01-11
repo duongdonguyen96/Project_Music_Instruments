@@ -11,7 +11,10 @@ rates.findStatus = function () {
                 $('#meg').html("");
                 $.each(data, function (i, v) {
                     if (i<=5){
-                        var  content=v.content.substring(0,20)+'...'
+                        var  content=v.content
+                        if (content.length>20){
+                            content=v.content.substring(0,20)+'...'
+                        }
                         $('#meg').append(
                             `<a href="/rates" class="notify-item">
                         <div class="notify-thumb"  id="meg">
