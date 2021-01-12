@@ -101,7 +101,6 @@ public class TypeProductServiceImpl implements TypeProductService {
         return typeProductRepository.findAllTypeProductsByName(name);
     }
 
-
 //HomePage
     @Override
     public List<TypeProduct> listTypeProductsById() {

@@ -148,13 +148,20 @@ public class ApiProductController {
             return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
         }
     }
-//Home
+
     @GetMapping(value = "/productsByIdType/{id}")
     public ResponseEntity<List<Product>> listProductsByIdType(@PathVariable Long id) {
         List<Product> productList =productService.findAllByTypeProductId(id);
         return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/productsByIdVendor/{id}")
+    public ResponseEntity<List<Product>> listProductsByIdVendor(@PathVariable Long id) {
+        List<Product> productList =productService.findAllByVendorId(id);
+        return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
+    }
+
+//Home
     @GetMapping(value = "/newFourProducts/")
     public ResponseEntity<List<Product>> listFourNewProducts() {
         List<Product> productList =productService.listFourNewProducts();

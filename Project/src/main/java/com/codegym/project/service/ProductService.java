@@ -14,5 +14,6 @@ public interface ProductService extends BaseService<Product> {
 
      List<Product> findAllProductsByName(String name);
      List<Product> findAllByTypeProductId(Long id);
+     List<Product> findAllByVendorId(Long id);
      List<Product> listFourNewProducts();
 }

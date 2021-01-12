@@ -151,6 +151,14 @@ public class AllController {
         ModelAndView modelAndView=new ModelAndView("admin/VendorIsDelete");
         return modelAndView;
     }
+
+    @GetMapping(value = "/charts")
+    public ModelAndView charts(){
+        ModelAndView modelAndView=new ModelAndView("admin/Chart");
+        return modelAndView;
+    }
+
+
 //    Home page
     @GetMapping(value = "/")
     public ModelAndView Home(){
