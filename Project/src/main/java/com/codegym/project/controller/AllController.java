@@ -27,13 +27,14 @@ public class AllController {
     @Autowired
     public ProductService productService;
 
-
+//Security
     @GetMapping(value = "/login")
     public ModelAndView login(){
         ModelAndView modelAndView=new ModelAndView("login/formLogin");
         return modelAndView;
     }
 
+//Admin
     @GetMapping(value = "/banners")
     public ModelAndView listBanners(){
         ModelAndView modelAndView=new ModelAndView("admin/Banner");
@@ -150,24 +151,27 @@ public class AllController {
         ModelAndView modelAndView=new ModelAndView("admin/VendorIsDelete");
         return modelAndView;
     }
+//    Home page
     @GetMapping(value = "/")
     public ModelAndView Home(){
         ModelAndView modelAndView=new ModelAndView("frontEnd/index");
         return modelAndView;
     }
 
+// Home page -rates
     @GetMapping(value = "/contacts")
     public ModelAndView contact() {
         ModelAndView modelAndView = new ModelAndView("frontEnd/contact");
         return modelAndView;
     }
-
+    // Home page -create users
     @GetMapping(value = "/registers")
     public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView("frontEnd/register");
         return modelAndView;
     }
 
+// Home page -products
     @GetMapping(value = "/checkouts")
     public ModelAndView checkout(){
         ModelAndView modelAndView = new ModelAndView("frontEnd/checkout");
@@ -190,4 +194,18 @@ public class AllController {
         return modelAndView;
     }
 
+//Home page-blogs
+    @GetMapping(value = "/news")
+    public ModelAndView blogs() {
+        ModelAndView modelAndView = new ModelAndView("frontEnd/blog");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/news/{id}")
+    public ModelAndView views(@PathVariable Long id) throws SQLException {
+        Blog blog=blogService.findById(id);
+        ModelAndView modelAndView = new ModelAndView("frontEnd/views");
+        modelAndView.addObject("blog",blog);
+        return modelAndView;
+    }
 }

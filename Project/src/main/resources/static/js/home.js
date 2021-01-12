@@ -89,27 +89,78 @@ blogs.new4blogs = function () {
         method: "GET",
         dataType: "json",
         success: function (data) {
-            $('#new4blogs').empty();
-            $.each(data, function (i, v) {
-                var  title=v.title
-                if (title.length>20) {
-                    title = v.title.substring(0, 20) + '...'
-                }
-                $('#new4blogs').append(
-                    `<li>
-                        <a href="details.html"><img src="fe/images/blog1.png" class="img-responsive" alt=""></a>
+            if ($('#new4blogs').empty()){
+                $.each(data, function (i, v) {
+                    var  title=v.title
+                    if (title.length>20) {
+                        title = v.title.substring(0, 20) + '...'
+                    }
+                    $('#new4blogs').append(
+                        `<li>
+                        <a href="details.html"><img src="${v.image}" class="img-responsive" alt=""></a>
                         <div class="special-info grid_1 simpleCart_shelfItem">
                             <h5 class="blog-title">${title}</h5>
                             <div class="item_add blog-btn-read">
                                 <span class="item_price">
-                                <a href="#0" class="cd-add-to-cart js-cd-add-to-cart button-cart-home" data-price="25.99">Read more
+                                <a href="/news/${v.id}" class="cd-add-to-cart js-cd-add-to-cart button-cart-home" data-price="25.99">Read more
                                 </a>
                                 </span>
                             </div>
                         </div>
                     </li>`
-                );
-            });
+                    );
+                });
+            }
+        }
+    })
+}
+//Page Blogs
+blogs.new8blogs = function () {
+    $.ajax({
+        url: 'http://localhost:8080/api/newEightBlogs/',
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            if ($('#new8blogs').empty()){
+                var size=data.unshift();
+                var index1=Math.floor(size/4);
+                for (let i=0;i<=index1;i++){
+                    let str="";
+                    let j=i+3*i;
+                    let index2=((i+1)*4-1);
+                    if (index2>=size){
+                        index2=size-1;
+                    }
+                    for (j;j<=index2;j++){
+                        var  content=data[j].title
+                        if (content.length>20) {
+                            content = content.substring(0, 20) + '...'
+                        }
+                        str=str+
+                            `<li>
+                            <a href="details.html"><img src="${data[j].image}" class="img-responsive" alt=""></a>
+                            <div class="special-info grid_1 simpleCart_shelfItem">
+                                <h5 class="blog-title">${content}</h5>
+                                <div class="item_add blog-btn-read">
+                                    <span class="item_price">
+                                        <a href="/news/${data[j].id}" class="cd-add-to-cart js-cd-add-to-cart button-cart-home" data-price="25.99">Read more
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </li>`
+                    }
+                    $('#new8blogs').append(
+                        `<div class="container">
+                            <div class="specia-top" >
+                                <ul class="grid_2" >
+                                ${str}
+                                </ul>
+                            </div>
+                        </div>`
+                    );
+                }
+            }
         }
     })
 }
@@ -118,4 +169,5 @@ $(document).ready(function () {
     banners.bannerList();
     products.new4products();
     blogs.new4blogs();
+    blogs.new8blogs();
 });
