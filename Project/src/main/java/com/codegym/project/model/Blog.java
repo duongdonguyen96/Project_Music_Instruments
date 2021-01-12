@@ -74,4 +74,28 @@ public class Blog {
     public LocalDateTime getDateAdd() {
         return dateAdd;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public LocalDateTime getDateUpdate() {
+        return dateUpdate;
+    }
+
+    public LocalDateTime getDateDelete() {
+        return dateDelete;
+    }
+
+    public boolean isDelete() {
+        return delete;
+    }
 }
