@@ -94,6 +94,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> findAllByVendorId(Long id) {
+        return productRepository.findAllByVendorId(id);
+    }
+
+    @Override
     public List<Product> listFourNewProducts() {
         return productRepository.listFourNewProducts();
     }

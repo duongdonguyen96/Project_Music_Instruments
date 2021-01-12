@@ -36,8 +36,17 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             value = "select DISTINCT type_product_id from products where delete=false",
             nativeQuery = true)
     List<Long> listIdTypeProduct();
+
+//Hỗ trợ cho vendors
+    @Query(
+            value = "select DISTINCT vendor_id from products where delete=false",
+            nativeQuery = true)
+    List<Long> listIdVendor();
+
 //
     List<Product> findAllByTypeProductId(Long id);
+    List<Product> findAllByVendorId(Long id);
+
     @Query(
             value = "select * from products where delete=false ORDER by date_add desc limit 4",
             nativeQuery = true)
