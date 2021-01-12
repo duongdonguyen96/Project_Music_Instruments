@@ -129,4 +129,11 @@ public class ApiBlogController {
         return new ResponseEntity<List<Blog>>(blogList, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/newEightBlogs/")
+    public ResponseEntity<List<Blog>> listNewEightBlogs(){
+        long sl=8;
+        List<Blog> blogList = blogService.listFourNewBlogs(sl);
+        return new ResponseEntity<List<Blog>>(blogList, HttpStatus.OK);
+    }
+
 }
