@@ -56,10 +56,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
-
+	<!-- content -->
+	<div class="container">
+		<div class="main">
+			<div class="contact">
+				<div class="contact_info">
+					<h2 th:text="${blog.title}"></h2>
+					<div class="map">
+						<img th:src="${blog.image}">
+					</div>
+				</div>
+				<div class="contact-form">
+					<input type="hidden" id="id" th:value="${blog.id}">
+					<div id="viewContent">
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
 <!--Footer-->
 	<div th:replace="layout/homepagelayout::footer"></div>
-
 </body>
+<script th:src="@{../js/home.js}"></script>
 <script th:src="@{../js/menu.js}"></script>
 </html>

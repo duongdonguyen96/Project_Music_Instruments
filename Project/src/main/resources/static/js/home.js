@@ -165,9 +165,24 @@ blogs.new8blogs = function () {
     })
 }
 
+blogs.view = function () {
+    var id = $("#id").val();
+    $.ajax({
+        url: 'http://localhost:8080/api/blog/' + id,
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            $("#viewContent").append(data.content);
+        }
+    });
+}
+
 $(document).ready(function () {
     banners.bannerList();
     products.new4products();
     blogs.new4blogs();
     blogs.new8blogs();
+    if ($("#viewContent").empty()) {
+        blogs.view();
+    }
 });
