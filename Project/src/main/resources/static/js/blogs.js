@@ -79,6 +79,7 @@ blogs.intTable = function () {
 };
 
 blogs.save = function () {
+    blogs.validation();
     if ($("#formAddEdit").valid()) {
             var blogObj = {};
             blogObj.title = $('#title').val();
@@ -90,21 +91,18 @@ blogs.save = function () {
                 dataType: 'json',
                 contentType: 'application/json',
                 data: JSON.stringify(blogObj),
-                done: function () {
-                    $("#blogs-datatables").DataTable().ajax.reload();
-                },
                 success: function (data) {
                     if (data.code === 2) {
-                        $("#blogs-datatables").DataTable().ajax.reload();
                         toastr.info('Blog has been created successfully', 'INFORMATION:')
-
+                        $( "#formAddEdit" ).validate().resetForm();
+                        blogs.resetForm();
                     } else {
                         data.stringListMessage.map(e => toastr.error(e));
                     }
                 }
             });
-        blogs.resetForm();
-        validator.resetForm();
+        $( "#formAddEdit" ).validate().resetForm();
+
     }
 }
 
@@ -126,13 +124,14 @@ blogs.update = function (){
                     if (data.code === 2) {
                         $("#blogs-datatables").DataTable().ajax.reload();
                         toastr.info('Blog has been update successfully', 'INFORMATION:')
+                        $( "#formAddEdit" ).validate().resetForm();
+                        blogs.resetForm();
                     } else {
                         data.stringListMessage.map(e => toastr.error(e));
                     }
                 }
             });
-        // blogs.resetForm();
-        validator.resetForm();
+        $( "#formAddEdit" ).validate().resetForm();
     }
 }
 
@@ -184,7 +183,6 @@ blogs.delete = function (id) {
             }
         }
     });
-    validator.resetForm();
 };
 
 blogs.resetForm = function () {
@@ -195,9 +193,42 @@ blogs.resetForm = function () {
     document.getElementsByClassName("note-editable")[0].innerHTML = "";
 }
 
-var validator = $("#formAddEdit").validate();
-
+blogs.validation = function (){
+    $('#formAddEdit').validate({
+        rule: {
+            title: {
+                required: true,
+                minlength: 20,
+                maxlength: 100,
+            },
+            content:{
+                required:true,
+                minlength: 100,
+                maxlength: 10000,
+            },
+            image:{
+                required:true
+            },
+        },
+        message: {
+            title:{
+                required:"Please enter input title blog",
+                minlength:"Enter names of at least 20 characters",
+                maxlength:"Enter names of up to 100 characters"
+            },
+            content:{
+                required:"Please enter input content blog",
+                minlength:"Enter names of at least 100 characters",
+                maxlength:"Enter names of up to 10000 characters"
+            },
+            image:{
+                required:"Please upload the image",
+            },
+        }
+    });
+}
 $(document).ready(function () {
     blogs.intTable();
+    blogs.validation();
     rates.findStatus();
 })
