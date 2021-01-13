@@ -7,14 +7,18 @@ import com.codegym.project.service.BlogService;
 import com.codegym.project.service.ProductService;
 import com.codegym.project.service.TypeProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.sql.SQLException;
 
 @Controller
@@ -32,6 +36,15 @@ public class AllController {
     public ModelAndView login(){
         ModelAndView modelAndView=new ModelAndView("login/formLogin");
         return modelAndView;
+    }
+
+    @GetMapping(value = "/default")
+    public String defaultAfterLogin(HttpServletRequest request) {
+        if (request.isUserInRole("ADMIN")||request.isUserInRole("EMPLOYEE")) {
+            return "redirect:/products";
+        } else {
+            return "redirect:/";
+        }
     }
 
 //Admin
