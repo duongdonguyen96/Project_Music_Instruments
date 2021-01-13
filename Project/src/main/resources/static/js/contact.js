@@ -1,3 +1,4 @@
+
 var rates = rates || {};
 rates.create = function () {
     if ($("#formRates").valid()) {
