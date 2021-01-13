@@ -1,4 +1,5 @@
 var users = {} || users;
+var rates = {} || rates;
 users.intTable = function () {
     $("#users-dataTable").DataTable({
         ajax: {
@@ -112,17 +113,15 @@ users.save = function () {
                         $("#users-dataTable").DataTable().ajax.reload();
                         toastr.info('Users has been updated successfully', 'INFORMATION:')
                         $('#formAddEdit').validate().resetForm();
-
                     } else {
                         data.stringListMessage.map(e => toastr.error(e));
-                        $('#formAddEdit').validate().resetForm();
                     }
 
                 }
             });
         }
 
-        users.resetForm();
+
     }
     return false;
 };
@@ -169,7 +168,6 @@ users.get = function (id) {
             $('#modalTitle').html("Edit User");
             $('#userName').val(data.userName);
             $('#password').val(data.password);
-            $('#password2').val(data.password);
             $('#fullName').val(data.fullName);
             $('#address').val(data.address);
             $('#phone').val(data.phone);
@@ -233,6 +231,7 @@ $.validator.addMethod("validatePhone", function (value, element) {
 $(document).ready(function () {
     users.intTable();
     users.validation();
+    rates.findStatus();
 });
 
 users.validation = function () {

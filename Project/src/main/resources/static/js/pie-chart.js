@@ -3,14 +3,14 @@ var vendors = {} || vendors;
 var rates = {} || rates;
 var canvas={}||canvas;
 
-var listType=[];
-var listCountProductByType=[];
+var listType;
+var listCountProductByType;
 
-var listVendor=[];
-var listCountProductByVendor=[];
+var listVendor;
+var listCountProductByVendor;
 
-var hexType=[];
-var hexVendor=[];
+var hexType;
+var hexVendor;
 
 productLines.listType = function () {
     $.ajax({
@@ -18,18 +18,23 @@ productLines.listType = function () {
         method: "GET",
         dataType: "json",
         success: function (data) {
+            listCountProductByType=new Array(data.unshift)
+            hexType=new Array(data.unshift);
+            listType=new Array(data.unshift);
             $.each(data, function (i, v) {
-                hexType.push('#'+((Math.random()/i)*0xFFFFFF<<0).toString(16));
-                listType.push(v.name);
+                hexType[i]='#'+((Math.random()/i)*0xFFFFFF<<0).toString(16);
+                listType[i]=v.name;
                 $.ajax({
-                    url: 'http://localhost:8080/api/productsByIdType/'+v.id,
+                    url: 'http://localhost:8080/api/productsByIdType/'+data[i].id,
                     method: "GET",
                     dataType: "json",
                     success: function (data) {
-                        listCountProductByType.push(data.unshift())
+                        listCountProductByType[i]=data.content.unshift();
+                        canvas.panelType();
                     }
                 });
             });
+
         }
     });
 }
@@ -40,15 +45,19 @@ vendors.listVendor = function () {
         method: "GET",
         dataType: "json",
         success: function (data) {
+            listCountProductByVendor=new Array(data.unshift)
+            hexVendor=new Array(data.unshift);
+            listVendor=new Array(data.unshift);
             $.each(data, function (i, v) {
-                hexVendor.push('#'+((Math.random()/i)*0xFFFFFF<<0).toString(16));
-                listVendor.push(v.name);
+                hexVendor[i]='#'+((Math.random()/i)*0xFFFFFF<<0).toString(16);
+                listVendor[i]=v.name;
                 $.ajax({
-                    url: 'http://localhost:8080/api/productsByIdVendor/'+v.id,
+                    url: 'http://localhost:8080/api/productsByIdVendor/'+data[i].id,
                     method: "GET",
                     dataType: "json",
                     success: function (data) {
-                        listCountProductByVendor.push(data.unshift())
+                        listCountProductByVendor[i]=data.unshift();
+                        canvas.panelVendor();
                     }
                 });
             });
@@ -116,7 +125,8 @@ $(document).ready(function () {
     productLines.listType();
     vendors.listVendor();
     rates.findStatus();
-    canvas.panelType();
-    canvas.panelVendor();
+
+
+
     console.log(Math.random())
 });

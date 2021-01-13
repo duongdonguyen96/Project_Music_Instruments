@@ -49,29 +49,10 @@ public class Employee {
     private String role = "EMPLOYEE";
     private int enable=1;
 
-
     public Employee() {
     }
 
     private boolean delete = false;
-    @Column(name = "reset_password_token")
-    private String resetPasswordToken;
-
-    public int getEnable() {
-        return enable;
-    }
-
-    public void setEnable(int enable) {
-        this.enable = enable;
-    }
-
-    public String getResetPasswordToken() {
-        return resetPasswordToken;
-    }
-
-    public void setResetPasswordToken(String resetPasswordToken) {
-        this.resetPasswordToken = resetPasswordToken;
-    }
 
     public Long getId() {
         return id;

@@ -2,6 +2,8 @@ package com.codegym.project.repository;
 
 import com.codegym.project.model.Product;
 import com.codegym.project.model.TypeProduct;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -44,13 +46,15 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Long> listIdVendor();
 
 //
-    List<Product> findAllByTypeProductId(Long id);
+    Page<Product> findAllByTypeProductId(Long id, Pageable pageable);
+
     List<Product> findAllByVendorId(Long id);
 
     @Query(
             value = "select * from products where delete=false ORDER by date_add desc limit 4",
             nativeQuery = true)
     List<Product> listFourNewProducts();
+//    test
 }
 
 
