@@ -117,13 +117,15 @@ employees.save = function () {
                         $("#employees-dataTable").DataTable().ajax.reload();
                         toastr.info('employees has been updated successfully', 'INFORMATION:')
                         $('#formAddEdit').validate().resetForm();
+
                     } else {
                         data.stringListMessage.map(e => toastr.error(e));
+                        $('#formAddEdit').validate().resetForm();
                     }
                 }
             });
         }
-
+        $('#formAddEdit').validate().resetForm();
     }
 
     return false;

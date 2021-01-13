@@ -23,12 +23,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
 	<!-- start menu -->
 	<link href="fe/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 	<script type="text/javascript" src="fe/js/megamenu.js"></script>
 	<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 	<script src="fe/js/menu_jquery.js"></script>
 </head>
+<style>
+	.error {
+		color: red;
+	}
+</style>
 <body>
 <!-- header_top -->
 <div th:replace="layout/homepagelayout::header"></div>
@@ -60,70 +66,74 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<h2>new user? <span> create an account </span></h2>
 		 <div class="registration_form">
 		 <!-- Form -->
-			<form>
+			<form id="formRegister" name="formRegister">
 				<div>
 					<label>
-						<input placeholder="User name:" type="text" tabindex="1" required autofocus>
+						<input id="userName" name="userName" placeholder="User name:" type="text" tabindex="1" required autofocus>
 					</label>
 				</div>
 				<div>
 					<label>
-						<input placeholder="password" type="password" tabindex="4" required>
+						<input id="password" name="password" placeholder="password" type="password" tabindex="4" required>
 					</label>
 				</div>
 				<div>
 					<label>
-						<input placeholder="retype password" type="password" tabindex="4" required>
+						<input id="password2" name="password2" placeholder="retype password" type="password" tabindex="4" required>
 					</label>
 				</div>
 				<div>
 					<label>
-						<input placeholder="Full name:" type="text" tabindex="1" required autofocus>
+						<input id="fullName" name="fullName" placeholder="Full name:" type="text" tabindex="1" required autofocus>
 					</label>
 				</div>
 				<div class="sky-form">
 					<div class="sky_form1">
 						<ul>
-							<li><label class="radio left"><input type="radio" name="radio" value="Male" checked=""><i></i>Male</label></li>
-							<li><label class="radio"><input type="radio" name="radio" value="Female"><i></i>Female</label></li>
-							<li><label class="radio"><input type="radio" name="radio" value="LGBT"><i></i>LGBT</label></li>
+							<li><label  class="radio left"><input name="gender" type="radio"  value="male" checked=""><i></i>MALE</label></li>
+							<li><label class="radio"><input  name="gender" type="radio"  value="female"><i></i>FEMALE</label></li>
+							<li><label  class="radio"><input name="gender" type="radio"  value="other gender"><i></i>OTHER GENDER</label></li>
 							<div class="clearfix"></div>
 						</ul>
 					</div>
 				</div>
 				<div>
 					<label>
-						<input placeholder="Address:" type="text" tabindex="2" required autofocus>
+						<input id="address" name="address" placeholder="Address:" type="text" tabindex="2" required autofocus>
 					</label>
 				</div>
 				<div>
 					<label>
-						<input placeholder="email address:" type="email" tabindex="3" required>
+						<input id="email" name="email"  placeholder="email address:" type="email" tabindex="3" required>
 					</label>
 				</div>
 				<div>
 					<label>
-						<input placeholder="Phone:" type="text" tabindex="2" required autofocus>
+						<input id="phone" name="phone" placeholder="Phone:" type="text" tabindex="2" required autofocus>
 					</label>
 				</div>
 				<div>
 					<label>
-						<input placeholder="Date of birth:" type="date" tabindex="2" required autofocus>
+						<input id="dateOfBirth" name="dateOfBirth" placeholder="Date of birth:" type="date" tabindex="2" required autofocus>
 					</label>
 				</div>
 				<div>
 					<label>
-						<img id='output' height="150px" width="100px">
+						<img id="output" height="150px" width="100px">
 						<input type='file' tabindex="2" accept='image/*' onchange='openFile(event)' name="fileUpdate" data-rule-required=true ><br>
 					</label>
 				</div>
-				<div>
-					<input type="submit" value="create an account" id="register-submit">
+				<div th:replace="layout/layout::base64">
 				</div>
 				<div class="sky-form">
 					<label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>i agree to shoppe.com &nbsp;<a class="terms" href="#"> terms of service</a> </label>
 				</div>
+				<div>
+
+					<input class="btn btn-primary" type="button" id="register-submit" value="create an account" onclick="return users.create()">
+				</div>
 			</form>
+
 			<!-- /Form -->
 		</div>
 	</div>
@@ -140,6 +150,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
 		crossorigin="anonymous"></script>
 </body>
+<script src="js/register.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/uploadFile.js"></script>
 </html>
