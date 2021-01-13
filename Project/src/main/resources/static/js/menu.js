@@ -11,7 +11,7 @@ productLines.listType = function () {
                 let str="";
                 let j=i+5*i;
                 let index2=((i+1)*6-1);
-                if (index2>size){
+                if (index2>=size){
                     index2=size-1;
                 }
                 for (j;j<=index2;j++){

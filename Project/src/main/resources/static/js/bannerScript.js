@@ -73,14 +73,11 @@ banners.intTable = function () {
 
 banners.addNew = function () {
     $('#modalTitle').html(("Add new banner"));
-    $('.hideHtml').hide();
-    $('.form-control').removeAttr('disabled');
+    validator.resetForm();
     $('#imageHtml').html(
         `<img id='output' height="150px" width="100px">
                <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" data-rule-required=true ><br>`
     );
-    $('#save').show();
-    $( "#formAddEdit" ).validate().resetForm();
     banners.resetForm();
     $('#modalAddEdit').modal('show');
 };
@@ -134,7 +131,7 @@ banners.save = function (){
                 }
             });
         }
-        $( "#formAddEdit" ).validate().resetForm();
+        validator.resetForm();
     }
 };
 
@@ -186,7 +183,6 @@ banners.get = function (id) {
                             <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" ><br>`
             );
             $('#dateAdd').val(data.dateAdd);
-            $( "#formAddEdit" ).validate().resetForm();
             $('#modalAddEdit').modal('show');
         }
     });
@@ -198,34 +194,9 @@ banners.resetForm = function (){
     $('#image').val("");
 }
 
-banners.validation = function (){
-    $('#formAddEdit').validate({
-        rule:{
-            title: {
-                required: true,
-                minlength: 10,
-                maxlength: 100,
-            },
-            image:{
-                required:true
-            },
-        },
-        message:{
-            title:{
-                required:"Please enter input title",
-                minlength:"Enter title of at least 10 characters",
-                maxlength:"Enter title of up to 100 characters"
-            },
-            image:{
-                required:"Please upload the image",
-            },
-        }
-    });
-}
-
+var validator = $('#formAddEdit').validate();
 
 $(document).ready(function () {
     banners.intTable();
-    banners.validation();
     rates.findStatus();
 });

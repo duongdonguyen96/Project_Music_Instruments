@@ -3,17 +3,14 @@ package com.codegym.project.service.Impl;
 import com.codegym.project.model.Employee;
 import com.codegym.project.repository.EmployeeRepository;
 import com.codegym.project.service.EmployeeService;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Transactional
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
@@ -80,30 +77,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             return true;
         }
         return false;
-    }
-
-    // Change Password with Email
-    public void updateResetPasswordToken(String token, String email) throws NotFoundException {
-        Employee employee = employeeRepository.findByEmail(email);
-        if (employee != null) {
-            employee.setResetPasswordToken(token);
-            employeeRepository.save(employee);
-        } else {
-            throw new NotFoundException("Could not find any employee with the email " + email);
-        }
-    }
-
-    public Employee getByResetPasswordToken(String token) {
-        return employeeRepository.findByResetPasswordToken(token);
-    }
-
-    public void updatePassword(Employee customer, String newPassword) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(newPassword);
-        customer.setPassword(encodedPassword);
-
-        customer.setResetPasswordToken(null);
-        employeeRepository.save(customer);
     }
 
 }

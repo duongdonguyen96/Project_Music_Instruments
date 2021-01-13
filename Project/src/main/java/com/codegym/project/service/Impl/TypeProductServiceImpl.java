@@ -75,7 +75,7 @@ public class TypeProductServiceImpl implements TypeProductService {
     }
 
     @Override
-    public boolean deleteTypeProduct(long id) {
+    public boolean deleteTypeProduct(long id) throws SQLException {
         TypeProduct typeProduct=this.findTypeProductDeleted(id);
         if (typeProduct!=null){
             typeProductRepository.delete(typeProduct);

@@ -41,37 +41,25 @@
             </div>
         </div>
         <div class="log" sec:authorize="isAuthenticated()">
-            <div class="login" sec:authorize="hasRole('ADMIN')">
-                <div id="loginContainer"><a href="/login" id="loginButton"><span>Login</span></a>
-                </div>
-            </div>
-        </div>
-        <div class="log" sec:authorize="isAuthenticated()">
-            <div class="login" sec:authorize="hasRole('USER')">
+            <div class="login">
                 <div>
                     <span style="text-transform:capitalize" sec:authentication="principal.username"></span>
                 </div>
             </div>
         </div>
+
 <!--        Logout-->
         <div class="log" sec:authorize="isAuthenticated()">
-            <div class="login" sec:authorize="hasRole('USER')">
+            <div class="login">
                 <div><a href="/logout"><span>Logout</span></a>
                 </div>
             </div>
         </div>
+
 <!--        Register-->
-        <div sec:authorize="!isAuthenticated()">
-        <div class="reg">
+        <div class="reg"sec:authorize="!isAuthenticated()">
             <a href="/registers">REGISTER</a>
         </div>
-        </div>
-        <div sec:authorize="isAuthenticated()">
-            <div class="reg" sec:authorize="hasRole('ADMIN')">
-                <a href="/registers">REGISTER</a>
-            </div>
-        </div>
-
         <div class="cart box_1">
             <a href="/checkouts">
                 <h3> <span class="simpleCart_total">$0.00</span> (<span id="simpleCart_quantity"

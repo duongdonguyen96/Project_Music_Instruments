@@ -29,7 +29,7 @@ public class User {
     private String phone;
     @NotBlank
     private String email;
-    @Column(name="image",columnDefinition="TEXT")
+    @NotNull
     private String image;
     @NotNull
     private String gender;

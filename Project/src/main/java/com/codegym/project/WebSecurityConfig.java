@@ -38,24 +38,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/api/**").permitAll()
                 .and()
-                .authorizeRequests().antMatchers("/products","/typeProducts","/vendors","/orders","/rates","/banners","/blogs","/employees","/users").hasAnyRole("ADMIN","EMPLOYEE")
+                .authorizeRequests().antMatchers("/charts","/products","/typeProducts","/vendors","/orders","/rates","/banners","/blogs","/employees","/users").hasAnyRole("ADMIN","EMPLOYEE")
                 .and()
                 .authorizeRequests().antMatchers("/productDeleted","/typeProductsDeleted","/vendorsDeleted","/ratesDeleted","/bannersDeleted","/blogsDeleted","/employeesDelete","/usersDelete").hasAnyRole("ADMIN","EMPLOYEE")
                 .and()
                 .authorizeRequests().antMatchers("/blogadd","/blogedit/**").hasAnyRole("ADMIN")
                 .and()
                 .formLogin().loginPage("/login")
-                .defaultSuccessUrl("/products")
+                .defaultSuccessUrl("/default")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
-
-        http.authorizeRequests()
-                .and().formLogin()
-//        .defaultSuccessUrl("/")
-                .failureUrl("/login")
-                .and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login");
+        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/login");
         http.csrf().disable();
     }
 
