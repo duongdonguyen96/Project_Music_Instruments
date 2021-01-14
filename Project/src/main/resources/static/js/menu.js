@@ -1,4 +1,6 @@
 var productLines = {} || productLines;
+var vendors = {} || vendors;
+//productLines
 productLines.listType = function () {
     $.ajax({
         url: 'http://localhost:8080/api/listTypeProductsById/',
@@ -86,6 +88,9 @@ productLines.listType = function () {
                     $('#allType').append(
                         `<li><a href="javascript:" onclick="productLines.listProducts(${v.id})">${v.name}</a></li>`
                     );
+                    $('#allTypeDetail').append(
+                        `<li><a href="/categories/${v.id}">${v.name}</a></li>`
+                    );
                 });
             }
         }
@@ -93,12 +98,7 @@ productLines.listType = function () {
 }
 
 productLines.listProducts=function(id,page){
-    $("#search").html(
-        `<form >
-            <input type="text" value="" placeholder="search..." id="str">
-            <input type="button" value="" onclick="return productLines.listProducts(1)">
-           </form>`
-    )
+    $("#search").html(`<input type="button" value="" onclick="return productLines.listProducts(${id},1)" >`);
     if (page==null){
         page=1;
     }
@@ -108,7 +108,7 @@ productLines.listProducts=function(id,page){
         method: "GET",
         dataType: "json",
         success: function (data) {
-            $('#nameType').html(data.name)
+            $('#nameTypeVendor').html(data.name)
             $.ajax({
                 url: 'http://localhost:8080/api/productsByIdTypeProduct/'+id+'?page='+page+"&search="+search,
                 method: "GET",
@@ -164,46 +164,43 @@ productLines.listProducts=function(id,page){
 }
 
 productLines.listProductsById=function(page){
-    var id=$('#id').val();
-    $("#search").html(
-        `<form >
-            <input type="text" value="" placeholder="search..." id="str">
-            <input type="button" value="" onclick="return productLines.listProductsById(1)">
-           </form>`
-    )
+    $("#search").html("<input type=\"button\" value=\"\" onclick=\"return productLines.listProductsById(1)\">");
+    let search = $('#str').val();
+    if ($('#idType').val()){
+    var idType=$('#idType').val();
     if (page==null){
         page=1;
     }
-    var search = $('#str').val();
-    $.ajax({
-        url: 'http://localhost:8080/api/productsByIdTypeProduct/'+id+'?page='+page+"&search="+search,
-        method: "GET",
-        dataType: "json",
-        success: function (data) {
-            let totalPage = parseInt(data.totalPages);
-            $('#pageable').empty('');
-            for(let i =0; i<totalPage; i++){
-                if(data.pageable.pageNumber===i){
-                    $('#pageable').append(`<li class="page-item disabled"><a class="page-link" href="#">${i+1}</a></li>`)
-                }else {
-                    $('#pageable').append(`<li class="page-item"><a class="page-link" href="#" onclick="productLines.listProductsById(${i+1})">${i+1}</a></li>`)
-                }
+    if (idType!=""){
+        $.ajax({
+            url: 'http://localhost:8080/api/productsByIdTypeProduct/'+idType+'?page='+page+"&search="+search,
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                let totalPage = parseInt(data.totalPages);
+                $('#pageable').empty('');
+                for(let i =0; i<totalPage; i++){
+                    if(data.pageable.pageNumber===i){
+                        $('#pageable').append(`<li class="page-item disabled"><a class="page-link" href="#">${i+1}</a></li>`)
+                    }else {
+                        $('#pageable').append(`<li class="page-item"><a class="page-link" href="#" onclick="productLines.listProductsById(${i+1})">${i+1}</a></li>`)
+                    }
 
-            }
-            $('#listProduct').html("");
-            let size=data.content.unshift();
-            $('#sl').html(size)
-            let index=Math.floor(size/4);
-            for (let i=0;i<=index;i++){
-                let str="";
-                let j=i+3*i;
-                let index2=((i+1)*4-1);
-                if (index2>=size){
-                    index2=size-1;
                 }
-                for (j;j<=index2;j++){
-                    str=str+
-                        `<div class="grid1_of_4">
+                $('#listProduct').html("");
+                let size=data.content.unshift();
+                $('#sl').html(size)
+                let index=Math.floor(size/4);
+                for (let i=0;i<=index;i++){
+                    let str="";
+                    let j=i+3*i;
+                    let index2=((i+1)*4-1);
+                    if (index2>=size){
+                        index2=size-1;
+                    }
+                    for (j;j<=index2;j++){
+                        str=str+
+                            `<div class="grid1_of_4">
                             <div class="content_box"><a href="/details/${data.content[j].id}">
                                 <img src="${data.content[j].image}" class="img-responsive" alt=""/>
                                 </a>
@@ -215,20 +212,186 @@ productLines.listProductsById=function(page){
                                 </div>
                             </div>
                         </div>`
-                }
-                $('#listProduct').append(
-                    `<div class="grids_of_4">
+                    }
+                    $('#listProduct').append(
+                        `<div class="grids_of_4">
                         ${str}
                         <div class="clearfix"></div>
                     </div>`
-                );
+                    );
+                }
             }
-        }
-    })
+        })
+    }
+    }
 }
 
+//vendors
+vendors.listVendors= function () {
+    if ($('#allVendor').empty()){
+    $.ajax({
+        url: 'http://localhost:8080/api/listVendorsById/',
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+
+                $.each(data, function (i, v) {
+                    $('#allVendor').append(
+                        `<li><a href="javascript:" onclick="return vendors.listProducts(${v.id})">${v.name}</a></li>`
+                    );
+                    $('#allVendorDetail').append(
+                        `<li><a href="/vendors/${v.id}">${v.name}</a></li>`
+                    );
+                });
+            }
+        });
+    }
+}
+
+vendors.listProducts=function(id,page){
+    $("#search").html(`<input type="button" value="" onclick="return vendors.listProducts(${id},1)" >`);
+    if (page==null){
+        page=1;
+    }
+    var search = $('#str').val();
+    $.ajax({
+        url: 'http://localhost:8080/api/vendor/' +id,
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            $('#nameTypeVendor').html(data.name)
+            $.ajax({
+                url: 'http://localhost:8080/api/productsByVendorId/'+id+'?page='+page+"&search="+search,
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    let totalPage = parseInt(data.totalPages);
+                    $('#pageable').empty('');
+                    for(let i =0; i<totalPage; i++){
+                        if(data.pageable.pageNumber===i){
+                            $('#pageable').append(`<li class="page-item disabled"><a class="page-link" href="#">${i+1}</a></li>`)
+                        }else {
+                            $('#pageable').append(`<li class="page-item"><a class="page-link" href="#" onclick="productLines.listProducts(${id},${i+1})">${i+1}</a></li>`)
+                        }
+
+                    }
+                    $('#listProduct').html("")
+                    let size=data.content.unshift();
+                    $('#sl').html(size)
+                    let index=Math.floor(size/4);
+                    for (let i=0;i<=index;i++){
+                        let str="";
+                        let j=i+3*i;
+                        let index2=((i+1)*4-1);
+                        if (index2>=size){
+                            index2=size-1;
+                        }
+                        for (j;j<=index2;j++){
+                            str=str+
+                                `<div class="grid1_of_4">
+                            <div class="content_box"><a href="/details/${data.content[j].id}">
+                                <img src="${data.content[j].image}" class="img-responsive" alt=""/>
+                                </a>
+                                <h4><a href="/details/${data.content[j].id}"> ${data.content[j].name}</a></h4>
+                                <p>It is a long established fact that</p>
+                                <div class="grid_1 simpleCart_shelfItem">
+                                    <div class="item_add"><span class="item_price"><h6>ONLY $${data.content[j].price}</h6></span></div>
+                                    <div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
+                                </div>
+                            </div>
+                        </div>`
+                        }
+                        $('#listProduct').append(
+                            `<div class="grids_of_4">
+                                 ${str}
+                                 <div class="clearfix"></div>
+                            </div>`
+                        );
+                    }
+                }
+            })
+        }
+    });
+}
+
+vendors.listProductsById=function(page){
+    $("#search").html("<input type=\"button\" value=\"\" onclick=\"return vendors.listProductsById(1)\">");
+    let search = $('#str').val();
+    if ($('#idVendor').empty()){
+    var idVendor=$('#idVendor').val();
+    if (page==null){
+        page=1;
+    }
+    if (idVendor!=""){
+        $.ajax({
+            url: 'http://localhost:8080/api/vendor/' + idVendor,
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                $('#nameTypeVendor').html(data.name);
+
+                $.ajax({
+                    url: 'http://localhost:8080/api/productsByVendorId/' + idVendor + '?page=' + page + "&search=" + search,
+                    method: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        let totalPage = parseInt(data.totalPages);
+                        $('#pageable').empty('');
+                        for (let i = 0; i < totalPage; i++) {
+                            if (data.pageable.pageNumber === i) {
+                                $('#pageable').append(`<li class="page-item disabled"><a class="page-link" href="#">${i + 1}</a></li>`)
+                            } else {
+                                $('#pageable').append(`<li class="page-item"><a class="page-link" href="#" onclick="productLines.listProductsById(${i + 1})">${i + 1}</a></li>`)
+                            }
+
+                        }
+                        $('#listProduct').html("");
+                        let size = data.content.unshift();
+                        $('#sl').html(size)
+                        let index = Math.floor(size / 4);
+                        for (let i = 0; i <= index; i++) {
+                            let str = "";
+                            let j = i + 3 * i;
+                            let index2 = ((i + 1) * 4 - 1);
+                            if (index2 >= size) {
+                                index2 = size - 1;
+                            }
+                            for (j; j <= index2; j++) {
+                                str = str +
+                                    `<div class="grid1_of_4">
+                            <div class="content_box"><a href="/details/${data.content[j].id}">
+                                <img src="${data.content[j].image}" class="img-responsive" alt=""/>
+                                </a>
+                                <h4><a href="/details/${data.content[j].id}"> ${data.content[j].name}</a></h4>
+                                <p>It is a long established fact that</p>
+                                <div class="grid_1 simpleCart_shelfItem">
+                                    <div class="item_add"><span class="item_price"><h6>ONLY $${data.content[j].price}</h6></span></div>
+                                    <div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
+                                </div>
+                            </div>
+                        </div>`
+                            }
+                            $('#listProduct').append(
+                                `<div class="grids_of_4">
+                        ${str}
+                        <div class="clearfix"></div>
+                    </div>`
+                            );
+                        }
+                    }
+                });
+            }
+        });
+    }
+    }
+}
 
 $(document).ready(function () {
     productLines.listType();
-    productLines.listProductsById()
+    if ($("#idVendor").val()===""){
+        productLines.listProductsById();
+    }else {
+        vendors.listProductsById();
+    }
+    vendors.listVendors();
 });

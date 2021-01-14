@@ -3,9 +3,11 @@ package com.codegym.project.controller;
 import com.codegym.project.model.Blog;
 import com.codegym.project.model.Product;
 import com.codegym.project.model.TypeProduct;
+import com.codegym.project.model.Vendor;
 import com.codegym.project.service.BlogService;
 import com.codegym.project.service.ProductService;
 import com.codegym.project.service.TypeProductService;
+import com.codegym.project.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.security.core.Authentication;
@@ -31,6 +33,8 @@ public class AllController {
     public TypeProductService typeProductService;
     @Autowired
     public ProductService productService;
+    @Autowired
+    public VendorService vendorService;
 
 //Security
     @GetMapping(value = "/login")
@@ -204,6 +208,18 @@ public class AllController {
     public ModelAndView category(@PathVariable Long id) throws SQLException {
         ModelAndView modelAndView=new ModelAndView("frontEnd/category");
         TypeProduct typeProduct=typeProductService.findById(id);
+        Vendor vendor=new Vendor();
+        modelAndView.addObject("typeProduct",typeProduct);
+        modelAndView.addObject("vendor",vendor);
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/vendors/{id}")
+    public ModelAndView vendors(@PathVariable Long id) throws SQLException {
+        ModelAndView modelAndView=new ModelAndView("frontEnd/category");
+        Vendor vendor=vendorService.findById(id);
+        TypeProduct typeProduct=new TypeProduct();
+        modelAndView.addObject("vendor",vendor);
         modelAndView.addObject("typeProduct",typeProduct);
         return modelAndView;
     }

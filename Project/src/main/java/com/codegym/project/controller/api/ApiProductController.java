@@ -172,11 +172,19 @@ public class ApiProductController {
         return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
     }
 
+//Phan trang
     @GetMapping(value = "/productsByIdTypeProduct/{id}")
     public ResponseEntity<Page<Product>> listProductsByIdTypeProduct(@PathVariable Long id,
                                                                      @RequestParam(value = "page",required = false,defaultValue = "1") int page,
                                                                      @RequestParam(value = "search", required = false,defaultValue = "")String search) {
         Page<Product> productList =productService.findAllByTypeProductIdAndNameContaining(id, PageRequest.of(page-1,16),search);
+        return new ResponseEntity<Page<Product>>(productList, HttpStatus.OK);
+    }
+    @GetMapping(value = "/productsByVendorId/{id}")
+    public ResponseEntity<Page<Product>> listProductsByVendorId(@PathVariable Long id,
+                                                                     @RequestParam(value = "page",required = false,defaultValue = "1") int page,
+                                                                     @RequestParam(value = "search", required = false,defaultValue = "")String search) {
+        Page<Product> productList =productService.findAllByVendorIdAndNameContaining(id, PageRequest.of(page-1,16),search);
         return new ResponseEntity<Page<Product>>(productList, HttpStatus.OK);
     }
 

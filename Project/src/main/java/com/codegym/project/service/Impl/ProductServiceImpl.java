@@ -109,4 +109,9 @@ public class ProductServiceImpl implements ProductService {
     public Page<Product> findAllByTypeProductIdAndNameContaining(Long id,Pageable pageable,String name) {
         return productRepository.findAllByTypeProductIdAndNameContaining(id,pageable,name);
     }
+
+    @Override
+    public Page<Product> findAllByVendorIdAndNameContaining(Long id, Pageable pageable, String name) {
+        return productRepository.findAllByVendorIdAndNameContaining(id,pageable,name);
+    }
 }
