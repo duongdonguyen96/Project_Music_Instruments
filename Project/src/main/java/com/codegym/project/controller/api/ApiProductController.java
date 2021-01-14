@@ -5,6 +5,7 @@ import com.codegym.project.model.message.MessageNotification;
 import com.codegym.project.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -151,10 +152,11 @@ public class ApiProductController {
         }
     }
 
+// Vẽ canvas
     @GetMapping(value = "/productsByIdType/{id}")
-    public ResponseEntity<Page<Product>> listProductsByIdType(@PathVariable Long id,Pageable pageable) {
-        Page<Product> productList =productService.findAllByTypeProductId(id,pageable);
-        return new ResponseEntity<Page<Product>>(productList, HttpStatus.OK);
+    public ResponseEntity<List<Product>> listProductsByIdType(@PathVariable Long id) {
+        List<Product> productList =productService.findAllByTypeProductId(id);
+        return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
     }
 
     @GetMapping(value = "/productsByIdVendor/{id}")
@@ -168,6 +170,14 @@ public class ApiProductController {
     public ResponseEntity<List<Product>> listFourNewProducts() {
         List<Product> productList =productService.listFourNewProducts();
         return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/productsByIdTypeProduct/{id}")
+    public ResponseEntity<Page<Product>> listProductsByIdTypeProduct(@PathVariable Long id,
+                                                                     @RequestParam(value = "page",required = false,defaultValue = "1") int page,
+                                                                     @RequestParam(value = "search", required = false,defaultValue = "")String search) {
+        Page<Product> productList =productService.findAllByTypeProductIdAndNameContaining(id, PageRequest.of(page-1,16),search);
+        return new ResponseEntity<Page<Product>>(productList, HttpStatus.OK);
     }
 
 }

@@ -72,9 +72,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
    </div>
 	<!-- start content -->
-	<div class="col-md-9 w_content">
+	<div class="col-md-9 w_content" >
 		<div class="women">
-			<a href="#"><h4><span th:text="${typeProduct.name}"></span> - <span>4449 itemms</span> </h4></a>
+			<input type="hidden" th:value="${typeProduct.id}" id="id">
+			<input type="hidden" th:value="${size}" id="size">
+			<a href="#"><h4><span th:text="${typeProduct.name}"id="nameType"></span> - <span id="sl"></span> items</h4></a>
 			<ul class="w_nav">
 						<li>Sort : </li>
 		     			<li><a class="active" href="#">popular</a></li> |
@@ -86,26 +88,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		     <div class="clearfix"></div>	
 		</div>
 		<!-- grids_of_4 -->
-		<div class="grids_of_4">
-		  	<div class="grid1_of_4">
-				<div class="content_box"><a href="/details">
-			   	   	 <img src="fe/images/w1.jpg" class="img-responsive" alt=""/>
-				   	  </a>
-				    <h4><a href="/details"> Duis autem</a></h4>
-				     <p>It is a long established fact that</p>
-					 <div class="grid_1 simpleCart_shelfItem">
-				    
-					 <div class="item_add"><span class="item_price"><h6>ONLY $99.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-					 </div>
-			   	</div>
-		  	</div>
-			<div class="clearfix"></div>
+		<div id="listProduct">
+
 		</div>
 		<!-- end grids_of_4 -->
-		
-		
+
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center" id="pageable">
+			</ul>
+		</nav>
 	</div>
+
 	<div class="clearfix"></div>
 	
 	<!-- end content -->

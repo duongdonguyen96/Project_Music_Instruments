@@ -29,7 +29,7 @@ productLines.listType = function () {
                     method: "GET",
                     dataType: "json",
                     success: function (data) {
-                        listCountProductByType[i]=data.content.unshift();
+                        listCountProductByType[i]=data.unshift();
                         canvas.panelType();
                     }
                 });
