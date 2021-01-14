@@ -46,15 +46,15 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Long> listIdVendor();
 
 //
-    Page<Product> findAllByTypeProductId(Long id, Pageable pageable);
-
+    List<Product> findAllByTypeProductId(Long id);
     List<Product> findAllByVendorId(Long id);
 
     @Query(
             value = "select * from products where delete=false ORDER by date_add desc limit 4",
             nativeQuery = true)
     List<Product> listFourNewProducts();
-//    test
+
+    Page<Product> findAllByTypeProductIdAndNameContaining(Long id,Pageable pageable,String name);
 }
 
 

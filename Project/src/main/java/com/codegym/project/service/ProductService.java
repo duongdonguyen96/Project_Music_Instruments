@@ -15,8 +15,9 @@ public interface ProductService extends BaseService<Product> {
      boolean undoProduct(long id);
 
      List<Product> findAllProductsByName(String name);
-     Page<Product> findAllByTypeProductId(Long id, Pageable pageable);
+     List<Product> findAllByTypeProductId(Long id);
      List<Product> findAllByVendorId(Long id);
      List<Product> listFourNewProducts();
 
+     Page<Product> findAllByTypeProductIdAndNameContaining(Long id,Pageable pageable,String name);
 }

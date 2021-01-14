@@ -91,8 +91,8 @@ public class ProductServiceImpl implements ProductService {
 
     //Home
     @Override
-    public Page<Product> findAllByTypeProductId(Long id, Pageable pageable) {
-        return productRepository.findAllByTypeProductId(id,pageable);
+    public List<Product> findAllByTypeProductId(Long id) {
+        return productRepository.findAllByTypeProductId(id);
     }
 
     @Override
@@ -105,5 +105,8 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.listFourNewProducts();
     }
 
-
+    @Override
+    public Page<Product> findAllByTypeProductIdAndNameContaining(Long id,Pageable pageable,String name) {
+        return productRepository.findAllByTypeProductIdAndNameContaining(id,pageable,name);
+    }
 }
