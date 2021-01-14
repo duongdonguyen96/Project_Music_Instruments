@@ -20,4 +20,6 @@ public interface ProductService extends BaseService<Product> {
      List<Product> listFourNewProducts();
 
      Page<Product> findAllByTypeProductIdAndNameContaining(Long id,Pageable pageable,String name);
+
+     Page<Product> findAllByVendorIdAndNameContaining(Long id,Pageable pageable,String name);
 }

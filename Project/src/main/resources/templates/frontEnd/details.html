@@ -95,9 +95,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="price">
 							<span class="text">Price:</span>
 							<span class="price-new">$<text th:text="${product.price}"></text></span>
-<!--							<span class="price-old">$100.00</span>-->
-<!--							<span class="price-tax">Ex Tax: $90.00</span><br>-->
-<!--							<span class="points"><small>Price in reward points: 400</small></span><br>-->
 						</div>
 					<div class="det_nav1">
 						<h4>Select a size :</h4>
@@ -113,11 +110,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					  <div sec:authorize="!isAuthenticated()">
 						  <a href="/login"><span>login to save in wishlist </span></a>
 					  </div>
-					  <div sec:authorize="isAuthenticated()" >
-						  <a href="/login" sec:authorize="hasRole('ADMIN')"><span>login to save in wishlist </span></a>
-					  </div>
-
-					
 			   	 </div>
           	    <div class="clearfix"></div>
           	   </div>
@@ -172,73 +164,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<section  class="sky-form">
 					<h4>catogories</h4>
 						<div class="row1 scroll-pane">
-							<div class="col col-4" id="allType">
+							<div class="col col-4" id="allTypeDetail">
 							</div>
 						</div>
 		</section>
-		<section  class="sky-form">
-					<h4>brand</h4>
-						<div class="row1 scroll-pane">
-							<div class="col col-4">
-								<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>shree</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>biba</label>
-							</div>
-							<div class="col col-4">
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>vishud</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>amari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>shree</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>biba</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>shree</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>biba</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>shree</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>biba</label>																								
-							</div>
-						</div>
-		</section>
-		<section class="sky-form">
-			<h4>colour</h4>
-			<ul class="w_nav2">
-				<li><a class="color1" href="#"></a></li>
-				<li><a class="color2" href="#"></a></li>
-				<li><a class="color3" href="#"></a></li>
-				<li><a class="color4" href="#"></a></li>
-				<li><a class="color5" href="#"></a></li>
-				<li><a class="color6" href="#"></a></li>
-				<li><a class="color7" href="#"></a></li>
-				<li><a class="color8" href="#"></a></li>
-				<li><a class="color9" href="#"></a></li>
-				<li><a class="color10" href="#"></a></li>
-				<li><a class="color12" href="#"></a></li>
-				<li><a class="color13" href="#"></a></li>
-				<li><a class="color14" href="#"></a></li>
-				<li><a class="color15" href="#"></a></li>
-				<li><a class="color5" href="#"></a></li>
-				<li><a class="color6" href="#"></a></li>
-				<li><a class="color7" href="#"></a></li>
-				<li><a class="color8" href="#"></a></li>
-				<li><a class="color9" href="#"></a></li>
-				<li><a class="color10" href="#"></a></li>
-			</ul>
-		</section>
-		<section class="sky-form">
-						<h4>discount</h4>
-						<div class="row1 scroll-pane">
-							<div class="col col-4">
-								<label class="radio"><input type="radio" name="radio" checked=""><i></i>60 % and above</label>
-								<label class="radio"><input type="radio" name="radio"><i></i>50 % and above</label>
-								<label class="radio"><input type="radio" name="radio"><i></i>40 % and above</label>
-							</div>
-							<div class="col col-4">
-								<label class="radio"><input type="radio" name="radio"><i></i>30 % and above</label>
-								<label class="radio"><input type="radio" name="radio"><i></i>20 % and above</label>
-								<label class="radio"><input type="radio" name="radio"><i></i>10 % and above</label>
-							</div>
-						</div>						
-		</section>
+		  <section  class="sky-form">
+			  <h4>vendors</h4>
+			  <div class="row1 scroll-pane">
+				  <div class="col col-4" id="allVendorDetail">
+				  </div>
+			  </div>
+		  </section>
 	</div>
    </div>
 		   <div class="clearfix"></div>		
