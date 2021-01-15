@@ -8,15 +8,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-    <title>Login</title>
+    <title>Classy Login form Widget Flat Responsive Widget Template :: w3layouts</title>
     <script src="csslogin/js/jquery.min.js"></script>
     <!-- Custom Theme files -->
-    <link href="csslogin/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="csslogin/css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <!-- for-mobile-apps -->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Classy Login form Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords"
+          content="Classy Login form Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"
     />
     <!-- //for-mobile-apps -->
     <!--Google Fonts-->
@@ -24,38 +25,47 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 
 <body>
-    <!--header start here-->
-    <div class="header">
-        <div class="header-main">
-            <h1>Login Form Admin</h1>
-            <div class="header-bottom">
-                <div class="header-right w3agile">
-                    <div class="header-left-bottom agileinfo">
-                        <form th:action="@{/login}" method="post">
-                            <input type="text" value="User name" name="username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'User name';}" />
-                            <input type="password" value="Password" name="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}" />
-                            <div class="remember">
+<!--header start here-->
+<div class="header">
+    <div class="header-main">
+        <h1>Login Form Admin</h1>
+        <div class="header-bottom">
+            <div class="header-right w3agile">
+                <div class="header-left-bottom agileinfo">
+                    <form th:action="@{/login}" method="post">
+                        <input type="text" value="User name" name="username" onfocus="this.value = '';"
+                               onblur="if (this.value == '') {this.value = 'User name';}"/>
+                        <input type="password" value="Password" name="password" onfocus="this.value = '';"
+                               onblur="if (this.value == '') {this.value = 'password';}"/>
+                        <div class="remember">
                                 <span class="checkbox1">
-							   <label class="checkbox"><input type="checkbox" name="" checked=""><i> </i>Remember me</label>
+							   <label class="checkbox"><input type="checkbox" name=""
+                                                              checked=""><i> </i>Remember me</label>
 						 </span>
-                                <div class="forgot">
-                                    <h6><a href="#">Forgot Password?</a></h6>
-                                </div>
-                                <div class="clear"> </div>
+                            <div class="forgot">
+                                <h6><a th:href="@{/forgot_password}">Forgot password?</a></h6>
                             </div>
-                            <input type="submit" value="Login">
-                        </form>
-                    </div>
-                </div>
+                            <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/loginSocial&response_type=code
+    &client_id=733255590568-hvsae12tdarn1cc7e2pl3eldu1012vr4.apps.googleusercontent.com&approval_prompt=force">Login With
+                                Gmail</a>
+                            <div class="clear"></div>
+                        </div>
+                        <input type="submit" value="Login">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
+                    </form>
+                </div>
             </div>
+
         </div>
     </div>
-    <!--header end here-->
-    <div class="copyright">
-        <p>© 2016 Classy Login Form. All rights reserved | Design by <a href="http://w3layouts.com/" target="_blank">  W3layouts </a></p>
-    </div>
-    <!--footer end here-->
+</div>
+<!--header end here-->
+<div class="copyright">
+    <p>© 2016 Classy Login Form. All rights reserved | Design by <a href="http://w3layouts.com/" target="_blank">
+        W3layouts </a></p>
+</div>
+<!--footer end here-->
 </body>
 
 </html>
