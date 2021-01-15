@@ -1,6 +1,7 @@
 var banners = {} || banners;
 var rates=rates||{};
 banners.intTable = function () {
+    var id;
     var role=$('#role').val();
     if (role==='ADMIN'){
         $("#banners-datatables").DataTable({
@@ -12,7 +13,16 @@ banners.intTable = function () {
             },
             columns:[
                 {
-                    data: "id", name: "Id", title:"Id", orderable: true,
+                    data: "id", name: "Id", title:"Id", orderable: true, "render": function (data){
+                        id = data;
+                        return id;
+                    }
+                },
+                {
+                    data: "title", name: "Title", title:"Title", orderable: true, "render": function (data){
+                        var str ="<div><a href='javascript:' onclick='banners.get(this.title,"+id+")' title='View'>"+data+"</a></div>" ;
+                        return str;
+                    }
                 },
                 {
                     data: "image", name: "Image", title: "Image", orderable: true, "render": function (data){
@@ -31,8 +41,10 @@ banners.intTable = function () {
                 },
                 {
                     data: "id", name: "Action", title: "Action", sortable: false, orderable: false, "render": function (data) {
-                        var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' onclick='banners.get("+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning fa fa-cogs'></a> " +
-                            "<a href='javascript:' class='btn btn-danger' onclick='banners.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a></div>"
+                        var str = "<div style='justify-content: center;text-align: center'>" +
+                            "<a href='javascript:' onclick='banners.get(this.title,"+data+")' title='Edit' data-toggle=\"modal\" data-target=\"#modalAddEdit\" class='btn btn-warning'><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i></a> " +
+                            "<a href='javascript:' class='btn btn-danger' onclick='banners.delete("+data+")'><i class=\"ti-trash\" title=\"Delete\"></a>" +
+                            "</div>"
                         return str;
                     }
                 }
@@ -48,7 +60,16 @@ banners.intTable = function () {
             },
             columns:[
                 {
-                    data: "id", name: "Id", title:"Id", orderable: true,
+                    data: "id", name: "Id", title:"Id", orderable: true, "render": function (data) {
+                        id = data;
+                        return id;
+                    }
+                },
+                {
+                    data: "title", name: "Title", title:"Title", orderable: true, "render": function (data){
+                        var str ="<div><a href='javascript:' onclick='banners.get(this.title,"+id+")' title='View'>"+data+"</a></div>" ;
+                        return str;
+                    }
                 },
                 {
                     data: "image", name: "Image", title: "Image", orderable: true, "render": function (data){
@@ -89,6 +110,7 @@ banners.save = function (){
     if ($("#formAddEdit").valid()){
         if ($('#id').val() == 0){
             var bannerObj = {};
+            bannerObj.title = $('#title').val();
             bannerObj.image = $('#base64').val();
 
             $.ajax({
@@ -113,8 +135,9 @@ banners.save = function (){
             });
         }else {
             var bannerObj = {};
-            bannerObj.id = $('#id').val();
+            bannerObj.title = $('#title').val();
             bannerObj.image = $('#base64').val();
+            bannerObj.id = $('#id').val();
             bannerObj.dateAdd = $("#dateAdd").val();
 
             $.ajax({
@@ -171,22 +194,39 @@ banners.delete = function (id) {
     validator.resetForm();
 };
 
-banners.get = function (id) {
+banners.get = function (title, id) {
     $.ajax({
         url: "http://localhost:8080/api/banner/" + id,
         method: "GET",
         dataType: "json",
         success: function (data){
             $('#formAddEdit')[0].reset();
-            $('#modalTitle').html("Edit banner");
-            $('#id').val(data.id);
-            $('#base64').val(data.image);
-            $('#imageHtml').html(
-                `<img id='output' height="150px" width="100px" src="${data.image}">
+            $('.form-control').removeAttr('disabled');
+            if(title === 'Edit'){
+                $('#modalTitle').html("Edit banner");
+                $('.hideHtml').hide();
+                $('#save').show();
+                $('#base64').val(data.image)
+                $('#imageHtml').html(
+                    `<img id='output' height="150px" width="100px" src="${data.image}">
                             <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" ><br>`
-            );
+                );
+            }
+            if (title === 'View'){
+                $('#modalTitle').html("View banner");
+                $('.hideHtml').show();
+                $('#imageHtml').html(
+                    `<img class="form-control" src="${data.image}"
+                           name="image" id="image" style="width: 600px;height: 600px">`
+                );
+                $('#save').hide();
+                $('.form-control').attr('disabled','disable');
+            }
+            $('#id').val(data.id);
             $('#dateAdd').val(data.dateAdd);
-            $( "#formAddEdit" ).validate().resetForm();
+            $('#dateUpdate').val(data.dateUpdate);
+            $('#title').val(data.title);
+            $( "#formAddEdit").validate().resetForm();
             $('#modalAddEdit').modal('show');
         }
     });
@@ -194,6 +234,7 @@ banners.get = function (id) {
 
 banners.resetForm = function (){
     $('#formAddEdit')[0].reset();
+    $('#title').val("");
     $('#id').val(0);
     $('#image').val("");
 }

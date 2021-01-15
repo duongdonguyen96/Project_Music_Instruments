@@ -83,7 +83,7 @@ blogs.save = function () {
     if ($("#formAddEdit").valid()) {
             var blogObj = {};
             blogObj.title = $('#title').val();
-            blogObj.image = $('#image').val();
+            blogObj.image = $('#base64').val();
             blogObj.content = $('#content').val();
             $.ajax({
                 url: 'http://localhost:8080/api/blog/',
@@ -111,7 +111,7 @@ blogs.update = function (){
             var blogObj = {};
             blogObj.id = $('#id').val();
             blogObj.title = $('#title').val();
-            blogObj.image = $('#image').val();
+            blogObj.image = $('#base64').val();
             blogObj.content = $('#content').val();
             console.log(blogObj)
             $.ajax({
@@ -144,8 +144,8 @@ blogs.view = function (id){
             $("#formAddEdit")[0].reset();
             $("#modalTitle").html("View Blog");
             $("#title").val(data.title);
-            $("#image").append("<img src='"+ data.image +"'/>");
-            $("#content").append(data.content);
+            document.getElementById("image").src = data.image;
+            $("#content").html(data.content);
             $("#dateAdd").val(data.dateAdd);
             $("#blogs-datatables").DataTable().ajax.reload();
             $("#modalAddEdit").modal("show");

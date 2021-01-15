@@ -1,5 +1,6 @@
 var vendors = {} || vendors;
 var rates = {} || rates;
+
 vendors.intTable = function () {
     var id;
     var role=$('#role').val();
