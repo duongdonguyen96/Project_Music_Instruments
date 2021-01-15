@@ -1,6 +1,63 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head_cata_check_contact">
+    <title>Trang Chủ</title>
+    <link th:href="@{../fe/css/bootstrap.css}" rel='stylesheet' type='text/css' />
+    <!-- jQuery (necessary JavaScript plugins) -->
+    <script type='text/javascript' th:src="@{../fe/js/jquery-1.11.1.min.js}"></script>
+    <!-- Custom Theme files -->
+    <link th:href="@{../fe/css/style.css}" rel='stylesheet' type='text/css' />
+    <!-- Custom Theme files -->
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Gretong Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+    <!-- start menu -->
+    <link th:href="@{../fe/css/megamenu.css}" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" th:src="@{../fe/js/megamenu.js}"></script>
+    <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+    <script th:src="@{../fe/js/menu_jquery.js}"></script>
+    <style>
+        .error {
+            color: red !important;
+        }
+    </style>
+</head>
+<head th:fragment="head_view_blog_index">
+    <title>Trang Chủ</title>
+    <link th:href="@{../fe/css/bootstrap.css}" rel='stylesheet' type='text/css' />
+    <!-- jQuery (necessary JavaScript plugins) -->
+    <script type='text/javascript' th:src="@{../fe/js/jquery-1.11.1.min.js}"></script>
+    <!-- Custom Theme files -->
+    <link th:href="@{../fe/css/style.css}" rel='stylesheet' type='text/css' />
+    <script>document.getElementsByTagName("html")[0].className += " js";</script>
+    <link rel="stylesheet" th:href="@{../fe/css/styleCart.css}" type="text/css">
+    <!-- Custom Theme files -->
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Gretong Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+    <!-- start menu -->
+    <link th:href="@{../fe/css/megamenu.css}" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" th:src="@{../fe/js/megamenu.js}"></script>
+    <script>$(document).ready(function () { $(".megamenu").megamenu(); });</script>
+    <script th:src="@{../fe/js/menu_jquery.js}"></script>
+</head>
+
 <body>
 <!--header-->
 <div th:fragment="header">
@@ -62,11 +119,11 @@
         </div>
         <div class="cart box_1">
             <a href="/checkouts">
-                <h3> <span class="simpleCart_total">$0.00</span> (<span id="simpleCart_quantity"
+                <h3> <span class="simpleCart_total" id="simpleCart_total">$0.00</span> (<span id="simpleCart_quantity"
                                                                         class="simpleCart_quantity">0</span> items)<img th:src="@{../fe/images/bag.png}" alt="">
                 </h3>
             </a>
-            <p><a href="javascript:;" class="simpleCart_empty">(empty card)</a></p>
+            <p><a href="javascript:;" class="simpleCart_empty" onclick=" return orders.deleteAllProduct()">(empty card)</a></p>
             <div class="clearfix"> </div>
         </div>
         <div class="create_btn">
@@ -194,6 +251,14 @@
             <p>Copyrights © 2015 Gretong. All rights reserved | Template by <a href="http://w3layouts.com/">W3layouts</a></p>
         </div>
     </div>
+</div>
+<div th:fragment="toars">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
+            integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
+            crossorigin="anonymous"></script>
 </div>
 </body>
 </html>

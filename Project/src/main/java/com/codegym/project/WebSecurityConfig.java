@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/api/**").permitAll()
                 .and()
-                .authorizeRequests().antMatchers("/charts","/products","/typeProducts","/vendors","/orders","/rates","/banners","/blogs","/employees","/users").hasAnyRole("ADMIN","EMPLOYEE")
+                .authorizeRequests().antMatchers("/charts","/products","/typeProducts","/vendors","/rates","/banners","/blogs","/employees","/users").hasAnyRole("ADMIN","EMPLOYEE")
                 .and()
                 .authorizeRequests().antMatchers("/productDeleted","/typeProductsDeleted","/vendorsDeleted","/ratesDeleted","/bannersDeleted","/blogsDeleted","/employeesDelete","/usersDelete").hasAnyRole("ADMIN","EMPLOYEE")
                 .and()

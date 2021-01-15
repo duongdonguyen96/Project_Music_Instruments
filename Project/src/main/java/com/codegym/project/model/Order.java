@@ -29,7 +29,48 @@ public class Order {
     @OneToMany
     private List<OrderDetail> orderDetailList;
 
+    private String status="pending";
+
     @Where(clause = "delete=false")
     private boolean delete = false;
 
+    public void setDelete(boolean delete) {
+        this.delete = delete;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<OrderDetail> getOrderDetailList() {
+        return orderDetailList;
+    }
+
+    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+        this.orderDetailList = orderDetailList;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public boolean isDelete() {
+        return delete;
+    }
 }

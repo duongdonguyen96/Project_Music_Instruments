@@ -1,5 +1,6 @@
 var productLines = {} || productLines;
 var vendors = {} || vendors;
+var orders={}|orders;
 //productLines
 productLines.listType = function () {
     $.ajax({
@@ -145,7 +146,7 @@ productLines.listProducts=function(id,page){
                                 <p>It is a long established fact that</p>
                                 <div class="grid_1 simpleCart_shelfItem">
                                     <div class="item_add"><span class="item_price"><h6>ONLY $${data.content[j].price}</h6></span></div>
-                                    <div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
+                                    <div class="item_add"><span class="item_price"><a href="#" onclick="orders.addToCart(${data.content[j].id})">add to cart</a></span></div>
                                 </div>
                             </div>
                         </div>`
@@ -208,7 +209,7 @@ productLines.listProductsById=function(page){
                                 <p>It is a long established fact that</p>
                                 <div class="grid_1 simpleCart_shelfItem">
                                     <div class="item_add"><span class="item_price"><h6>ONLY $${data.content[j].price}</h6></span></div>
-                                    <div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
+                                    <div class="item_add"><span class="item_price"><a href="#" onclick="orders.addToCart(${data.content[j].id})">add to cart</a></span></div>
                                 </div>
                             </div>
                         </div>`
@@ -296,7 +297,7 @@ vendors.listProducts=function(id,page){
                                 <p>It is a long established fact that</p>
                                 <div class="grid_1 simpleCart_shelfItem">
                                     <div class="item_add"><span class="item_price"><h6>ONLY $${data.content[j].price}</h6></span></div>
-                                    <div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
+                                    <div class="item_add"><span class="item_price"><a href="#" onclick="orders.addToCart(${data.content[j].id})">add to cart</a></span></div>
                                 </div>
                             </div>
                         </div>`
@@ -366,7 +367,7 @@ vendors.listProductsById=function(page){
                                 <p>It is a long established fact that</p>
                                 <div class="grid_1 simpleCart_shelfItem">
                                     <div class="item_add"><span class="item_price"><h6>ONLY $${data.content[j].price}</h6></span></div>
-                                    <div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
+                                    <div class="item_add"><span class="item_price"><a href="#" onclick="orders.addToCart(${data.content[j].id})">add to cart</a></span></div>
                                 </div>
                             </div>
                         </div>`
