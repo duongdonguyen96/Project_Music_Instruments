@@ -2,6 +2,7 @@ package com.codegym.project.controller.api;
 
 import com.codegym.project.model.Banner;
 import com.codegym.project.model.Blog;
+import com.codegym.project.model.Vendor;
 import com.codegym.project.model.message.MessageNotification;
 import com.codegym.project.service.BannerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,7 +96,7 @@ public class ApiBannerController {
         }
     }
 
-//    BannerDeleted
+    //    BannerDeleted
     @GetMapping(value = "/bannersDeleted/")
     public ResponseEntity<List<Banner>> listBannersDeleted(){
         List<Banner> bannersListDeleted = bannerService.findAllBannerDeleted();
@@ -121,5 +122,16 @@ public class ApiBannerController {
             e.printStackTrace();
         }
         return isBanner;
+    }
+
+    @GetMapping(value = "/bannerDeleted/{id}")
+    public ResponseEntity<Banner> findBannerDeletedById(@PathVariable Long id){
+        try{
+            Banner banner = bannerService.findBannerDeleted(id);
+            return new ResponseEntity<Banner>(banner, HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<Banner>(HttpStatus.NO_CONTENT);
+        }
     }
 }

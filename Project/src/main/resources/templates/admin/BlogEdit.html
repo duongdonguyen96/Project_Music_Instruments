@@ -160,9 +160,11 @@
                                             </tr>
                                             <tr>
                                                 <td>Image</td>
-                                                <td><input type="text" id="image" name="image" data-rule-required=true
-                                                           class="form-control" th:field="*{image}">
+                                                <td>
+                                                    <img id='output' height="150px" width="100px" th:src="${blog.image}">
+                                                    <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate"><br>
                                                 </td>
+                                                <div th:replace="layout/layout::base64"></div>
                                             </tr>
                                             <tr>
                                                 <td>Content</td>
@@ -212,6 +214,7 @@
         $('#content').summernote();
     });
 </script>
-<script src="http://localhost:8080/js/blogs.js"></script>
-<script src="http://localhost:8080/js/notification.js"></script>
+<script th:src="@{../js/blogs.js}"></script>
+<script th:src="@{../js/notification.js}"></script>
+<script th:src="@{../js/uploadFile.js}"></script>
 </html>

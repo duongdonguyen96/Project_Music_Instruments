@@ -77,10 +77,9 @@ public class AllController {
 
     @GetMapping(value = "/blogedit/{id}")
     public ModelAndView showEditForm(@PathVariable("id") Long id) throws SQLException {
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView("admin/BlogEdit");
         Blog blog = blogService.findById(id);
         if (blog != null){
-            modelAndView = new ModelAndView("admin/BlogEdit");
             modelAndView.addObject("blog", blog);
             return modelAndView;
         }

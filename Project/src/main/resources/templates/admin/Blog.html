@@ -200,16 +200,18 @@
                             <div class="col-3">
                                 <label>image</label>
                             </div>
-                            <div class="col-9">
-                                <div id="image"></div>
+                            <div class="col-9" id="image">
+
                             </div>
+                        </div>
+                        <div th:replace="layout/layout::base64">
                         </div>
                         <div class="row form-group">
                             <div class="col-3">
                                 <label>Content</label>
                             </div>
-                            <div class="col-9">
-                                <div id="content"></div>
+                            <div class="col-9" id="content">
+
                             </div>
                         </div>
                     </form>
@@ -230,4 +232,5 @@
 </body>
 <script src="js/blogs.js"></script>
 <script src="js/notification.js"></script>
+<script src="js/uploadFile.js"></script>
 </html>

@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ceb598f7-c453-4323-9d7e-3b7fef0285d1" name="Default Changelist" comment="" />
+    <list default="true" id="ceb598f7-c453-4323-9d7e-3b7fef0285d1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/com/codegym/project/model/Banner.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/com/codegym/project/model/Banner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/static/js/bannerDeleted.js" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/static/js/bannerDeleted.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/static/js/bannerScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/static/js/bannerScript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/static/js/notification.js" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/static/js/notification.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/templates/admin/Banner.html" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/templates/admin/Banner.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/templates/admin/BannerIsDelete.html" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/templates/admin/BannerIsDelete.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +56,7 @@
       <workItem from="1608864341142" duration="14000" />
       <workItem from="1608864750306" duration="16000" />
       <workItem from="1610503553139" duration="21000" />
+      <workItem from="1610702436613" duration="30000" />
     </task>
     <servers />
   </component>
@@ -55,9 +64,10 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="548" y="166" key="FileChooserDialogImpl" timestamp="1610503573409">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="487" y="147" key="FileChooserDialogImpl" timestamp="1610702466237">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="487" y="147" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1610702466237" />
     <state x="548" y="166" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1610503573409" />
   </component>
 </project>
