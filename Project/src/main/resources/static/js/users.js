@@ -1,5 +1,4 @@
 var users = {} || users;
-var rates = {} || rates;
 users.intTable = function () {
     $("#users-dataTable").DataTable({
         ajax: {
@@ -231,7 +230,6 @@ $.validator.addMethod("validatePhone", function (value, element) {
 $(document).ready(function () {
     users.intTable();
     users.validation();
-    rates.findStatus();
 });
 
 users.validation = function () {

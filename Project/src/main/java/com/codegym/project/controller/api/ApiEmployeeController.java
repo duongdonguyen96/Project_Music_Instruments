@@ -13,7 +13,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.Principal;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -125,16 +124,5 @@ public class ApiEmployeeController {
             e.printStackTrace();
         }
         return isVendors;
-    }
-    @RequestMapping(value = "/employeesName/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Employee> findEmById(Principal principal) {
-        String name=principal.getName();
-        try {
-            Employee employee = employeeService.findByUserName(name);
-            return new ResponseEntity<Employee>(employee, HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<Employee>(HttpStatus.NO_CONTENT);
-        }
     }
 }

@@ -9,6 +9,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -25,13 +26,16 @@ public class Blog {
     private Long id;
 
     @NotNull
+    @Size(min =20,max = 100,message = "Please enter at least 20 characters!")
     private String title;
 
     @NotNull
+    @Size(min =100,max = 10000,message = "Please enter at least 100 characters!")
     @Column(name="content",columnDefinition="TEXT")
     private String content;
 
     @NotNull
+    @Column(name="image",columnDefinition="TEXT")
     private String image;
 
     @NotNull
@@ -69,29 +73,5 @@ public class Blog {
 
     public LocalDateTime getDateAdd() {
         return dateAdd;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public LocalDateTime getDateUpdate() {
-        return dateUpdate;
-    }
-
-    public LocalDateTime getDateDelete() {
-        return dateDelete;
-    }
-
-    public boolean isDelete() {
-        return delete;
     }
 }

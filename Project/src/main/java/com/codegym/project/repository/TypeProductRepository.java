@@ -19,7 +19,6 @@ public interface TypeProductRepository extends JpaRepository<TypeProduct, Long> 
             value = "select * from type_product where id =?1",
             nativeQuery = true)
     TypeProduct findTypeProductsDeleted(long id);
-
     @Query(
             value = "select * from type_product where name =?1",
             nativeQuery = true)

@@ -33,14 +33,3 @@ rates.findStatus = function () {
         }
     });
 }
-
-employees.findUser = function () {
-    $.ajax({
-        url: "http://localhost:8080/api/employeesName/",
-        method: "GET",
-        dataType: "json",
-        success: function (data) {
-            $("#avatar").src=data.image
-        }
-    });
-}

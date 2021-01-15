@@ -1,6 +1,5 @@
 package com.codegym.project.controller.api;
 
-import com.codegym.project.model.TypeProduct;
 import com.codegym.project.model.Vendor;
 import com.codegym.project.model.message.MessageNotification;
 import com.codegym.project.service.VendorService;
@@ -157,11 +156,5 @@ public class ApiVendorController {
             e.printStackTrace();
             return new ResponseEntity<Vendor>(HttpStatus.NO_CONTENT);
         }
-    }
-
-    @GetMapping(value = "/listVendorsById/")
-    public ResponseEntity<List<Vendor>> listVendors() {
-        List<Vendor> vendorList = vendorService.listVendorsById();
-        return new ResponseEntity<List<Vendor>>(vendorList, HttpStatus.OK);
     }
 }

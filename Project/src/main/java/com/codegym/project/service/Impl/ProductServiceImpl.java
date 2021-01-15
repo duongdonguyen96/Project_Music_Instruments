@@ -4,8 +4,6 @@ import com.codegym.project.model.Product;
 import com.codegym.project.repository.ProductRepository;
 import com.codegym.project.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -89,15 +87,10 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAllProductsByName(name);
     }
 
-    //Home
+//Home
     @Override
     public List<Product> findAllByTypeProductId(Long id) {
         return productRepository.findAllByTypeProductId(id);
-    }
-
-    @Override
-    public List<Product> findAllByVendorId(Long id) {
-        return productRepository.findAllByVendorId(id);
     }
 
     @Override
@@ -105,13 +98,4 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.listFourNewProducts();
     }
 
-    @Override
-    public Page<Product> findAllByTypeProductIdAndNameContaining(Long id,Pageable pageable,String name) {
-        return productRepository.findAllByTypeProductIdAndNameContaining(id,pageable,name);
-    }
-
-    @Override
-    public Page<Product> findAllByVendorIdAndNameContaining(Long id, Pageable pageable, String name) {
-        return productRepository.findAllByVendorIdAndNameContaining(id,pageable,name);
-    }
 }

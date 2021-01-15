@@ -1,7 +1,6 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
 <head th:replace="layout/layout :: head">
 </head>
 
@@ -69,7 +68,7 @@
                                     <span>Orders</span></a>
                                 <ul class="collapse">
                                     <li><a href="/orders">Orders list</a></li>
-                                    <li><a href="/ordersDeleted">Orders Deleted</a></li>
+                                    <li><a href="OderIsDelete.html">Orders Deleted</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -95,10 +94,6 @@
                                     <li><a href="/users">Users list</a></li>
                                     <li><a href="/usersDelete">Users Deleted</a></li>
                                 </ul>
-                            </li>
-                            <li>
-                                <a href="/charts" aria-expanded="true"><i class="fa fa-table"></i>
-                                    <span>Chart</span></a>
                             </li>
                         </ul>
                     </nav>
@@ -201,7 +196,7 @@
                                 <label>image</label>
                             </div>
                             <div class="col-9">
-                                <div id="image"></div>
+                                <img src="" id="image"></img>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -210,6 +205,7 @@
                             </div>
                             <div class="col-9">
                                 <div id="content"></div>
+<!--                                <textarea class="form-control" name="content" id="content" disabled></textarea>-->
                             </div>
                         </div>
                     </form>
