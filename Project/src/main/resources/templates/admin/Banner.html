@@ -23,6 +23,16 @@
                     <input type="hidden" name="id" id="id" value="">
                     <div class="row form-group">
                         <div class="col-3">
+                            <label>title</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="title" id="title"
+                                   data-rule-required=true placeholder="Enter title">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
                             <label>Image</label>
                         </div>
                         <div class="col-9" id="imageHtml">
@@ -37,7 +47,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <a href="javascript:" class="btn btn-primary"
-                   onclick="banners.save()">Save</a>
+                   onclick="banners.save()" id="save">Save</a>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
 
