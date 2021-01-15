@@ -7,28 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-	<title>Trang Chủ</title>
-	<link th:href="@{../fe/css/bootstrap.css}" rel='stylesheet' type='text/css' />
-	<!-- jQuery (necessary JavaScript plugins) -->
-	<script type='text/javascript' th:src="@{../fe/js/jquery-1.11.1.min.js}"></script>
-	<!-- Custom Theme files -->
-	<link th:href="@{../fe/css/style.css}" rel='stylesheet' type='text/css' />
-	<!-- Custom Theme files -->
-	<!--//theme-style-->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="Gretong Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
-	<!-- start menu -->
-	<link th:href="@{../fe/css/megamenu.css}" rel="stylesheet" type="text/css" media="all" />
-	<script type="text/javascript" th:src="@{../fe/js/megamenu.js}"></script>
-	<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-	<script th:src="@{../fe/js/menu_jquery.js}"></script>
-	<script th:src="@{../fe/js/simpleCart.min.js}"> </script>
+<head th:replace="layout/homepagelayout::head_cata_check_contact">
 </head>
 <body>
 <!-- header_top -->
@@ -69,263 +48,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 		</section>
-		<section  class="sky-form">
-					<h4>brand</h4>
-						<div class="row1 scroll-pane">
-							<div class="col col-4">
-								<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>shree</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>biba</label>
-							</div>
-							<div class="col col-4">
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>vishud</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>amari</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>shree</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>biba</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>shree</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>biba</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>shree</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>biba</label>																								
-							</div>
-						</div>
-		</section>
-		<section class="sky-form">
-			<h4>colour</h4>
-			<ul class="w_nav2">
-				<li><a class="color1" href="#"></a></li>
-				<li><a class="color2" href="#"></a></li>
-				<li><a class="color3" href="#"></a></li>
-				<li><a class="color4" href="#"></a></li>
-				<li><a class="color5" href="#"></a></li>
-				<li><a class="color6" href="#"></a></li>
-				<li><a class="color7" href="#"></a></li>
-				<li><a class="color8" href="#"></a></li>
-				<li><a class="color9" href="#"></a></li>
-				<li><a class="color10" href="#"></a></li>
-				<li><a class="color12" href="#"></a></li>
-				<li><a class="color13" href="#"></a></li>
-				<li><a class="color14" href="#"></a></li>
-				<li><a class="color15" href="#"></a></li>
-				<li><a class="color5" href="#"></a></li>
-				<li><a class="color6" href="#"></a></li>
-				<li><a class="color7" href="#"></a></li>
-				<li><a class="color8" href="#"></a></li>
-				<li><a class="color9" href="#"></a></li>
-				<li><a class="color10" href="#"></a></li>
-			</ul>
-		</section>
-		<section class="sky-form">
-						<h4>discount</h4>
-						<div class="row1 scroll-pane">
-							<div class="col col-4">
-								<label class="radio"><input type="radio" name="radio" checked=""><i></i>60 % and above</label>
-								<label class="radio"><input type="radio" name="radio"><i></i>50 % and above</label>
-								<label class="radio"><input type="radio" name="radio"><i></i>40 % and above</label>
-							</div>
-							<div class="col col-4">
-								<label class="radio"><input type="radio" name="radio"><i></i>30 % and above</label>
-								<label class="radio"><input type="radio" name="radio"><i></i>20 % and above</label>
-								<label class="radio"><input type="radio" name="radio"><i></i>10 % and above</label>
-							</div>
-						</div>						
-		</section>
+		  <section  class="sky-form">
+			  <h4>vendors</h4>
+			  <div class="row1 scroll-pane">
+				  <div class="col col-4" id="allVendor">
+				  </div>
+			  </div>
+		  </section>
+
 	</div>
    </div>
 	<!-- start content -->
-	<div class="col-md-9 w_content">
+	<div class="col-md-9 w_content" id="contents" >
 		<div class="women">
-			<a href="#"><h4><span th:text="${typeProduct.name}"></span> - <span>4449 itemms</span> </h4></a>
-			<ul class="w_nav">
-						<li>Sort : </li>
-		     			<li><a class="active" href="#">popular</a></li> |
-		     			<li><a href="#">new </a></li> |
-		     			<li><a href="#">discount</a></li> |
-		     			<li><a href="#">price: Low High </a></li> 
-		     			<div class="clear"></div>	
-		     </ul>
+			<input type="hidden" th:value="${typeProduct.id}" id="idType">
+			<input type="hidden" th:value="${vendor.id}" id="idVendor">
+			<a href="#"><h4><span th:text="${typeProduct.name}" id="nameTypeVendor"></span> - <span id="sl"></span> items</h4></a>
+<!--			<ul class="w_nav">-->
+<!--						<li>Sort : </li>-->
+<!--		     			<li><a class="active" href="#">popular</a></li> |-->
+<!--		     			<li><a href="#">new </a></li> |-->
+<!--		     			<li><a href="#">discount</a></li> |-->
+<!--		     			<li><a href="#">price: Low High </a></li> -->
+<!--		     			<div class="clear"></div>	-->
+<!--		     </ul>-->
 		     <div class="clearfix"></div>	
 		</div>
 		<!-- grids_of_4 -->
-		<div class="grids_of_4">
-		  <div class="grid1_of_4">
-				<div class="content_box"><a href="/details">
-			   	   	 <img src="fe/images/w1.jpg" class="img-responsive" alt=""/>
-				   	  </a>
-				    <h4><a href="/details"> Duis autem</a></h4>
-				     <p>It is a long established fact that</p>
-					 <div class="grid_1 simpleCart_shelfItem">
-				    
-					 <div class="item_add"><span class="item_price"><h6>ONLY $99.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-					 </div>
-			   	</div>
-			</div>
-			<div class="grid1_of_4">
-				<div class="content_box"><a href="/details">
-			   	   	 <img src="fe/images/w2.jpg" class="img-responsive" alt=""/>
-				   	  </a>
-				    <h4><a href="/details"> Duis autem</a></h4>
-				     <p>It is a long established fact that</p>
-					 <div class="grid_1 simpleCart_shelfItem">
-				    
-					 <div class="item_add"><span class="item_price"><h6>ONLY $76.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-					 </div>
-			   	</div>
-			</div>
-			<div class="grid1_of_4">
-				<div class="content_box"><a href="/details">
-			   	   	 <img src="fe/images/w3.jpg" class="img-responsive" alt=""/>
-				   	  </a>
-				    <h4><a href="/details"> Duis autem</a></h4>
-				     <p>It is a long established fact that</p>
-					 <div class="grid_1 simpleCart_shelfItem">
-				    
-					 <div class="item_add"><span class="item_price"><h6>ONLY $58.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-					 </div>
-			   	</div>
-			</div>
-			<div class="grid1_of_4">
-				<div class="content_box"><a href="/details">
-			   	   	 <img src="fe/images/w4.jpg" class="img-responsive" alt=""/>
-				   	  </a>
-				    <h4><a href="/details"> Duis autem</a></h4>
-				     <p>It is a long established fact that</p>
-					 <div class="grid_1 simpleCart_shelfItem">
-				    
-					 <div class="item_add"><span class="item_price"><h6>ONLY $112.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-					 </div>
-			   	</div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-		
-		
-		<div class="grids_of_4">
-		 <div class="grid1_of_4">
-				<div class="content_box"><a href="/details">
-			   	   	 <img src="fe/images/w5.jpg" class="img-responsive" alt=""/>
-				   	  </a>
-				    <h4><a href="/details"> Duis autem</a></h4>
-				     <p>It is a long established fact that</p>
-					 <div class="grid_1 simpleCart_shelfItem">
-				    
-					 <div class="item_add"><span class="item_price"><h6>ONLY $109.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-					 </div>
-			   	</div>
-			</div>
-			<div class="grid1_of_4">
-				<div class="content_box"><a href="/details">
-			   	   	 <img src="fe/images/w6.jpg" class="img-responsive" alt=""/>
-				   	  </a>
-				    <h4><a href="/details"> Duis autem</a></h4>
-				     <p>It is a long established fact that</p>
-					 <div class="grid_1 simpleCart_shelfItem">
-				    
-					 <div class="item_add"><span class="item_price"><h6>ONLY $95.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-					 </div>
-			   	</div>
-			</div>
-			<div class="grid1_of_4">
-				<div class="content_box"><a href="/details">
-			   	   	 <img src="fe/images/w7.jpg" class="img-responsive" alt=""/>
-				   	  </a>
-				    <h4><a href="/details"> Duis autem</a></h4>
-				     <p>It is a long established fact that</p>
-					 <div class="grid_1 simpleCart_shelfItem">
-				    
-					 <div class="item_add"><span class="item_price"><h6>ONLY $68.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-					 </div>
-			   	</div>
-			</div>
-			<div class="grid1_of_4">
-				<div class="content_box"><a href="/details">
-			   	   	 <img src="fe/images/w8.jpg" class="img-responsive" alt=""/>
-				   	  </a>
-				    <h4><a href="/details"> Duis autem</a></h4>
-				     <p>It is a long established fact that</p>
-					 <div class="grid_1 simpleCart_shelfItem">
-				    
-					 <div class="item_add"><span class="item_price"><h6>ONLY $74.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-					 </div>
-			   	</div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-		<div class="grids_of_4">
-		  <div class="grid1_of_4">
-				<div class="content_box"><a href="/details">
-			   	   	 <img src="fe/images/w9.jpg" class="img-responsive" alt=""/>
-				   	  </a>
-				    <h4><a href="/details"> Duis autem</a></h4>
-				     <p>It is a long established fact that</p>
-					 <div class="grid_1 simpleCart_shelfItem">
-				    
-					 <div class="item_add"><span class="item_price"><h6>ONLY $80.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-					 </div>
-			   	</div>
-			</div>
-			<div class="grid1_of_4">
-				<div class="content_box"><a href="/details">
-			   	   	 <img src="fe/images/w10.jpg" class="img-responsive" alt=""/>
-				   	  </a>
-				    <h4><a href="/details"> Duis autem</a></h4>
-				     <p>It is a long established fact that</p>
-					 <div class="grid_1 simpleCart_shelfItem">
-				    
-					 <div class="item_add"><span class="item_price"><h6>ONLY $65.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-					 </div>
-			   	</div>
-			</div>
-			<div class="grid1_of_4">
-				<div class="content_box"><a href="/details">
-			   	   	 <img src="fe/images/w11.jpg" class="img-responsive" alt=""/>
-				   	  </a>
-				    <h4><a href="/details"> Duis autem</a></h4>
-				     <p>It is a long established fact that</p>
-					 <div class="grid_1 simpleCart_shelfItem">
-				    
-					 <div class="item_add"><span class="item_price"><h6>ONLY $90.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-					 </div>
-			   	</div>
-			</div>
-			<div class="grid1_of_4">
-				<div class="content_box"><a href="/details">
-			   	   	 <img src="fe/images/w12.jpg" class="img-responsive" alt=""/>
-				   	  </a>
-				    <h4><a href="/details"> Duis autem</a></h4>
-				     <p>It is a long established fact that</p>
-					 <div class="grid_1 simpleCart_shelfItem">
-				    
-					 <div class="item_add"><span class="item_price"><h6>ONLY $75.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-					 </div>
-			   	</div>
-			</div>
-			<div class="clearfix"></div>
+		<div id="listProduct">
+
 		</div>
 		<!-- end grids_of_4 -->
-		
-		
+
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center" id="pageable">
+			</ul>
+		</nav>
 	</div>
+
 	<div class="clearfix"></div>
 	
 	<!-- end content -->
 </div>
 </div>
 <div th:replace="layout/homepagelayout::footer"></div>
+<div th:replace="layout/homepagelayout::toars"></div>
 </body>
 <script th:src="@{../js/menu.js}"></script>
+<script th:src="@{../js/addToCart.js}"></script>
 </html>

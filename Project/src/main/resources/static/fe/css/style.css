@@ -607,7 +607,7 @@ input:focus {
 .search input[type="text"]:hover{
 	background: #ffffff;
 }
-.search input[type="submit"]{
+.search input[type="button"]{
 	background: url('/fe/images/search.png') no-repeat 0px 1px;
 	border: none;
 	cursor: pointer;

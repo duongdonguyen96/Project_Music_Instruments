@@ -1,21 +1,22 @@
 package com.codegym.project.controller;
 
-import com.codegym.project.model.Blog;
-import com.codegym.project.model.Product;
-import com.codegym.project.model.TypeProduct;
-import com.codegym.project.service.BlogService;
-import com.codegym.project.service.ProductService;
-import com.codegym.project.service.TypeProductService;
+import com.codegym.project.model.*;
+import com.codegym.project.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.sql.SQLException;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "")
@@ -26,6 +27,10 @@ public class AllController {
     public TypeProductService typeProductService;
     @Autowired
     public ProductService productService;
+    @Autowired
+    public VendorService vendorService;
+    @Autowired
+    public EmployeeService employeeService;
 
 //Security
     @GetMapping(value = "/login")
@@ -34,7 +39,17 @@ public class AllController {
         return modelAndView;
     }
 
+    @GetMapping(value = "/default")
+    public String defaultAfterLogin(HttpServletRequest request) {
+        if (request.isUserInRole("ADMIN")||request.isUserInRole("EMPLOYEE")) {
+            return "redirect:/products";
+        } else {
+            return "redirect:/";
+        }
+    }
+
 //Admin
+
     @GetMapping(value = "/banners")
     public ModelAndView listBanners(){
         ModelAndView modelAndView=new ModelAndView("admin/Banner");
@@ -87,6 +102,11 @@ public class AllController {
     @GetMapping(value = "/orders")
     public ModelAndView listOrders(){
         ModelAndView modelAndView=new ModelAndView("admin/Order");
+        return modelAndView;
+    }
+    @GetMapping(value = "/ordersDeleted")
+    public ModelAndView listOrdersDeleted(){
+        ModelAndView modelAndView=new ModelAndView("admin/OrderIsDelete");
         return modelAndView;
     }
 
@@ -151,6 +171,14 @@ public class AllController {
         ModelAndView modelAndView=new ModelAndView("admin/VendorIsDelete");
         return modelAndView;
     }
+
+    @GetMapping(value = "/charts")
+    public ModelAndView charts(){
+        ModelAndView modelAndView=new ModelAndView("admin/Chart");
+        return modelAndView;
+    }
+
+
 //    Home page
     @GetMapping(value = "/")
     public ModelAndView Home(){
@@ -182,6 +210,18 @@ public class AllController {
     public ModelAndView category(@PathVariable Long id) throws SQLException {
         ModelAndView modelAndView=new ModelAndView("frontEnd/category");
         TypeProduct typeProduct=typeProductService.findById(id);
+        Vendor vendor=new Vendor();
+        modelAndView.addObject("typeProduct",typeProduct);
+        modelAndView.addObject("vendor",vendor);
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/vendors/{id}")
+    public ModelAndView vendors(@PathVariable Long id) throws SQLException {
+        ModelAndView modelAndView=new ModelAndView("frontEnd/category");
+        Vendor vendor=vendorService.findById(id);
+        TypeProduct typeProduct=new TypeProduct();
+        modelAndView.addObject("vendor",vendor);
         modelAndView.addObject("typeProduct",typeProduct);
         return modelAndView;
     }
@@ -191,6 +231,7 @@ public class AllController {
         Product product=productService.findById(id);
         ModelAndView modelAndView = new ModelAndView("frontEnd/details");
         modelAndView.addObject("product",product);
+        modelAndView.addObject("str","<a href='' onclick='orders.addToCart("+product.getId()+")'>buy</a>");
         return modelAndView;
     }
 
@@ -208,4 +249,6 @@ public class AllController {
         modelAndView.addObject("blog",blog);
         return modelAndView;
     }
+
+
 }

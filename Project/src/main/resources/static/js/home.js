@@ -22,7 +22,8 @@ banners.bannerList = function () {
                             `<div class="item active">
                             <img src="${v.image}" alt="New York" width="100%" height="400">
                             <div class="carousel-caption">
-                                 <h3>${v.title}</h3>
+                                <h3>New York</h3>
+                                <p>The atmosphere in New York is lorem ipsum.</p>
                             </div>
                          </div>`
                         );
@@ -34,7 +35,8 @@ banners.bannerList = function () {
                             `<div class="item">
                             <img src="${v.image}" alt="New York" width="100%" height="400">
                             <div class="carousel-caption">
-                                <h3>${v.title}</h3>
+                                <h3>New York</h3>
+                                <p>The atmosphere in New York is lorem ipsum.</p>
                             </div>
                          </div>`
                         );
@@ -49,6 +51,7 @@ banners.bannerList = function () {
         }
     });
 };
+var orders={}||orders;
 products.new4products = function () {
     $.ajax({
         url: 'http://localhost:8080/api/newFourProducts/',
@@ -68,7 +71,7 @@ products.new4products = function () {
                             </div>
                         <div class="item_add">
                         <span class="item_price">
-                        <a href="#0" class="cd-add-to-cart js-cd-add-to-cart" data-price="25.99">add to cart</a>
+                        <a href="javascript:0" class="cd-add-to-cart js-cd-add-to-cart" data-price="25.99" onclick="orders.addToCart(${v.id})">add to cart</a>
                         </span>
                         </div>
                         </div>
@@ -163,9 +166,24 @@ blogs.new8blogs = function () {
     })
 }
 
+blogs.view = function () {
+    var id = $("#id").val();
+    $.ajax({
+        url: 'http://localhost:8080/api/blog/' + id,
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            $("#viewContent").append(data.content);
+        }
+    });
+}
+
 $(document).ready(function () {
     banners.bannerList();
     products.new4products();
     blogs.new4blogs();
     blogs.new8blogs();
+    if ($("#viewContent").empty()) {
+        blogs.view();
+    }
 });

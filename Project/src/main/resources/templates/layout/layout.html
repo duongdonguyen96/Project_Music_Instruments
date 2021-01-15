@@ -90,7 +90,6 @@
 <!--setting information admin/employees-->
 <div class="col-sm-6 clearfix" th:fragment="setting">
     <div class="user-profile pull-right" sec:authorize="isAuthenticated()">
-        <img class="avatar user-thumb" src="" alt="avatar">
         <h4 class="user-name dropdown-toggle" data-toggle="dropdown">
             <span>
               <span sec:authentication="principal.username"></span>
@@ -134,6 +133,9 @@
             integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
             crossorigin="anonymous"></script>
     <!-- offset area end -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+
     <!-- bootstrap 4 js -->
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>

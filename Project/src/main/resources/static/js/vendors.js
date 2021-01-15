@@ -255,12 +255,13 @@ vendors.get = function (title,id) {
             $('#id').val(data.id);
             $('#dateAdd').val(data.dateAdd);
             $('#dateUpdate').val(data.dateUpdate);
+
             $('#name').val(data.name);
             $('#address').val( data.address);
             $('#email').val(data.email);
             $('#surrogate').val(data.surrogate);
             $('#phone').val( data.phone );
-            $( "#formAddEdit").validate().resetForm();
+            $( "#formAddEdit" ).validate().resetForm();
             $('#modalAddEdit').modal('show');
         }
     });
