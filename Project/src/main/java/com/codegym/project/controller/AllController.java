@@ -32,7 +32,7 @@ public class AllController {
     @Autowired
     public EmployeeService employeeService;
 
-//Security
+    //Security
     @GetMapping(value = "/login")
     public ModelAndView login(){
         ModelAndView modelAndView=new ModelAndView("login/formLogin");
@@ -77,10 +77,9 @@ public class AllController {
 
     @GetMapping(value = "/blogedit/{id}")
     public ModelAndView showEditForm(@PathVariable("id") Long id) throws SQLException {
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView("admin/BlogEdit");
         Blog blog = blogService.findById(id);
         if (blog != null){
-            modelAndView = new ModelAndView("admin/BlogEdit");
             modelAndView.addObject("blog", blog);
             return modelAndView;
         }
@@ -179,14 +178,14 @@ public class AllController {
     }
 
 
-//    Home page
+    //    Home page
     @GetMapping(value = "/")
     public ModelAndView Home(){
         ModelAndView modelAndView=new ModelAndView("frontEnd/index");
         return modelAndView;
     }
 
-// Home page -rates
+    // Home page -rates
     @GetMapping(value = "/contacts")
     public ModelAndView contact() {
         ModelAndView modelAndView = new ModelAndView("frontEnd/contact");
@@ -199,7 +198,7 @@ public class AllController {
         return modelAndView;
     }
 
-// Home page -products
+    // Home page -products
     @GetMapping(value = "/checkouts")
     public ModelAndView checkout(){
         ModelAndView modelAndView = new ModelAndView("frontEnd/checkout");
@@ -235,7 +234,7 @@ public class AllController {
         return modelAndView;
     }
 
-//Home page-blogs
+    //Home page-blogs
     @GetMapping(value = "/news")
     public ModelAndView blogs() {
         ModelAndView modelAndView = new ModelAndView("frontEnd/blog");

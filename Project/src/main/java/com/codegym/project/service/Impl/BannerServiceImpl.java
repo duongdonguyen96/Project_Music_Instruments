@@ -72,7 +72,6 @@ public class BannerServiceImpl implements BannerService {
         Banner banner = this.findBannerDeleted(id);
         if (banner != null){
             banner.setDelete(false);
-            banner.setDateDelete(LocalDateTime.now());
             bannerRepository.save(banner);
             return true;
         }

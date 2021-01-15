@@ -2,6 +2,7 @@ var banners = {} || banners;
 var rates=rates||{};
 
 banners.intTable = function () {
+    var id;
     var role=$('#role').val();
     if (role==='ADMIN'){
         $('#banners-datatables').DataTable({
@@ -13,7 +14,16 @@ banners.intTable = function () {
             },
             columns: [
                 {
-                    data: "id", name: "Id", title: "Id", orderable: true
+                    data: "id", name: "Id", title: "Id", orderable: true, "render": function (data) {
+                        id=data;
+                        return id;
+                    }
+                },
+                {
+                    data: "title", name: "Title", title: "Title", orderable: true,"render": function (data) {
+                        var str ="<div><a href='javascript:' onclick='banners.getBannerDeleted("+id+")' title='View'>"+data+"</a></div>" ;
+                        return str;
+                    },
                 },
                 {
                     data: "image", name: "Image", title: "Image", sortable: false, orderable: true, "render": function (data){
@@ -27,8 +37,10 @@ banners.intTable = function () {
                 {
                     data: "id", name: "Action", title: "Action", sortable: false,
                     orderable: false, "render": function (data) {
-                        var str = "<div style='justify-content: center;text-align: center'><a href='javascript:' onclick='banners.delete("+data+")' title='Delete' class='btn btn-danger ti-trash'></a> " +
-                            "<a href='javascript:' class='btn btn-warning' title='Undo' onclick='banners.undo("+data+")'><i class=\"fa fa-undo\" aria-hidden=\"true\" ></i></a></div>"
+                        var str = "<div style='justify-content: center;text-align: center'>" +
+                            "<a href='javascript:' class='btn btn-warning' title='Undo' onclick='banners.undo("+data+")'><i class=\"fa fa-undo\" aria-hidden=\"true\" ></i></a> " +
+                            "<a href='javascript:' onclick='banners.delete("+data+")' title='Delete' class='btn btn-danger'><i class=\"ti-trash\" title=\"Delete\"></a>" +
+                            "</div>"
                         return str;
                     }
                 }
@@ -44,7 +56,16 @@ banners.intTable = function () {
             },
             columns: [
                 {
-                    data: "id", name: "Id", title: "Id", orderable: true
+                    data: "id", name: "ID", title: "ID", orderable: true, "render": function (data) {
+                        id=data;
+                        return id;
+                    }
+                },
+                {
+                    data: "title", name: "Title", title: "Title", orderable: true,"render": function (data) {
+                        var str ="<div><a href='javascript:' onclick='banners.getBannerDeleted("+id+")' title='View'>"+data+"</a></div>" ;
+                        return str;
+                    },
                 },
                 {
                     data: "image", name: "Image", title: "Image", sortable: false, orderable: true, "render": function (data){
@@ -59,6 +80,29 @@ banners.intTable = function () {
         });
     }
 
+};
+
+banners.getBannerDeleted = function (id) {
+    $.ajax({
+        url: "http://localhost:8080/api/bannerDeleted/" + id,
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            $('#formAddEdit')[0].reset();
+            $('#modalTitle').html("View banner");
+            $('#id').val(data.id);
+            $('#dateAdd').val(data.dateAdd);
+            $('#dateUpdate').val(data.dateUpdate);
+            $('#dateDelete').val(data.dateDelete);
+            $('#title').val(data.title);
+            $('#imageHtml').html(
+                `<img class="form-control" src="${data.image}"
+                           name="image" id="image" style="width: 600px;height: 600px">`
+            );
+            $('.form-control').attr('disabled','disable');
+            $('#modalAddEdit').modal('show');
+        }
+    });
 };
 
 banners.delete = function (id){
@@ -95,7 +139,7 @@ banners.delete = function (id){
 
 banners.undo = function (id){
     bootbox.confirm({
-        message: "Do you want to permanently delete the banner",
+        message: "Do you want to undo the banner",
         button: {
             confirm: {
                 label: 'Yes',

@@ -23,6 +23,16 @@
                     <input type="hidden" name="id" id="id" value="">
                     <div class="row form-group">
                         <div class="col-3">
+                            <label>title</label>
+                        </div>
+                        <div class="col-9">
+                            <input class="form-control" type="text"
+                                   name="title" id="title"
+                                   data-rule-required=true placeholder="Enter title">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
                             <label>Image</label>
                         </div>
                         <div class="col-9" id="imageHtml">
@@ -37,7 +47,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <a href="javascript:" class="btn btn-primary"
-                   onclick="banners.save()">Save</a>
+                   onclick="banners.save()" id="save">Save</a>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
 
@@ -110,7 +120,7 @@
                                 <span>Orders</span></a>
                             <ul class="collapse">
                                 <li><a href="/orders">Orders list</a></li>
-                                <li><a href="/ordersDeleted">Orders Deleted</a></li>
+                                <li><a href="OderIsDelete.html">Orders Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -136,10 +146,6 @@
                                 <li><a href="/users">Users list</a></li>
                                 <li><a href="/usersDelete">Users Deleted</a></li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="/charts" aria-expanded="true"><i class="fa fa-table"></i>
-                                <span>Chart</span></a>
                         </li>
                     </ul>
                 </nav>
