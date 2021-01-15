@@ -20,5 +20,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     Employee findEmployeeById(long id);
 
     boolean findEmployeeByUserName(String userName);
+
+    Employee findByUserName(String name);
 }
 

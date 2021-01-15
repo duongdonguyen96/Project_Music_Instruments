@@ -51,6 +51,7 @@ banners.bannerList = function () {
         }
     });
 };
+var orders={}||orders;
 products.new4products = function () {
     $.ajax({
         url: 'http://localhost:8080/api/newFourProducts/',
@@ -70,7 +71,7 @@ products.new4products = function () {
                             </div>
                         <div class="item_add">
                         <span class="item_price">
-                        <a href="#0" class="cd-add-to-cart js-cd-add-to-cart" data-price="25.99">add to cart</a>
+                        <a href="javascript:0" class="cd-add-to-cart js-cd-add-to-cart" data-price="25.99" onclick="orders.addToCart(${v.id})">add to cart</a>
                         </span>
                         </div>
                         </div>

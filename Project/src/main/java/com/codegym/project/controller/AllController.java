@@ -1,13 +1,7 @@
 package com.codegym.project.controller;
 
-import com.codegym.project.model.Blog;
-import com.codegym.project.model.Product;
-import com.codegym.project.model.TypeProduct;
-import com.codegym.project.model.Vendor;
-import com.codegym.project.service.BlogService;
-import com.codegym.project.service.ProductService;
-import com.codegym.project.service.TypeProductService;
-import com.codegym.project.service.VendorService;
+import com.codegym.project.model.*;
+import com.codegym.project.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.security.core.Authentication;
@@ -35,6 +29,8 @@ public class AllController {
     public ProductService productService;
     @Autowired
     public VendorService vendorService;
+    @Autowired
+    public EmployeeService employeeService;
 
 //Security
     @GetMapping(value = "/login")
@@ -53,6 +49,7 @@ public class AllController {
     }
 
 //Admin
+
     @GetMapping(value = "/banners")
     public ModelAndView listBanners(){
         ModelAndView modelAndView=new ModelAndView("admin/Banner");
@@ -105,6 +102,11 @@ public class AllController {
     @GetMapping(value = "/orders")
     public ModelAndView listOrders(){
         ModelAndView modelAndView=new ModelAndView("admin/Order");
+        return modelAndView;
+    }
+    @GetMapping(value = "/ordersDeleted")
+    public ModelAndView listOrdersDeleted(){
+        ModelAndView modelAndView=new ModelAndView("admin/OrderIsDelete");
         return modelAndView;
     }
 
@@ -229,6 +231,7 @@ public class AllController {
         Product product=productService.findById(id);
         ModelAndView modelAndView = new ModelAndView("frontEnd/details");
         modelAndView.addObject("product",product);
+        modelAndView.addObject("str","<a href='' onclick='orders.addToCart("+product.getId()+")'>buy</a>");
         return modelAndView;
     }
 
@@ -246,4 +249,6 @@ public class AllController {
         modelAndView.addObject("blog",blog);
         return modelAndView;
     }
+
+
 }
