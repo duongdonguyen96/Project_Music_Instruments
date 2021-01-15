@@ -7,33 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-	<title>Trang Chủ</title>
-	<link th:href="@{../fe/css/bootstrap.css}" rel='stylesheet' type='text/css' />
-	<!-- jQuery (necessary JavaScript plugins) -->
-	<script type='text/javascript' th:src="@{../fe/js/jquery-1.11.1.min.js}"></script>
-	<!-- Custom Theme files -->
-	<link th:href="@{../fe/css/style.css}" rel='stylesheet' type='text/css' />
-	<script>document.getElementsByTagName("html")[0].className += " js";</script>
-	<link rel="stylesheet" th:href="@{../fe/css/styleCart.css}" type="text/css">
-	<!-- Custom Theme files -->
-	<!--//theme-style-->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="Gretong Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-	<script
-			type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<!-- start menu -->
-	<link href="fe/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-	<script type="text/javascript" th:src="@{../fe/js/megamenu.js}"></script>
-	<script>$(document).ready(function () { $(".megamenu").megamenu(); });</script>
-	<script th:src="@{../fe/js/menu_jquery.js}"></script>
+<head th:replace="layout/homepagelayout::head_view_blog_index">
 </head>
 
 <body>
@@ -63,8 +37,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--Footer-->
 	<div th:replace="layout/homepagelayout::footer"></div>
-
+	<div th:replace="layout/homepagelayout::toars"></div>
 </body>
 <script th:src="@{../js/menu.js}"></script>
 <script th:src="@{../js/home.js}"></script>
+<script th:src="@{../js/addToCart.js}"></script>
 </html>

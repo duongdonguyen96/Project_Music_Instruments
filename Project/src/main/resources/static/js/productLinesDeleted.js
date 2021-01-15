@@ -126,13 +126,13 @@ productLines.delete = function (id) {
                     url: "http://localhost:8080/api/typeProductDeleted/" + id,
                     method: "DELETE",
                     dataType: "json",
+                    error:function (jqXHR,exception){
+                        toastr.error('Error!! Type not has been delete', 'INFORMATION:')
+                    },
                     success: function () {
                         $("#productLines-datatables").DataTable().ajax.reload();
                         toastr.info('Type has been deleted successfully', 'INFORMATION:')
                     },
-                    error:function (jqXHR,exception){
-                        toastr.error('Error!! Type not has been delete', 'INFORMATION:')
-                    }
                 });
             }
         }

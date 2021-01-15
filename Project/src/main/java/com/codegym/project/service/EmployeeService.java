@@ -10,4 +10,5 @@ public interface EmployeeService extends BaseService<Employee> {
     Employee findEmDeleteById(long id);
     boolean deleteEm(long id);
     boolean undoEm(long id);
+    Employee findByUserName(String name);
 }

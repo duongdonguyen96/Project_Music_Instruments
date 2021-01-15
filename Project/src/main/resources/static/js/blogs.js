@@ -79,11 +79,10 @@ blogs.intTable = function () {
 };
 
 blogs.save = function () {
-    blogs.validation();
     if ($("#formAddEdit").valid()) {
             var blogObj = {};
             blogObj.title = $('#title').val();
-            blogObj.image = $('#base64').val();
+            blogObj.image = $('#image').val();
             blogObj.content = $('#content').val();
             $.ajax({
                 url: 'http://localhost:8080/api/blog/',
@@ -91,18 +90,21 @@ blogs.save = function () {
                 dataType: 'json',
                 contentType: 'application/json',
                 data: JSON.stringify(blogObj),
+                done: function () {
+                    $("#blogs-datatables").DataTable().ajax.reload();
+                },
                 success: function (data) {
                     if (data.code === 2) {
+                        $("#blogs-datatables").DataTable().ajax.reload();
                         toastr.info('Blog has been created successfully', 'INFORMATION:')
-                        $( "#formAddEdit" ).validate().resetForm();
-                        blogs.resetForm();
+
                     } else {
                         data.stringListMessage.map(e => toastr.error(e));
                     }
                 }
             });
-        $( "#formAddEdit" ).validate().resetForm();
-
+        blogs.resetForm();
+        validator.resetForm();
     }
 }
 
@@ -111,7 +113,7 @@ blogs.update = function (){
             var blogObj = {};
             blogObj.id = $('#id').val();
             blogObj.title = $('#title').val();
-            blogObj.image = $('#base64').val();
+            blogObj.image = $('#image').val();
             blogObj.content = $('#content').val();
             console.log(blogObj)
             $.ajax({
@@ -124,14 +126,13 @@ blogs.update = function (){
                     if (data.code === 2) {
                         $("#blogs-datatables").DataTable().ajax.reload();
                         toastr.info('Blog has been update successfully', 'INFORMATION:')
-                        $( "#formAddEdit" ).validate().resetForm();
-                        blogs.resetForm();
                     } else {
                         data.stringListMessage.map(e => toastr.error(e));
                     }
                 }
             });
-        $( "#formAddEdit" ).validate().resetForm();
+        // blogs.resetForm();
+        validator.resetForm();
     }
 }
 
@@ -144,8 +145,8 @@ blogs.view = function (id){
             $("#formAddEdit")[0].reset();
             $("#modalTitle").html("View Blog");
             $("#title").val(data.title);
-            document.getElementById("image").src = data.image;
-            $("#content").html(data.content);
+            $("#image").append("<img src='"+ data.image +"'/>");
+            $("#content").append(data.content);
             $("#dateAdd").val(data.dateAdd);
             $("#blogs-datatables").DataTable().ajax.reload();
             $("#modalAddEdit").modal("show");
@@ -183,6 +184,7 @@ blogs.delete = function (id) {
             }
         }
     });
+    validator.resetForm();
 };
 
 blogs.resetForm = function () {
@@ -193,42 +195,9 @@ blogs.resetForm = function () {
     document.getElementsByClassName("note-editable")[0].innerHTML = "";
 }
 
-blogs.validation = function (){
-    $('#formAddEdit').validate({
-        rule: {
-            title: {
-                required: true,
-                minlength: 20,
-                maxlength: 100,
-            },
-            content:{
-                required:true,
-                minlength: 100,
-                maxlength: 10000,
-            },
-            image:{
-                required:true
-            },
-        },
-        message: {
-            title:{
-                required:"Please enter input title blog",
-                minlength:"Enter names of at least 20 characters",
-                maxlength:"Enter names of up to 100 characters"
-            },
-            content:{
-                required:"Please enter input content blog",
-                minlength:"Enter names of at least 100 characters",
-                maxlength:"Enter names of up to 10000 characters"
-            },
-            image:{
-                required:"Please upload the image",
-            },
-        }
-    });
-}
+var validator = $("#formAddEdit").validate();
+
 $(document).ready(function () {
     blogs.intTable();
-    blogs.validation();
     rates.findStatus();
 })

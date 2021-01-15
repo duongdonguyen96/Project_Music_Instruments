@@ -7,31 +7,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-	<title>Trang Chủ</title>
-	<link href="fe/css/bootstrap.css" rel='stylesheet' type='text/css' />
-	<!-- jQuery (necessary JavaScript plugins) -->
-	<script type='text/javascript' src="fe/js/jquery-1.11.1.min.js"></script>
-	<!-- Custom Theme files -->
-	<link href="fe/css/style.css" rel='stylesheet' type='text/css' />
-	<!-- Custom Theme files -->
-	<!--//theme-style-->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="Gretong Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
-	<!-- start menu -->
-	<link href="fe/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-	<script type="text/javascript" src="fe/js/megamenu.js"></script>
-	<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-	<script src="fe/js/menu_jquery.js"></script>
-	<script src="fe/js/simpleCart.min.js"> </script>
+<head th:replace="layout/homepagelayout::head_cata_check_contact">
 </head>
 <body>
-<<!-- header_top -->
+<!-- header_top -->
 <div th:replace="layout/homepagelayout::header"></div>
 <!-- header -->
 <div class="header_bg">
@@ -55,103 +34,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="container">
 	<div class="check">	 
 			 <div class="col-md-3 cart-total">
-			 <a class="continue" href="#">Continue to basket</a>
+			 <a class="continue" th:href="@{/}">Continue to basket</a>
 			 <div class="price-details">
 				 <h3>Price Details</h3>
 				 <span>Total</span>
-				 <span class="total1">6200.00</span>
+				 <span class="total1" id="total1">00.00</span>
 				 <span>Discount</span>
-				 <span class="total1">---</span>
+				 <span class="total1" id="discount">---</span>
 				 <span>Delivery Charges</span>
-				 <span class="total1">150.00</span>
+				 <span class="total1">Free ship</span>
 				 <div class="clearfix"></div>				 
 			 </div>	
 			 <ul class="total_price">
 			   <li class="last_price"> <h4>TOTAL</h4></li>	
-			   <li class="last_price"><span>6350.00</span></li>
+			   <li class="last_price"><span id="total2">00.00</span></li>
 			   <div class="clearfix"> </div>
 			 </ul>
-			
-			 
 			 <div class="clearfix"></div>
-			 <a class="order" href="#">Place Order</a>
+				 <div sec:authorize="!isAuthenticated()">
+					 <a class="order" href="/login">Place Order</a>
+				 </div>
+				 <div  sec:authorize="hasRole('USER')">
+					 <a class="order" href="#" onclick="orders.checkoutCart()">Place Order</a>
+				 </div>
 			 <div class="total-item">
 				 <h3>OPTIONS</h3>
 				 <h4>COUPONS</h4>
 				 <a class="cpns" href="#">Apply Coupons</a>
-				 <p><a href="#">Log In</a> to use accounts - linked coupons</p>
+				 <p sec:authorize="!isAuthenticated()"><a href="/login">Log In</a> to use accounts - linked coupons</p>
 			 </div>
 			</div>
-		 <div class="col-md-9 cart-items">
-			 <h1>My Shopping Bag (2)</h1>
-				<script>$(document).ready(function(c) {
-					$('.close1').on('click', function(c){
-						$('.cart-header').fadeOut('slow', function(c){
-							$('.cart-header').remove();
-						});
-						});	  
-					});
-			   </script>
-			 <div class="cart-header">
-				 <div class="close1"> </div>
-				 <div class="cart-sec simpleCart_shelfItem">
-						<div class="cart-item cyc">
-							 <img src="fe/images/8.jpg" class="img-responsive" alt=""/>
-						</div>
-					   <div class="cart-item-info">
-						<h3><a href="#">Mountain Hopper(XS R034)</a><span>Model No: 3578</span></h3>
-						<ul class="qty">
-							<li><p>Size : 5</p></li>
-							<li><p>Qty : 1</p></li>
-						</ul>
-						
-							 <div class="delivery">
-							 <p>Service Charges : Rs.100.00</p>
-							 <span>Delivered in 2-3 bussiness days</span>
-							 <div class="clearfix"></div>
-				        </div>	
-					   </div>
-					   <div class="clearfix"></div>
-											
-				  </div>
-			 </div>
-			 <script>$(document).ready(function(c) {
-					$('.close2').on('click', function(c){
-							$('.cart-header2').fadeOut('slow', function(c){
-						$('.cart-header2').remove();
-					});
-					});	  
-					});
-			 </script>
-			 <div class="cart-header2">
-				 <div class="close2"> </div>
-				  <div class="cart-sec simpleCart_shelfItem">
-						<div class="cart-item cyc">
-							 <img src="fe/images/11.jpg" class="img-responsive" alt=""/>
-						</div>
-					   <div class="cart-item-info">
-						<h3><a href="#">Mountain Hopper(XS R034)</a><span>Model No: 3578</span></h3>
-						<ul class="qty">
-							<li><p>Size : 5</p></li>
-							<li><p>Qty : 1</p></li>
-						</ul>
-							 <div class="delivery">
-							 <p>Service Charges : Rs.100.00</p>
-							 <span>Delivered in 2-3 bussiness days</span>
-							 <div class="clearfix"></div>
-				        </div>	
-					   </div>
-					   <div class="clearfix"></div>
-											
-				  </div>
-			  </div>		
+		 <div class="col-md-9 cart-items" id="listOrder">
+			 <h1>My Shopping Bag (<sp id="sl">0</sp>)</h1>
 		 </div>
-		 
-		
 			<div class="clearfix"> </div>
 	 </div>
 	 </div>
 <div th:replace="layout/homepagelayout::footer"></div>
+<div th:replace="layout/homepagelayout::toars"></div>
 </body>
-<script src="js/menu.js"></script>
+<script th:src="@{../js/menu.js}"></script>
+<script th:src="@{../js/addToCart.js}"></script>
 </html>
