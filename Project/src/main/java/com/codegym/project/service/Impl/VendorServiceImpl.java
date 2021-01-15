@@ -1,7 +1,6 @@
 package com.codegym.project.service.Impl;
 
 import com.codegym.project.model.Product;
-import com.codegym.project.model.TypeProduct;
 import com.codegym.project.model.Vendor;
 import com.codegym.project.repository.ProductRepository;
 import com.codegym.project.repository.VendorRepository;
@@ -104,13 +103,6 @@ public class VendorServiceImpl implements VendorService {
     @Override
     public List<Vendor> findAllVendorsByPhoneEmail(String phone, String email,String name) {
         return vendorRepository.findAllVendorsByPhoneEmail(phone,email,name);
-    }
-
-    @Override
-    public List<Vendor> listVendorsById() {
-        List<Long> listId=productRepository.listIdVendor();
-        List<Vendor> list = vendorRepository.findAllById(listId);
-        return list;
     }
 
 

@@ -4,9 +4,6 @@ import com.codegym.project.model.Product;
 import com.codegym.project.model.message.MessageNotification;
 import com.codegym.project.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -151,41 +148,17 @@ public class ApiProductController {
             return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
         }
     }
-
-// Vẽ canvas
+//Home
     @GetMapping(value = "/productsByIdType/{id}")
     public ResponseEntity<List<Product>> listProductsByIdType(@PathVariable Long id) {
         List<Product> productList =productService.findAllByTypeProductId(id);
         return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/productsByIdVendor/{id}")
-    public ResponseEntity<List<Product>> listProductsByIdVendor(@PathVariable Long id) {
-        List<Product> productList =productService.findAllByVendorId(id);
-        return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
-    }
-
-//Home
     @GetMapping(value = "/newFourProducts/")
     public ResponseEntity<List<Product>> listFourNewProducts() {
         List<Product> productList =productService.listFourNewProducts();
         return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
-    }
-
-//Phan trang
-    @GetMapping(value = "/productsByIdTypeProduct/{id}")
-    public ResponseEntity<Page<Product>> listProductsByIdTypeProduct(@PathVariable Long id,
-                                                                     @RequestParam(value = "page",required = false,defaultValue = "1") int page,
-                                                                     @RequestParam(value = "search", required = false,defaultValue = "")String search) {
-        Page<Product> productList =productService.findAllByTypeProductIdAndNameContaining(id, PageRequest.of(page-1,16),search);
-        return new ResponseEntity<Page<Product>>(productList, HttpStatus.OK);
-    }
-    @GetMapping(value = "/productsByVendorId/{id}")
-    public ResponseEntity<Page<Product>> listProductsByVendorId(@PathVariable Long id,
-                                                                     @RequestParam(value = "page",required = false,defaultValue = "1") int page,
-                                                                     @RequestParam(value = "search", required = false,defaultValue = "")String search) {
-        Page<Product> productList =productService.findAllByVendorIdAndNameContaining(id, PageRequest.of(page-1,16),search);
-        return new ResponseEntity<Page<Product>>(productList, HttpStatus.OK);
     }
 
 }

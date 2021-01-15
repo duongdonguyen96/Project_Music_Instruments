@@ -79,8 +79,4 @@ public class EmployeeServiceImpl implements EmployeeService {
         return false;
     }
 
-    @Override
-    public Employee findByUserName(String name) {
-        return employeeRepository.findByUserName(name);
-    }
 }

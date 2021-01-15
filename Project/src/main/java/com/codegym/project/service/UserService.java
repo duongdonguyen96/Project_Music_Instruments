@@ -9,5 +9,4 @@ public interface UserService extends BaseService<User> {
     User findUserDeleteById(long id);
     boolean deleteUser(long id);
     boolean undoUser(long id);
-    User findByUserName(String name);
 }

@@ -1,6 +1,5 @@
 var products = {} || products;
 var rates = {} || rates;
-var employees={}||employees;
 products.intTable = function () {
     var id;
     var role=$('#role').val();

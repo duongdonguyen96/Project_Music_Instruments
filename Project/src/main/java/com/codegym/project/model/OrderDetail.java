@@ -25,7 +25,7 @@ public class OrderDetail {
     @NotNull
     private Long quantity;
 
-    @OneToOne
+    @ManyToOne
     private Product product;
 
     @NotNull
@@ -34,43 +34,4 @@ public class OrderDetail {
     @Where(clause = "delete=false")
     private boolean delete = false;
 
-    public void setDelete(boolean delete) {
-        this.delete = delete;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Long getPrice() {
-        return price;
-    }
-
-    public void setPrice(Long price) {
-        this.price = price;
-    }
-
-    public boolean isDelete() {
-        return delete;
-    }
 }

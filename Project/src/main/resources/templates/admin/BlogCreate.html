@@ -1,10 +1,8 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
 <head th:replace="layout/layout :: head">
 </head>
-
 <body>
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
@@ -70,7 +68,7 @@
                                 <span>Orders</span></a>
                             <ul class="collapse">
                                 <li><a href="/orders">Orders list</a></li>
-                                <li><a href="/ordersDeleted">Orders Deleted</a></li>
+                                <li><a href="OderIsDelete.html">Orders Deleted</a></li>
                             </ul>
                         </li>
                         <li>
@@ -96,10 +94,6 @@
                                 <li><a href="/users">Users list</a></li>
                                 <li><a href="/usersDelete">Users Deleted</a></li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="/charts" aria-expanded="true"><i class="fa fa-table"></i>
-                                <span>Chart</span></a>
                         </li>
                     </ul>
                 </nav>
@@ -160,9 +154,13 @@
                                             </tr>
                                             <tr>
                                                 <td>Image</td>
-                                                <td><input type="text" id="image" name="image" data-rule-required=true class="form-control">
+                                                <td>
+                                                    <img id='output' height="150px" width="100px">
+                                                    <input class="form-control" type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate" data-rule-required=true ><br>>
                                                 </td>
                                             </tr>
+                                            <div th:replace="layout/layout::base64">
+                                            </div>
                                             <tr>
                                                 <td>Content</td>
                                                 <td>
@@ -171,6 +169,7 @@
                                                           class="form-control"></textarea>
                                                 </td>
                                             </tr>
+
                                             <tr>
                                                 <td>
                                                     <a href="javascript:" class="btn btn-primary" onclick="blogs.save()">Save</a>
@@ -214,4 +213,5 @@
 </script>
 <script src="js/blogs.js"></script>
 <script src="js/notification.js"></script>
+<script src="js/uploadFile.js"></script>
 </html>
