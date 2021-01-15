@@ -7,6 +7,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<style>
+	.error {
+		color: red;
+	}
+</style>
 <head>
 	<title>Trang Chủ</title>
 	<link th:href="@{../fe/css/bootstrap.css}" rel='stylesheet' type='text/css' />
@@ -54,84 +59,88 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!-- content -->
 <div class="container">
-<div class="main">
-	<!-- start registration -->
-	<div class="registration">
-		<div class="registration_left">
-		<h2>new user? <span> create an account </span></h2>
-		 <div class="registration_form">
-		 <!-- Form -->
-			<form>
-				<div>
-					<label>
-						<input placeholder="User name:" type="text" tabindex="1" required autofocus>
-					</label>
+	<div class="main">
+		<!-- start registration -->
+		<div class="registration">
+			<div class="registration_left">
+				<h2>new user? <span> create an account </span></h2>
+				<div class="registration_form">
+					<!-- Form -->
+					<form id="formRegister" name="formRegister">
+						<div>
+							<label>
+								<input id="userName" name="userName" placeholder="User name:" type="text" tabindex="1" required autofocus>
+							</label>
+						</div>
+						<div>
+							<label>
+								<input id="password" name="password" placeholder="password" type="password" tabindex="4" required>
+							</label>
+						</div>
+						<div>
+							<label>
+								<input id="password2" name="password2" placeholder="retype password" type="password" tabindex="4" required>
+							</label>
+						</div>
+						<div>
+							<label>
+								<input id="fullName" name="fullName" placeholder="Full name:" type="text" tabindex="1" required autofocus>
+							</label>
+						</div>
+						<div class="sky-form">
+							<div class="sky_form1">
+								<ul>
+									<li><label  class="radio left"><input name="gender" type="radio"  value="male" checked=""><i></i>MALE</label></li>
+									<li><label class="radio"><input  name="gender" type="radio"  value="female"><i></i>FEMALE</label></li>
+									<li><label  class="radio"><input name="gender" type="radio"  value="other gender"><i></i>OTHER GENDER</label></li>
+									<div class="clearfix"></div>
+								</ul>
+							</div>
+						</div>
+						<div>
+							<label>
+								<input id="address" name="address" placeholder="Address:" type="text" tabindex="2" required autofocus>
+							</label>
+						</div>
+						<div>
+							<label>
+								<input id="email" name="email"  placeholder="email address:" type="email" tabindex="3" required>
+							</label>
+						</div>
+						<div>
+							<label>
+								<input id="phone" name="phone" placeholder="Phone:" type="text" tabindex="2" required autofocus>
+							</label>
+						</div>
+						<div>
+							<label>
+								<input id="dateOfBirth" name="dateOfBirth" placeholder="Date of birth:" type="date" tabindex="2" required autofocus>
+							</label>
+						</div>
+						<div>
+							<label>
+								<img id="output" height="150px" width="100px">
+								<input type='file' tabindex="2" accept='image/*' onchange='openFile(event)' name="fileUpdate" data-rule-required=true ><br>
+							</label>
+						</div>
+						<div th:replace="layout/layout::base64">
+						</div>
+						<div class="sky-form">
+							<label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>i agree to shoppe.com &nbsp;<a class="terms" href="#"> terms of service</a> </label>
+						</div>
+						<div>
+
+							<input class="btn btn-primary" type="button" id="register-submit" value="create an account" onclick="return users.create()">
+						</div>
+					</form>
+
+					<!-- /Form -->
 				</div>
-				<div>
-					<label>
-						<input placeholder="password" type="password" tabindex="4" required>
-					</label>
-				</div>
-				<div>
-					<label>
-						<input placeholder="retype password" type="password" tabindex="4" required>
-					</label>
-				</div>
-				<div>
-					<label>
-						<input placeholder="Full name:" type="text" tabindex="1" required autofocus>
-					</label>
-				</div>
-				<div class="sky-form">
-					<div class="sky_form1">
-						<ul>
-							<li><label class="radio left"><input type="radio" name="radio" value="Male" checked=""><i></i>Male</label></li>
-							<li><label class="radio"><input type="radio" name="radio" value="Female"><i></i>Female</label></li>
-							<li><label class="radio"><input type="radio" name="radio" value="LGBT"><i></i>LGBT</label></li>
-							<div class="clearfix"></div>
-						</ul>
-					</div>
-				</div>
-				<div>
-					<label>
-						<input placeholder="Address:" type="text" tabindex="2" required autofocus>
-					</label>
-				</div>
-				<div>
-					<label>
-						<input placeholder="email address:" type="email" tabindex="3" required>
-					</label>
-				</div>
-				<div>
-					<label>
-						<input placeholder="Phone:" type="text" tabindex="2" required autofocus>
-					</label>
-				</div>
-				<div>
-					<label>
-						<input placeholder="Date of birth:" type="date" tabindex="2" required autofocus>
-					</label>
-				</div>
-				<div>
-					<label>
-						<img id='output' height="150px" width="100px">
-						<input type='file' tabindex="2" accept='image/*' onchange='openFile(event)' name="fileUpdate" data-rule-required=true ><br>
-					</label>
-				</div>
-				<div>
-					<input type="submit" value="create an account" id="register-submit">
-				</div>
-				<div class="sky-form">
-					<label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>i agree to shoppe.com &nbsp;<a class="terms" href="#"> terms of service</a> </label>
-				</div>
-			</form>
-			<!-- /Form -->
+			</div>
+			<div class="clearfix"></div>
 		</div>
+		<!-- end registration -->
 	</div>
-	<div class="clearfix"></div>
-	</div>
-	<!-- end registration -->
-</div>
 </div>
 <div th:replace="layout/homepagelayout::footer"></div>
 <div th:replace="layout/homepagelayout::toars"></div>
@@ -139,4 +148,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script th:src="@{../js/menu.js}"></script>
 <script th:src="@{../js/uploadFile.js}"></script>
 <script th:src="@{../js/addToCart.js}"></script>
+<script src="js/register.js"></script>
 </html>
