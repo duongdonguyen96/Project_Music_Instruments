@@ -14,7 +14,7 @@ public interface BannerRepository extends JpaRepository<Banner, Long> {
     List<Banner> findAllBannerDeleted();
 
     @Query(
-            value = "select * from banners where id =?1",
+            value = "select * from banners  where id =?1",
             nativeQuery = true)
     Banner findBannerDeleted(long id);
 }
