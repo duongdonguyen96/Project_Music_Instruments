@@ -177,6 +177,7 @@ users.get = function (id) {
             $('#dateOfBirth').val(data.dateOfBirth);
             $('#id').val(data.id);
             $('#modalAddEdit').modal('show');
+            $('#password2').val(data.password);
         }
     });
 };
